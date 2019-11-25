@@ -1,0 +1,212 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>
+	Project Notes
+</title><script src="/bundles/modernizr?v=wBEWDufH_8Md-Pbioxomt90vm6tJN2Pyy9u9zHtWsPo1"></script>
+<link href="/Content/css?v=qgM6XGht_Fs5h5oYmUKyxtb4G9n1oqXBQkp-bIHEG-81" rel="stylesheet"/>
+<link href="../../Images/favicon.ico" rel="shortcut icon" type="image/x-icon" /><link href="../../Styles/TDT.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <form method="post" action="./ProjectNotes?ProjectId=1454" id="ctl01">
+<div class="aspNetHidden">
+<input type="hidden" name="_TSM_HiddenField_" id="_TSM_HiddenField_" value="ZaMfZ6yYhPPHZ1NeEf8j6-t902-6pHpn2MehV0eep-I1" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="pgk18Vs3leNit2vyWC4BtDph3iJQLMZeN1ePd5/mveRtRuJMU1DYyF8AWi+f+05tSLaW6uQJYRrOSpf6puKQS51GvjHb06oke8h3oRAoHNj1J3O94Dal9T48zmhnvk9nu6HFdd8i3Ot+DM9P8EhQVG3OmxdFR6LimurwEhmbG0qazFh8yf+t79jBK+F4utkSBRKvtsZhHysOOqGQAViFD03IeW8YHxq5D/DTMZ7v4LC3b7AHmyLzx9A2y+BCsbGzyCQYHDQ9LDys6Qbw6dmj/Vd/kw4n9YxuOEPHJHNcFEkpkcf5ZGwr5NWNdAzu2E0HCor02m8BdRqyfhDCeVy70b8NULgqq9geLnQUeZJ+QA1YhbiwFVzp+ZljszR/+sATsuD3nvIrc2JslLOZgWOwbokjCFzcTz24J7Z/+LmRsa2Rb7WZLgXf2q1HEO+w96sX9eTLny3PpAI4uXDNSfl8vNJQD9mDuQSb2wqAOdz74E47g8X1uHpMKtJG456hry0WhnRkHCCEncugvoKJ604vmw==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['ctl01'];
+if (!theForm) {
+    theForm = document.ctl01;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZKTZO7LOVk5_QZiVwzvQY288Yac3ZqGmlbTo0tjGc9rIAZ6B90YOoFZzwoVTobGIOg2&amp;t=637012193589990353" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=x6wALODbMJK5e0eRC_p1LY9EhuBdMcROo9xvH9AVyARGEKYjfEcBUUW3jViwK4HaIYNXbjdjQpj0xFvlowgsCG4riUrVhoKrb4UN01GII1M70RQxdcpecWSipqsCTk340&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=P5lTttoqSeZXoYRLQMIScANOGqTCIu-kELA5KK_T9r24zmIUZx51AX9sD2dDl9PFfoTYbdAQ3eoAsAlb2PJ6N03hbHJ5ld0-sN8hyHrgwZV9pThMK6uF2gnROz7XUEOx0&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../Scripts/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../Scripts/respond.min.js" type="text/javascript"></script>
+<script src="/bundles/WebFormsJs?v=AAyiAYwMfvmwjNSBfIMrBAqfU5exDukMVhrRuZ-PDU01" type="text/javascript"></script>
+<script src="/Pages/Projects/ProjectNotes?_TSM_CombinedScripts_=True&amp;v=ZaMfZ6yYhPPHZ1NeEf8j6-t902-6pHpn2MehV0eep-I1&amp;_TSM_Bundles_=&amp;cdn=False" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=XGoPW3Unw0ILT0eb9sSUa1EsLXthdwrW2mNbaGQNR-owPP8No-iQmFrU3CsD_FkOxRHnB79-F4sUZG4LLpPxTZma-DNAh_aPP_C1vvOjXhHo9CSc8PMzzGqhRWxc2nyIPExSC_Kwx3pIUipv2BgWhw2&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=uvA9ANM76Fbpm1FfUlagndwBmADiH98T4O7b0eoXQgpTEd84lgck6p84zEo722zXRYM0YPqKgLYVS-quUbTZ3E_OSLKPobAPWP_zvCWwTe-CRGw-GWQiiTKbjdJ1Oqm6aYCD9k1IhNiGl9QOxZOgog2&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="183CC8E4" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="EuGY9TUkKdBntCRRL71BAev7hp4tGvWYXv9rg5+3BqyZeztn/KzS0uEX65ocPw3Ywdybq6P0wf4KyKm13weYm5p5pcNugsrQrc6IY+NW/eoghBwrgrj/Wu4NXcBUrmQf0eJDSZ/kkZjmGcP8c/oR3w==" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl00$ctl09', 'ctl01', [], [], [], 90, 'ctl00$ctl00');
+//]]>
+</script>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a id="LoginView1_HyperLink1" class="navbar-brand" href="../../"><img src="../../Images/LogoOnTransparent.gif" alt="" style="height:30px;" /></a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="../../" role="button" aria-expanded="false">Home</a></li>
+                                <li id="LoginView1_liSettings" class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="../Settings/Districts.aspx">Districts</a></li>
+                                        <li><a href="../Settings/Funders.aspx">Funders</a></li>
+                                        <li><a href="../Settings/NGOs.aspx">NGOs</a></li>
+                                        <li><a href="../Settings/OtherBodies.aspx">Other Bodies</a></li>
+                                        <li><a href="../Settings/ProjectOfficers.aspx">Project Officers</a></li>
+                                        <li><a href="../Settings/Regions.aspx">Regions</a></li>
+                                        <li><a href="../Settings/ProjectStatusCodes.aspx">Status Codes</a></li>
+                                        <li><a href="../Settings/Categories.aspx">Categories</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="../Reports/Default.aspx" role="button" aria-expanded="false">Reports</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="../../#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        <span id="LoginView1_LoginName1">CharlotteTaylor</span>
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        
+                                        <li role="presentation" class="divider"></li>
+                                        <li>
+                                            <a id="LoginView1_LoginStatus1" href="javascript:__doPostBack(&#39;ctl00$ctl00$LoginView1$LoginStatus1$ctl00&#39;,&#39;&#39;)">Logout</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    
+            </div>
+        </div>
+        <div class="container body-content">
+            
+    <h2>
+        <span id="BodyContent_lblProjectName" class="Capitalize">Amka Kazinga Office Equipment</span>
+    </h2>
+    <div class="MainContent">
+        
+    <h3>
+        <span id="BodyContent_PageHeader_lblHeader">Project Notes</span></h3>
+
+    </div>
+    <div id="BodyContent_Panel1" class="leftNav pull-left">
+	
+
+        <div class="btn-group-vertical" role="group">
+            <a id="BodyContent_a1" class="btn btn-default" href="ProjectDetails.aspx?ProjectId=1454">Details</a>
+            <a id="BodyContent_a2" class="btn btn-default" href="ProjectNotes.aspx?ProjectId=1454">Notes</a>
+            <a id="BodyContent_a3" class="btn btn-default" href="WebSiteInfo.aspx?ProjectId=1454">Web Site</a>
+            <a id="BodyContent_a11" class="btn btn-default" href="ProjectCategories.aspx?ProjectId=1454">Categories</a>
+            <a id="BodyContent_a4" class="btn btn-default" href="Documents.aspx?ProjectId=1454">Documents</a>
+            <a id="BodyContent_a5" class="btn btn-default" href="ProjectFunders.aspx?ProjectId=1454">Funders</a>
+            <a id="BodyContent_a6" class="btn btn-default" href="ProjectNGOs.aspx?ProjectId=1454">NGOs</a>
+            <a id="BodyContent_a7" class="btn btn-default" href="ProjectOtherBodies.aspx?ProjectId=1454">Other Bodies</a>
+            <a id="BodyContent_a8" class="btn btn-default" href="ProjectPurchasedItems.aspx?ProjectId=1454">Purchased Items</a>
+            <a id="BodyContent_a9" class="btn btn-default" href="ProjectVisitDates.aspx?ProjectId=1454">Visit Dates</a>
+            <a id="BodyContent_a10" class="btn btn-default" href="RelatedProjects.aspx?ProjectId=1454">Related Projects</a>
+        </div>
+    
+</div>
+    <div class="MainContent">
+        
+    <span id="BodyContent_MainContent_lblMessage"></span>
+
+        <div>
+	<table class="table table-bordered" cellspacing="0" rules="all" border="1" id="BodyContent_MainContent_DetailsView1" style="border-collapse:collapse;">
+		<tr>
+			<td>Project Status</td><td>
+                        <span id="BodyContent_MainContent_DetailsView1_Label2">Visited with Elias, committed organisation with good track record operating on a shoestring.  Interested in technical training, laptop would make them much more efficient.  Good communication.  
+
+Thank you Madam,for your word of encouragement.For coming six months we are envisaging to implement the following projects.
+i)Construction of low fuel wood consuming stoves in IZINGO ADP sponsored by World Vision the purpose is reduce tree cutting focusing for environmental conservation in Muleba district.
+ii) Nutrition assessment to expected mothers and youths  to combat malnutrition in Missenyi district
+
+The laptop that will be funded to us by your organization will be utilized effectively by our organization in various activities including keeping our organization records,mapping all areas where we are implementing our operations,we will also utilize it in communicating with our partners and our sponsors. 
+
+Thank you for your spirit of zeal in solving our problem of lacking essential item laptop,we hope if we get it will solve our major fundamental problem.
+
+I wish you a warm regards,
+
+Romuard Kyaruzi
+</span>
+                    </td>
+		</tr><tr>
+			<td>Project Officer Recommendation</td><td>
+                        <span id="BodyContent_MainContent_DetailsView1_Label3">Suggest we fund one laptop and external mouse for mapping, and offer ongoing remote technical training and monitor progress.
+Cost £200  </span>
+                    </td>
+		</tr><tr>
+			<td>Keywords</td><td>
+                        <span id="BodyContent_MainContent_DetailsView1_Label4">Computer, IT, training, </span>
+                    </td>
+		</tr><tr>
+			<td>Summary</td><td>
+                        <span id="BodyContent_MainContent_DetailsView1_Label5">An effective local CBO interested in support going forward.
+</span>
+                    </td>
+		</tr><tr>
+			<td>Problems (SC13 only)</td><td>
+                        <span id="BodyContent_MainContent_DetailsView1_Label6"></span>
+                    </td>
+		</tr><tr>
+			<td>Strengths and Weaknesses</td><td>
+                        <span id="BodyContent_MainContent_DetailsView1_Label7"></span>
+                    </td>
+		</tr><tr>
+			<td>Finance and Other Funders</td><td>
+                        <span id="BodyContent_MainContent_DetailsView1_Label8"></span>
+                    </td>
+		</tr><tr>
+			<td>Local Contribution & Running Costs</td><td>
+                        <span id="BodyContent_MainContent_DetailsView1_Label9"></span>
+                    </td>
+		</tr><tr>
+			<td align="right" colspan="2">
+                        <input type="submit" name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$Button1" value="Edit" id="BodyContent_MainContent_DetailsView1_Button1" class="btn btn-default" />
+                    </td>
+		</tr>
+	</table>
+</div>
+        
+
+    </div>
+
+            <hr />
+            <footer>
+                <p>&copy; 2019 - TDT Projects</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>

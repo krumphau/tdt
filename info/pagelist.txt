@@ -1,0 +1,30 @@
+default
+
+PROJECT PAGES
+projectdetails (add new)
+projectdetails (existing)
+projectnotes
+websiteinfo
+projectcategories (ADD new) + existing?
+documents
+projectfunders
+projectngos
+projectotherbodies
+projectpurchaseditems
+projectvisitdates
+relatedprojects
+
+SEARCH
+
+SETTINGS PAGES
+Districts
+Funders
+NGOs
+Other bodies
+Project officers
+Regions
+Status codes
+Categories
+
+REPORTS
+

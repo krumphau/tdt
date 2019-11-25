@@ -1,0 +1,77 @@
+from app import app
+from flask import flash, request
+import sqlhelper
+
+@app.route('/funders')
+def funders():
+    try:
+        resp = sqlhelper.do_selectmulti("CALL usp_GetAllFunders()")
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        print(e)
+
+@app.route('/funder/<int:id>', methods=['GET'])
+def funder(id):
+    try:
+        resp = sqlhelper.do_selectsinglebyid("CALL usp_GetFunders(%s)", id)
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        print(e)
+
+@app.route('/funder', methods=['POST'])
+def funder_add():
+    try:
+        content = request.json        
+        _name = content['Name']
+        _add1 = content['Address1']
+        _add2 = content['Address2']
+        _add3 = content['Address3']
+        _town = content['Town']
+        _county = content['County']
+        _postcode = content['PostCode']
+        _tel = content['Tel']
+        _maincontact = content['MainContact']
+        _amount = content['Amount']
+        sql = "CALL usp_InsertFunder(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        data = (_name,_add1,_add2,_add3,_town,_county,_postcode,_tel,_maincontact,_amount,)
+        resp = sqlhelper.do_writedata(sql, data)
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        print(e)        
+
+@app.route('/funder/<int:id>', methods=['DELETE'])
+def delete_funder(id):
+    try:
+        sql = "CALL usp_DeleteFunder(%s)"
+        data = (id,)
+        resp = sqlhelper.do_writedata(sql, data)
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        print(e)
+
+@app.route('/funder/<int:id>', methods=['PUT'])
+def update_funder(id):
+    try:
+        content = request.json
+        _name = content['Name']
+        _add1 = content['Address1']
+        _add2 = content['Address2']
+        _add3 = content['Address3']
+        _town = content['Town']
+        _county = content['County']
+        _postcode = content['PostCode']
+        _tel = content['Tel']
+        _maincontact = content['MainContact']
+        _amount = content['Amount']
+
+        sql = "CALL usp_UpdateFunder(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        data = (id,_name,_add1,_add2,_add3,_town,_county,_postcode,_tel,_maincontact,_amount,)        
+        resp = sqlhelper.do_writedata(sql, data)
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        print(e)

@@ -1,0 +1,249 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>
+	ProjectDetails
+</title><script src="/bundles/modernizr?v=wBEWDufH_8Md-Pbioxomt90vm6tJN2Pyy9u9zHtWsPo1"></script>
+<link href="/Content/css?v=qgM6XGht_Fs5h5oYmUKyxtb4G9n1oqXBQkp-bIHEG-81" rel="stylesheet"/>
+<link href="../../Images/favicon.ico" rel="shortcut icon" type="image/x-icon" /><link href="../../Styles/TDT.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <form method="post" action="./ProjectDetails?ProjectId=1454" onsubmit="javascript:return WebForm_OnSubmit();" id="ctl01">
+<div class="aspNetHidden">
+<input type="hidden" name="_TSM_HiddenField_" id="_TSM_HiddenField_" value="ZaMfZ6yYhPPHZ1NeEf8j6-t902-6pHpn2MehV0eep-I1" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="U17CKEMYR+emC7/O0HGnEMLCnR6z0ORjXKgC4z49Uz98hUl0g9iTEvsY1Ah1O29Jj96HzvQQa8BUHpuIZYLKCBtdSfs6GrQNo/befaHPiMAgmlCN91glNoEx9sE/IHo8Ue4/txc693bhsuaeP+a/4pOb5RtwMH+M4QZAsU1U3GFqo0srVIsvv4poR66GkjOXcsaia9CAoVMpXf/69MHnqcuROOGCQTIlgo/G4aVrseDRGKqkBQooLtXeMblXNEYG27aS3zeAhi0hdHxx+TH3+KH2URydrLTt5/2GgqVTJ5px+BmXQmpjae3DrLtpyQLDLZsn9e/lNyzgKXKi823TpKmsVGYdoP62NZBSKkdMxoEwIRQH7s4cDjK5Ak1q/8BQVZ4yTaO87RQGQPuhIAJNN0YDN36QJ9w7SCpprDXexWXoY4Nt8q1Ur/z0HQcF4aC3X8nJMs0vimQedbWxbz7+rfJIEU4zcv51oRHSj/hSZ8ayh+MDl4JF8zXHiviWsD+jXWN2DAFkKvKwFp8IaXBGrw==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['ctl01'];
+if (!theForm) {
+    theForm = document.ctl01;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZKTZO7LOVk5_QZiVwzvQY288Yac3ZqGmlbTo0tjGc9rIAZ6B90YOoFZzwoVTobGIOg2&amp;t=637012193589990353" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=x6wALODbMJK5e0eRC_p1LY9EhuBdMcROo9xvH9AVyARGEKYjfEcBUUW3jViwK4HaIYNXbjdjQpj0xFvlowgsCG4riUrVhoKrb4UN01GII1M70RQxdcpecWSipqsCTk340&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=P5lTttoqSeZXoYRLQMIScANOGqTCIu-kELA5KK_T9r24zmIUZx51AX9sD2dDl9PFfoTYbdAQ3eoAsAlb2PJ6N03hbHJ5ld0-sN8hyHrgwZV9pThMK6uF2gnROz7XUEOx0&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../Scripts/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../Scripts/respond.min.js" type="text/javascript"></script>
+<script src="/bundles/WebFormsJs?v=AAyiAYwMfvmwjNSBfIMrBAqfU5exDukMVhrRuZ-PDU01" type="text/javascript"></script>
+<script src="/Pages/Projects/ProjectDetails?_TSM_CombinedScripts_=True&amp;v=ZaMfZ6yYhPPHZ1NeEf8j6-t902-6pHpn2MehV0eep-I1&amp;_TSM_Bundles_=&amp;cdn=False" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=XGoPW3Unw0ILT0eb9sSUa1EsLXthdwrW2mNbaGQNR-owPP8No-iQmFrU3CsD_FkOxRHnB79-F4sUZG4LLpPxTZma-DNAh_aPP_C1vvOjXhHo9CSc8PMzzGqhRWxc2nyIPExSC_Kwx3pIUipv2BgWhw2&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=uvA9ANM76Fbpm1FfUlagndwBmADiH98T4O7b0eoXQgpTEd84lgck6p84zEo722zXRYM0YPqKgLYVS-quUbTZ3E_OSLKPobAPWP_zvCWwTe-CRGw-GWQiiTKbjdJ1Oqm6aYCD9k1IhNiGl9QOxZOgog2&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+null;
+return true;
+}
+//]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6FAF9C8E" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="Ehb1Ufeq+TBdP8C8b+uZS7F/DknvBDPfQ9Ob1Z25QxSaaFVJ+0zH/jDhevBA6+7Hh0tg92dh91wOM21igd3QIj74I0mZ7s1MeRppIv1WG+UhFR/c0Z1ZV4sUk1h98BkMfVnCs7hAIOxaPyLr87D+StPVC331eDp6uOkM7E9jNkc=" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl00$ctl09', 'ctl01', [], [], [], 90, 'ctl00$ctl00');
+//]]>
+</script>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a id="LoginView1_HyperLink1" class="navbar-brand" href="../../"><img src="../../Images/LogoOnTransparent.gif" alt="" style="height:30px;" /></a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="../../" role="button" aria-expanded="false">Home</a></li>
+                                <li id="LoginView1_liSettings" class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="../Settings/Districts.aspx">Districts</a></li>
+                                        <li><a href="../Settings/Funders.aspx">Funders</a></li>
+                                        <li><a href="../Settings/NGOs.aspx">NGOs</a></li>
+                                        <li><a href="../Settings/OtherBodies.aspx">Other Bodies</a></li>
+                                        <li><a href="../Settings/ProjectOfficers.aspx">Project Officers</a></li>
+                                        <li><a href="../Settings/Regions.aspx">Regions</a></li>
+                                        <li><a href="../Settings/ProjectStatusCodes.aspx">Status Codes</a></li>
+                                        <li><a href="../Settings/Categories.aspx">Categories</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="../Reports/Default.aspx" role="button" aria-expanded="false">Reports</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="../../#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        <span id="LoginView1_LoginName1">CharlotteTaylor</span>
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        
+                                        <li role="presentation" class="divider"></li>
+                                        <li>
+                                            <a id="LoginView1_LoginStatus1" href="javascript:__doPostBack(&#39;ctl00$ctl00$LoginView1$LoginStatus1$ctl00&#39;,&#39;&#39;)">Logout</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    
+            </div>
+        </div>
+        <div class="container body-content">
+            
+    <h2>
+        <span id="BodyContent_lblProjectName" class="Capitalize">Amka Kazinga Office Equipment</span>
+    </h2>
+    <div class="MainContent">
+        
+    <h3>
+        <span id="BodyContent_PageHeader_lblHeader">Project Details</span></h3>
+
+
+    </div>
+    <div id="BodyContent_Panel1" class="leftNav pull-left">
+	
+
+        <div class="btn-group-vertical" role="group">
+            <a id="BodyContent_a1" class="btn btn-default" href="ProjectDetails.aspx?ProjectId=1454">Details</a>
+            <a id="BodyContent_a2" class="btn btn-default" href="ProjectNotes.aspx?ProjectId=1454">Notes</a>
+            <a id="BodyContent_a3" class="btn btn-default" href="WebSiteInfo.aspx?ProjectId=1454">Web Site</a>
+            <a id="BodyContent_a11" class="btn btn-default" href="ProjectCategories.aspx?ProjectId=1454">Categories</a>
+            <a id="BodyContent_a4" class="btn btn-default" href="Documents.aspx?ProjectId=1454">Documents</a>
+            <a id="BodyContent_a5" class="btn btn-default" href="ProjectFunders.aspx?ProjectId=1454">Funders</a>
+            <a id="BodyContent_a6" class="btn btn-default" href="ProjectNGOs.aspx?ProjectId=1454">NGOs</a>
+            <a id="BodyContent_a7" class="btn btn-default" href="ProjectOtherBodies.aspx?ProjectId=1454">Other Bodies</a>
+            <a id="BodyContent_a8" class="btn btn-default" href="ProjectPurchasedItems.aspx?ProjectId=1454">Purchased Items</a>
+            <a id="BodyContent_a9" class="btn btn-default" href="ProjectVisitDates.aspx?ProjectId=1454">Visit Dates</a>
+            <a id="BodyContent_a10" class="btn btn-default" href="RelatedProjects.aspx?ProjectId=1454">Related Projects</a>
+        </div>
+    
+</div>
+    <div class="MainContent">
+        
+    <span id="BodyContent_MainContent_lblMessage"></span>
+    <div>
+	<table class="table table-bordered" cellspacing="0" rules="all" border="1" id="BodyContent_MainContent_DetailsView1" style="border-collapse:collapse;">
+		<tr>
+			<td>Project Identifier</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label1">613</span>
+                </td>
+		</tr><tr>
+			<td>Project Name</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label2">Amka Kazinga Office Equipment</span>
+                </td>
+		</tr><tr>
+			<td>Application Date</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label3">13/06/2017</span>
+                </td>
+		</tr><tr>
+			<td>Date Grant Approved</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label6">20/09/2017</span>
+                </td>
+		</tr><tr>
+			<td>Date Grant Paid</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label8"></span>
+                </td>
+		</tr><tr>
+			<td>Target Completion Date</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label9"></span>
+                </td>
+		</tr><tr>
+			<td>Amount of Grant Requested</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label4">£3,455.00</span>
+                </td>
+		</tr><tr>
+			<td>Amount of Grant Approved</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label5">£200.00</span>
+                </td>
+		</tr><tr>
+			<td>Amount of Grant Paid</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label7"></span>
+                </td>
+		</tr><tr>
+			<td>Total Project Cost</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label15">3731.0000</span>
+                </td>
+		</tr><tr>
+			<td>Status Code</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label10">09 Operation commenced [Equipment in place and being used (includes, for example, course commenced)]</span>
+                </td>
+		</tr><tr>
+			<td>Status Code Changed</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label11">16/08/2017</span>
+                </td>
+		</tr><tr>
+			<td>Region</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label12">Kagera</span>
+                </td>
+		</tr><tr>
+			<td>District</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label13">Bukoba</span>
+                </td>
+		</tr><tr>
+			<td>Project Officer</td><td>
+                    <span id="BodyContent_MainContent_DetailsView1_Label14">Janet CHAPMAN</span>&nbsp;
+                </td>
+		</tr><tr>
+			<td align="right" colspan="2">
+                    <input type="submit" name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$Button1" value="Edit" id="BodyContent_MainContent_DetailsView1_Button1" class="btn btn-default" />&nbsp;
+                        <input type="submit" name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$Button2" value="Delete" id="BodyContent_MainContent_DetailsView1_Button2" class="btn btn-default" />
+                    
+                </td>
+		</tr>
+	</table>
+</div>
+    
+    
+    
+    
+    
+
+    </div>
+
+            <hr />
+            <footer>
+                <p>&copy; 2019 - TDT Projects</p>
+            </footer>
+        </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.ConfirmButtonBehavior, {"ConfirmText":"Are you sure you wish to delete?","id":"BodyContent_MainContent_DetailsView1_Button2_ConfirmButtonExtender"}, null, null, $get("BodyContent_MainContent_DetailsView1_Button2"));
+});
+//]]>
+</script>
+</form>
+</body>
+</html>

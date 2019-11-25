@@ -1,0 +1,16 @@
+Project Functionality
+
+Front page
+
+Create new project - goes to new project page
+Select existing - Dropdown - Populated with all projects (text - project name, value - project ID) - Selecting one goes to the Edit project details page
+
+Project search:
+Search by any combination of:
+ID, Region, Name, NGO, Keywords (Column on Projects table), Officer, Status Code, Funder. Options in dropdowns are not restricted to available ones. Search only happens when you click the 'Search' button.
+
+Search results page:
+Grid of results showing project ID, name, region, keywords, project officer (not working correctly),status and a View button on each row.
+'Change filter' button takes you back to the front page but the original criteria aren't preserved - could we improve this?
+If there is no data, a caption appears saying 'No Data' along with the 'Change filter' button.
+

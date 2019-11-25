@@ -1,0 +1,469 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>
+	ProjectDetails
+</title><script src="/bundles/modernizr?v=wBEWDufH_8Md-Pbioxomt90vm6tJN2Pyy9u9zHtWsPo1"></script>
+<link href="/Content/css?v=qgM6XGht_Fs5h5oYmUKyxtb4G9n1oqXBQkp-bIHEG-81" rel="stylesheet"/>
+<link href="../../Images/favicon.ico" rel="shortcut icon" type="image/x-icon" /><link href="../../Styles/TDT.css" rel="stylesheet" />
+    
+<link href="/WebResource.axd?d=QygwMQZzIIofqDLXDr-HEOd386qnXe7ZOPn4AbaY12ZMOYRWNcbpd8aDyRBonScUmHhlwM94WVjmCLl1i2_e3QU7sxPyxUSayH69n3AFySGFSd0oV7Ep_9wM34cfxtJsJ3g_g410SMhrCGKeojzvdQ2&amp;t=636199797172645954" type="text/css" rel="stylesheet" /></head>
+<body>
+    <form method="post" action="./ProjectDetails?Action=Insert" onsubmit="javascript:return WebForm_OnSubmit();" id="ctl01">
+<div class="aspNetHidden">
+<input type="hidden" name="_TSM_HiddenField_" id="_TSM_HiddenField_" value="ZaMfZ6yYhPPHZ1NeEf8j6-t902-6pHpn2MehV0eep-I1" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="TeHGByw/YvsqH0rm5o2NBIQYvDFTioqXHHhQSF2ngb1TDIQxiYBpX7Whg05IOZb0+LJ1K1TQ5KWEc+9dfuB1fFCUJEL5h0ZOUwZ4SNTQDJfKD/MIGv1o8StR5VEWjMBJvimwrmR29K371ZMVqmBQ4N3JW0TwpKbAO5FFplAj35MEqaTzyYP/XqwTFOsXFNWRHJmy4O6FdEs9e7Zja1T5dEy3UE3i3KkW39AYAm6EFk89egv2EXlcp5BXyIgWf9XTgKag3tuRclKuf4j0iNM9EVvz+Eh4jkuQI/zEhLFbgvTgcuxs5Lcx9VEGVSky/Trkrl+ojGgvDVW3hiTIcS0swXHhACPX3x/hOAwVAkgCs+Ba2ddYkghIylkFzv93/WfKmLgU4D15YE/3v6ki42cSmBH6i8Pri3O9CLZv/lhVQptQWIlPDChnNCdjxGPErBaeMG4RitR+klAKrPB+GbO6ABw8jYnoSgAafhuGM4I1wgTxa4CWnYycGm40UJHkd6J39t2BvC6orn5T833uoV4H8g==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['ctl01'];
+if (!theForm) {
+    theForm = document.ctl01;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZKTZO7LOVk5_QZiVwzvQY288Yac3ZqGmlbTo0tjGc9rIAZ6B90YOoFZzwoVTobGIOg2&amp;t=637012193589990353" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=nv7asgRUU0tRmHNR2D6t1NLVAHKCL7Hh4HedT-f9ruvqMrqq_kIe_OSb6fYVHiyPPp5vz4li3g4A7c9hv6JrgyIGbbmfW3sECO5-_3Fzw_VsI6APNxzP0Nl-GA0--HUPHCoNRe_kDtLtZ6c6FSFZIw2&amp;t=14977d4e" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=x6wALODbMJK5e0eRC_p1LY9EhuBdMcROo9xvH9AVyARGEKYjfEcBUUW3jViwK4HaIYNXbjdjQpj0xFvlowgsCG4riUrVhoKrb4UN01GII1M70RQxdcpecWSipqsCTk340&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=P5lTttoqSeZXoYRLQMIScANOGqTCIu-kELA5KK_T9r24zmIUZx51AX9sD2dDl9PFfoTYbdAQ3eoAsAlb2PJ6N03hbHJ5ld0-sN8hyHrgwZV9pThMK6uF2gnROz7XUEOx0&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script src="../../Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../Scripts/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../Scripts/respond.min.js" type="text/javascript"></script>
+<script src="/bundles/WebFormsJs?v=AAyiAYwMfvmwjNSBfIMrBAqfU5exDukMVhrRuZ-PDU01" type="text/javascript"></script>
+<script src="/Pages/Projects/ProjectDetails?_TSM_CombinedScripts_=True&amp;v=ZaMfZ6yYhPPHZ1NeEf8j6-t902-6pHpn2MehV0eep-I1&amp;_TSM_Bundles_=&amp;cdn=False" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=XGoPW3Unw0ILT0eb9sSUa1EsLXthdwrW2mNbaGQNR-owPP8No-iQmFrU3CsD_FkOxRHnB79-F4sUZG4LLpPxTZma-DNAh_aPP_C1vvOjXhHo9CSc8PMzzGqhRWxc2nyIPExSC_Kwx3pIUipv2BgWhw2&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=uvA9ANM76Fbpm1FfUlagndwBmADiH98T4O7b0eoXQgpTEd84lgck6p84zEo722zXRYM0YPqKgLYVS-quUbTZ3E_OSLKPobAPWP_zvCWwTe-CRGw-GWQiiTKbjdJ1Oqm6aYCD9k1IhNiGl9QOxZOgog2&amp;t=ffffffffda74082d" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6FAF9C8E" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl00$ctl09', 'ctl01', [], [], [], 90, 'ctl00$ctl00');
+//]]>
+</script>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a id="LoginView1_HyperLink1" class="navbar-brand" href="../../"><img src="../../Images/LogoOnTransparent.gif" alt="" style="height:30px;" /></a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="../../" role="button" aria-expanded="false">Home</a></li>
+                                <li id="LoginView1_liSettings" class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="../Settings/Districts.aspx">Districts</a></li>
+                                        <li><a href="../Settings/Funders.aspx">Funders</a></li>
+                                        <li><a href="../Settings/NGOs.aspx">NGOs</a></li>
+                                        <li><a href="../Settings/OtherBodies.aspx">Other Bodies</a></li>
+                                        <li><a href="../Settings/ProjectOfficers.aspx">Project Officers</a></li>
+                                        <li><a href="../Settings/Regions.aspx">Regions</a></li>
+                                        <li><a href="../Settings/ProjectStatusCodes.aspx">Status Codes</a></li>
+                                        <li><a href="../Settings/Categories.aspx">Categories</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="../Reports/Default.aspx" role="button" aria-expanded="false">Reports</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="../../#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        <span id="LoginView1_LoginName1">CharlotteTaylor</span>
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        
+                                        <li role="presentation" class="divider"></li>
+                                        <li>
+                                            <a id="LoginView1_LoginStatus1" href="javascript:__doPostBack(&#39;ctl00$ctl00$LoginView1$LoginStatus1$ctl00&#39;,&#39;&#39;)">Logout</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    
+            </div>
+        </div>
+        <div class="container body-content">
+            
+    <h2>
+        <span id="BodyContent_lblProjectName" class="Capitalize"></span>
+    </h2>
+    <div class="MainContent">
+        
+    <h3>
+        <span id="BodyContent_PageHeader_lblHeader">Add New Project Details</span></h3>
+
+
+    </div>
+    <div id="BodyContent_Panel1" class="leftNav pull-left">
+	
+
+        <div class="btn-group-vertical" role="group">
+            <a id="BodyContent_a1" class="btn btn-default" href="ProjectDetails.aspx">Details</a>
+            <a id="BodyContent_a2" class="btn btn-default" href="ProjectNotes.aspx">Notes</a>
+            <a id="BodyContent_a3" class="btn btn-default" href="WebSiteInfo.aspx">Web Site</a>
+            <a id="BodyContent_a11" class="btn btn-default" href="ProjectCategories.aspx">Categories</a>
+            <a id="BodyContent_a4" class="btn btn-default" href="Documents.aspx">Documents</a>
+            <a id="BodyContent_a5" class="btn btn-default" href="ProjectFunders.aspx">Funders</a>
+            <a id="BodyContent_a6" class="btn btn-default" href="ProjectNGOs.aspx">NGOs</a>
+            <a id="BodyContent_a7" class="btn btn-default" href="ProjectOtherBodies.aspx">Other Bodies</a>
+            <a id="BodyContent_a8" class="btn btn-default" href="ProjectPurchasedItems.aspx">Purchased Items</a>
+            <a id="BodyContent_a9" class="btn btn-default" href="ProjectVisitDates.aspx">Visit Dates</a>
+            <a id="BodyContent_a10" class="btn btn-default" href="RelatedProjects.aspx">Related Projects</a>
+        </div>
+    
+</div>
+    <div class="MainContent">
+        
+    <span id="BodyContent_MainContent_lblMessage"></span>
+    <div>
+	<table class="table table-bordered" cellspacing="0" rules="all" border="1" id="BodyContent_MainContent_DetailsView1" style="border-collapse:collapse;">
+		<tr>
+			<td>Project Identifier</td><td>
+                    <input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox1" type="text" id="BodyContent_MainContent_DetailsView1_TextBox1" class="form-control" />
+                    
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox1" data-val-errormessage="Project Identifier Required" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_RequiredFieldValidator1" class="text-danger" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="display:none;">Project Identifier Required</span>
+                </td>
+		</tr><tr>
+			<td>Project Name</td><td>
+                    <input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox2" type="text" id="BodyContent_MainContent_DetailsView1_TextBox2" class="form-control" style="width:400px;" />
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox2" data-val-errormessage="Project Name Required" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_RequiredFieldValidator2" class="text-danger" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="display:none;">Project Name Required</span>
+                </td>
+		</tr><tr>
+			<td>Application Date</td><td>
+                    <input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox3" type="text" size="7" id="BodyContent_MainContent_DetailsView1_TextBox3" class="form-control" />
+                    
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox3" data-val-errormessage="App Date must be a valid date format" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_CompareValidator3" class="text-danger" data-val="true" data-val-type="Date" data-val-dateorder="dmy" data-val-cutoffyear="2029" data-val-century="2000" data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-operator="DataTypeCheck" style="display:none;">App Date must be a valid date format</span>
+                </td>
+		</tr><tr>
+			<td>Date Grant Approved</td><td>
+                    <input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox6" type="text" size="7" id="BodyContent_MainContent_DetailsView1_TextBox6" class="form-control" />
+                    
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox6" data-val-errormessage="Date grant approved must be a valid date format" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_CompareValidator6" class="text-danger" data-val="true" data-val-type="Date" data-val-dateorder="dmy" data-val-cutoffyear="2029" data-val-century="2000" data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-operator="DataTypeCheck" style="display:none;">Date grant approved must be a valid date format</span>
+
+                </td>
+		</tr><tr>
+			<td>Date Grant Paid</td><td>
+                    <input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox8" type="text" size="7" id="BodyContent_MainContent_DetailsView1_TextBox8" class="form-control" />
+                    
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox8" data-val-errormessage="Date grant paid must be a valid date" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_CompareValidator8" class="text-danger" data-val="true" data-val-type="Date" data-val-dateorder="dmy" data-val-cutoffyear="2029" data-val-century="2000" data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-operator="DataTypeCheck" style="display:none;">Date grant paid must be a valid date</span>
+
+                </td>
+		</tr><tr>
+			<td>Target Completion Date</td><td>
+                    <input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox9" type="text" size="7" id="BodyContent_MainContent_DetailsView1_TextBox9" class="form-control" />
+                    
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox9" data-val-errormessage="Target completion date must be a valid date" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_CompareValidator9" class="text-danger" data-val="true" data-val-type="Date" data-val-dateorder="dmy" data-val-cutoffyear="2029" data-val-century="2000" data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-operator="DataTypeCheck" style="display:none;">Target completion date must be a valid date</span>
+
+                </td>
+		</tr><tr>
+			<td>Amount of Grant Requested</td><td>
+                    <div class="input-group">
+                        <span class="input-group-addon">£</span><input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox4" type="text" size="7" id="BodyContent_MainContent_DetailsView1_TextBox4" class="form-control" />
+                    </div>
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox4" data-val-errormessage="Amount of grant requested must be number without comma" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_CompareValidator4" class="text-danger" data-val="true" data-val-type="Double" data-val-decimalchar="." data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-operator="DataTypeCheck" style="display:none;">Amount of grant requested must be number without comma</span>
+                </td>
+		</tr><tr>
+			<td>Amount of Grant Approved</td><td>
+                    <div class="input-group">
+                        <span class="input-group-addon">£</span><input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox5" type="text" size="7" id="BodyContent_MainContent_DetailsView1_TextBox5" class="form-control" />
+                    </div>
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox5" data-val-errormessage="Amount of grant approved must be number without comma" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_CompareValidator5" class="text-danger" data-val="true" data-val-type="Double" data-val-decimalchar="." data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-operator="DataTypeCheck" style="display:none;">Amount of grant approved must be number without comma</span>
+                </td>
+		</tr><tr>
+			<td>Amount of Grant Paid</td><td>
+                    <div class="input-group">
+                        <span class="input-group-addon">£</span><input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox7" type="text" size="7" id="BodyContent_MainContent_DetailsView1_TextBox7" class="form-control" />
+                    </div>
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox7" data-val-errormessage="Amount of grant paid must be number without comma" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_CompareValidator7" class="text-danger" data-val="true" data-val-type="Double" data-val-decimalchar="." data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-operator="DataTypeCheck" style="display:none;">Amount of grant paid must be number without comma</span>
+                </td>
+		</tr><tr>
+			<td>Total Project Cost</td><td>
+                    <div class="input-group">
+                        <span class="input-group-addon">£</span><input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox11" type="text" id="BodyContent_MainContent_DetailsView1_TextBox11" class="form-control" />
+                    </div>
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox11" data-val-errormessage="Must be a number without comma" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_CompareValidator11" class="text-danger" data-val="true" data-val-type="Double" data-val-decimalchar="." data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-operator="DataTypeCheck" style="display:none;">Must be a number without comma</span>
+                </td>
+		</tr><tr>
+			<td>Status Code</td><td>
+                    <div class="input-group">
+                        <select name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$DropDownList1" id="BodyContent_MainContent_DetailsView1_DropDownList1" class="form-control">
+				<option value="">--Please Select--</option>
+				<option value="16">00 Enquiries</option>
+				<option value="2">01 Waiting list</option>
+				<option value="3">02 Allocated</option>
+				<option value="4">03 For committee</option>
+				<option value="6">04 Project approved</option>
+				<option value="7">05 Grant Approved</option>
+				<option value="8">06 Grant part paid</option>
+				<option value="9">07 Grant fully paid</option>
+				<option value="10">08 Purchases complete</option>
+				<option value="11">09 Operation commenced</option>
+				<option value="12">10 Impact assessment</option>
+				<option value="13">11 Complete</option>
+				<option value="14">12 Project closed</option>
+				<option value="15">13 Problem</option>
+				<option value="17">14 Rejected</option>
+				<option value="18">15 Private Project</option>
+				<option value="19">16 Grant rejected by Committee</option>
+				<option value="24">17 Withdrawn</option>
+				<option value="20">20 - General TDT Resources</option>
+				<option value="21">21 Earthquake news and appeals</option>
+				<option value="23">22 Duplicate application</option>
+
+			</select>
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                <li><a href="#">Action</a></li>
+                            </ul>
+                        </div>
+                        <!-- /btn-group -->
+                    </div>
+                    &nbsp;<a id="BodyContent_MainContent_DetailsView1_LinkButton1" href="javascript:__doPostBack(&#39;ctl00$ctl00$BodyContent$MainContent$DetailsView1$LinkButton1&#39;,&#39;&#39;)">[Add StatusCode to DropDown]</a>
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_DropDownList1" data-val-errormessage="Status Code Required" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_RequiredFieldValidator3" class="text-danger" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="display:none;">Status Code Required</span>
+                </td>
+		</tr><tr>
+			<td>Status Code Changed</td><td>
+                    <input name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$TextBox10" type="text" size="7" id="BodyContent_MainContent_DetailsView1_TextBox10" class="form-control" />
+                    
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_TextBox10" data-val-errormessage="Must be a valid date" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_CompareValidator10" class="text-danger" data-val="true" data-val-type="Date" data-val-dateorder="dmy" data-val-cutoffyear="2029" data-val-century="2000" data-val-evaluationfunction="CompareValidatorEvaluateIsValid" data-val-operator="DataTypeCheck" style="display:none;">Must be a valid date</span>
+                </td>
+		</tr><tr>
+			<td>Region</td><td>
+                    <select name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$DropDownList2" id="BodyContent_MainContent_DetailsView1_DropDownList2" class="form-control">
+				<option value="">--Please Select--</option>
+				<option value="16">ALL</option>
+				<option value="22">Arusha</option>
+				<option value="21">Dar es Salaam</option>
+				<option value="6">Dodoma</option>
+				<option value="24">Geita</option>
+				<option value="28">Iringa</option>
+				<option value="4">Kagera</option>
+				<option value="3">Kigoma</option>
+				<option value="15">Kilimanjaro</option>
+				<option value="10">Lindi</option>
+				<option value="29">Manyara</option>
+				<option value="5">Mara</option>
+				<option value="20">Mbeya</option>
+				<option value="23">Morogoro</option>
+				<option value="8">Mtwara</option>
+				<option value="31">Mtwara urban</option>
+				<option value="25">Mwanza</option>
+				<option value="11">National VSO</option>
+				<option value="12">PEMBA</option>
+				<option value="30">Pemba South</option>
+				<option value="7">Pwani</option>
+				<option value="13">Rukwa</option>
+				<option value="26">Ruvuma</option>
+				<option value="1">Shinyanga</option>
+				<option value="9">SIMIYU</option>
+				<option value="18">Singida</option>
+				<option value="2">Tabora</option>
+				<option value="27">Tanga</option>
+				<option value="17">Unknown</option>
+				<option value="19">Zanzibar</option>
+
+			</select>
+                    &nbsp;<a id="BodyContent_MainContent_DetailsView1_LinkButton2" href="javascript:__doPostBack(&#39;ctl00$ctl00$BodyContent$MainContent$DetailsView1$LinkButton2&#39;,&#39;&#39;)">[Add Region to DropDown]</a>
+                    <span data-val-controltovalidate="BodyContent_MainContent_DetailsView1_DropDownList2" data-val-errormessage="Region Required" data-val-display="Dynamic" id="BodyContent_MainContent_DetailsView1_RequiredFieldValidatorDdl2" class="text-danger" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="display:none;">Region Required</span>
+                </td>
+		</tr><tr>
+			<td>District</td><td>
+                    <select name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$DropDownList3" id="BodyContent_MainContent_DetailsView1_DropDownList3" class="form-control">
+				<option value="">--Please Select--</option>
+				<option value="31">ALL</option>
+				<option value="35">Arameru</option>
+				<option value="26">Bagamoyo</option>
+				<option value="14">Bariadi</option>
+				<option value="45">Biharamulo</option>
+				<option value="8">Buhingu</option>
+				<option value="6">Bukoba</option>
+				<option value="29">Bukoba Rural</option>
+				<option value="34">Bunda</option>
+				<option value="46">Busega</option>
+				<option value="20">Butiama</option>
+				<option value="66">Chake chake</option>
+				<option value="33">Chamwino</option>
+				<option value="36">Chato</option>
+				<option value="61">Chemba</option>
+				<option value="53">Dodoma Municipal</option>
+				<option value="74">Geita Town</option>
+				<option value="54">Handeni</option>
+				<option value="40">Igunga</option>
+				<option value="77">Ikungi</option>
+				<option value="41">Ilemela</option>
+				<option value="70">Iringa Rural</option>
+				<option value="63">Itilima</option>
+				<option value="52">Kahama</option>
+				<option value="5">Karagwe</option>
+				<option value="12">Kasulu</option>
+				<option value="65">Kibaha</option>
+				<option value="50">Kibondo</option>
+				<option value="10">Kigoma</option>
+				<option value="4">Kigoma Rural</option>
+				<option value="3">Kigoma/Ujiji Municipal</option>
+				<option value="1">Kishapu</option>
+				<option value="42">Kondoa</option>
+				<option value="62">Kondoa</option>
+				<option value="32">Kyela</option>
+				<option value="73">Kyerwa</option>
+				<option value="16">Lindi</option>
+				<option value="71">Liwale</option>
+				<option value="67">Lushoto</option>
+				<option value="51">Manyoni</option>
+				<option value="17">Masasi</option>
+				<option value="57">Masasi Rural</option>
+				<option value="56">Masasi Urban</option>
+				<option value="13">Maswa</option>
+				<option value="44">Mbinga</option>
+				<option value="48">Meatu</option>
+				<option value="80">Mikandani Municipal</option>
+				<option value="28">Missenyi</option>
+				<option value="75">Mkoani</option>
+				<option value="43">Mkuranga</option>
+				<option value="58">Morogoro Rural</option>
+				<option value="64">Moshi</option>
+				<option value="76">Mpwapwa</option>
+				<option value="79">Mtwara urban</option>
+				<option value="7">Muleba</option>
+				<option value="27">Musoma</option>
+				<option value="68">Mwandiga</option>
+				<option value="60">Mwanga</option>
+				<option value="9">Nanyumbu District</option>
+				<option value="49">Newala</option>
+				<option value="18">Ngara</option>
+				<option value="30">Njombe</option>
+				<option value="72">Nkasi</option>
+				<option value="69">Nzega</option>
+				<option value="22">Pemba North</option>
+				<option value="59">Rorya</option>
+				<option value="37">Rufiji</option>
+				<option value="38">Rufiji</option>
+				<option value="39">Rufiji</option>
+				<option value="21">Serengeti</option>
+				<option value="19">Shinyanga Municipal</option>
+				<option value="47">Singida</option>
+				<option value="81">Singida Rural</option>
+				<option value="55">Songea</option>
+				<option value="25">Sumbawanga</option>
+				<option value="2">Tabora Urban</option>
+				<option value="78">Tarime</option>
+				<option value="11">Uvinza</option>
+				<option value="24">Uyui</option>
+				<option value="23">Zanzibar</option>
+
+			</select>
+                    &nbsp;<a id="BodyContent_MainContent_DetailsView1_LinkButton3" href="javascript:__doPostBack(&#39;ctl00$ctl00$BodyContent$MainContent$DetailsView1$LinkButton3&#39;,&#39;&#39;)">[Add District to DropDown]</a>
+                </td>
+		</tr><tr>
+			<td>Project Officer</td><td>
+                    <select name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$DropDownList4" id="BodyContent_MainContent_DetailsView1_DropDownList4" class="form-control">
+				<option value="">--Please Select--</option>
+				<option value="1017">Andrew Coulson</option>
+				<option value="14">Aseri Katanga</option>
+				<option value="1013">Chandrika Makwana</option>
+				<option value="2">Dan Cook</option>
+				<option value="6">David  Gibbons</option>
+				<option value="1">David Ackland</option>
+				<option value="1018">Elizabeth Taylor</option>
+				<option value="1016">Helen Carey</option>
+				<option value="11">Ian Powell</option>
+				<option value="10">Janet CHAPMAN</option>
+				<option value="3">Jonathan Pace</option>
+				<option value="8">Julian MARCUS</option>
+				<option value="5">Kevin CURLEY</option>
+				<option value="12">Petronilla Mlowe</option>
+				<option value="1015">Phil Grant</option>
+				<option value="4">Philippa GRANT</option>
+				<option value="7">Ron and Liz  Fennell</option>
+				<option value="1019">Steve Scorer</option>
+				<option value="1014">Tichafara Chisaka</option>
+				<option value="9">Tony Janes</option>
+				<option value="13">Tony Janes</option>
+
+			</select>
+                    &nbsp;<a id="BodyContent_MainContent_DetailsView1_LinkButton4" href="javascript:__doPostBack(&#39;ctl00$ctl00$BodyContent$MainContent$DetailsView1$LinkButton4&#39;,&#39;&#39;)">[Add Project Officer to DropDown]</a>
+                </td>
+		</tr><tr>
+			<td align="right" colspan="2">
+                    <input type="submit" name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$Button5" value="Save" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ctl00$BodyContent$MainContent$DetailsView1$Button5&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="BodyContent_MainContent_DetailsView1_Button5" class="btn btn-default" />
+                    &nbsp;<input type="submit" name="ctl00$ctl00$BodyContent$MainContent$DetailsView1$Button7" value="Cancel" id="BodyContent_MainContent_DetailsView1_Button7" class="btn btn-default" />
+                </td>
+		</tr>
+	</table>
+</div>
+    
+    
+    
+    
+    
+
+    </div>
+
+            <hr />
+            <footer>
+                <p>&copy; 2019 - TDT Projects</p>
+            </footer>
+        </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.CalendarBehavior, {"format":"dd/MM/yyyy","id":"BodyContent_MainContent_DetailsView1_TextBox3_CalendarExtender"}, null, null, $get("BodyContent_MainContent_DetailsView1_TextBox3"));
+});
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.CalendarBehavior, {"format":"dd/MM/yyyy","id":"BodyContent_MainContent_DetailsView1_TextBox6_CalendarExtender"}, null, null, $get("BodyContent_MainContent_DetailsView1_TextBox6"));
+});
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.CalendarBehavior, {"format":"dd/MM/yyyy","id":"BodyContent_MainContent_DetailsView1_TextBox8_CalendarExtender"}, null, null, $get("BodyContent_MainContent_DetailsView1_TextBox8"));
+});
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.CalendarBehavior, {"format":"dd/MM/yyyy","id":"BodyContent_MainContent_DetailsView1_TextBox9_CalendarExtender"}, null, null, $get("BodyContent_MainContent_DetailsView1_TextBox9"));
+});
+Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.CalendarBehavior, {"format":"dd/MM/yyyy","id":"BodyContent_MainContent_DetailsView1_TextBox10_CalendarExtender"}, null, null, $get("BodyContent_MainContent_DetailsView1_TextBox10"));
+});
+//]]>
+</script>
+</form>
+</body>
+</html>
