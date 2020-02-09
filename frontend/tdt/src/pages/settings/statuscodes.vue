@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     columns: [
@@ -55,29 +56,13 @@ export default {
         align: 'right'
       }
     ],
-    tableData: [
-      {
-        ID: 2,
-        StatusCode: '01 Waiting list',
-        Description: 'On waiting list'
-      },
-      {
-        ID: 3,
-        StatusCode: '02 Allocated',
-        Description: 'With Project Officer for report preparation'
-      },
-      {
-        ID: 4,
-        StatusCode: '03 For committee',
-        Description: 'Project officer report complete. For committee consideration'
-      },
-      {
-        ID: 5,
-        StatusCode: '04 Project approved',
-        Description: 'Committee has approved project and will be granted funding when funds available'
-      }
-    ]
+    tableData: []
   }),
+  mounted () {
+    axios.get('http://localhost:5000/statuscodes').then(response => {
+      this.tableData = response.data
+    })
+  },
   methods: {
     deleteRow: function (rowId) {
       if (confirm('Are you sure you want to delete Status Code with ID ' + rowId + '?')) {

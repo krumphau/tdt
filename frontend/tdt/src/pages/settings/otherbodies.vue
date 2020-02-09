@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     columns: [
@@ -49,17 +50,13 @@ export default {
         align: 'right'
       }
     ],
-    tableData: [
-      {
-        Name: 'Friends of Tanzania (FOT) U.S. A.',
-        Id: 1
-      },
-      {
-        Name: 'Tanzania Bureau of Standards (TBS)',
-        Id: 2
-      }
-    ]
+    tableData: []
   }),
+  mounted () {
+    axios.get('http://localhost:5000/districts').then(response => {
+      this.tableData = response.data
+    })
+  },
   methods: {
     deleteRow: function (rowId) {
       if (confirm('Are you sure you want to delete Other Body with ID ' + rowId + '?')) {

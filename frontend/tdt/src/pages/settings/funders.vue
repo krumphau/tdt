@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     columns: [
@@ -107,21 +108,12 @@ export default {
         field: 'Amount'
       }
     ],
-    tableData: [
-      {
-        'Id': '1',
-        'Name': 'A. Funder',
-        'Tel': '01737557052',
-        'Main Contact': 'Joe Bloggs',
-        'Amount': '999.99',
-        'Address1': '65 Reddown Road',
-        'Address2': '',
-        'Address3': '',
-        'Town': 'Coulsdon',
-        'County': 'Surrey',
-        'Postcode': 'CR5 1AP'
-      }
-    ]
-  })
+    tableData: []
+  }),
+  mounted () {
+    axios.get('http://localhost:5000/funders').then(response => {
+      this.tableData = response.data
+    })
+  }
 }
 </script>

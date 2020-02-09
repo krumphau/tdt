@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     columns: [
@@ -49,21 +50,13 @@ export default {
         align: 'right'
       }
     ],
-    tableData: [
-      {
-        Name: 'Edinburgh',
-        Id: 1
-      },
-      {
-        Name: 'Glasgow',
-        Id: 2
-      },
-      {
-        Name: 'London',
-        Id: 3
-      }
-    ]
+    tableData: []
   }),
+  mounted () {
+    axios.get('http://localhost:5000/districts').then(response => {
+      this.tableData = response.data
+    })
+  },
   methods: {
     deleteRow: function (rowId) {
       if (confirm('Are you sure you want to delete district with ID ' + rowId + '?')) {

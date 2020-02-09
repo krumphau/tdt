@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     columns: [
@@ -49,21 +50,13 @@ export default {
         align: 'right'
       }
     ],
-    tableData: [
-      {
-        Name: 'KWACONET',
-        Id: 1
-      },
-      {
-        Name: 'Kimango Cooperative Society',
-        Id: 2
-      },
-      {
-        Name: 'Ntuntu Orphans and Disabled People (NODIP)',
-        Id: 3
-      }
-    ]
+    tableData: []
   }),
+  mounted () {
+    axios.get('http://localhost:5000/ngos').then(response => {
+      this.tableData = response.data
+    })
+  },
   methods: {
     deleteRow: function (rowId) {
       if (confirm('Are you sure you want to delete NGO with ID ' + rowId + '?')) {

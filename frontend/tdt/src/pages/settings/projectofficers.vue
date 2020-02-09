@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     columns: [
@@ -113,22 +114,12 @@ export default {
         field: 'Email'
       }
     ],
-    tableData: [
-      {
-        'Id': '1',
-        'FirstName': 'David',
-        'LastName': 'Ackland',
-        'Tel': '01737557052',
-        'Mobile': '07703540291',
-        'Email': 'kibahass-tdt@yahoo.co.uk',
-        'Address1': '65 Reddown Road',
-        'Address2': '',
-        'Address3': '',
-        'Town': 'Coulsdon',
-        'County': 'Surrey',
-        'Postcode': 'CR5 1AP'
-      }
-    ]
-  })
+    tableData: []
+  }),
+  mounted () {
+    axios.get('http://localhost:5000/projectofficers').then(response => {
+      this.tableData = response.data
+    })
+  }
 }
 </script>

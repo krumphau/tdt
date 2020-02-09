@@ -32,13 +32,14 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     columns: [
       {
         name: 'name',
         label: 'Name',
-        field: 'Name',
+        field: 'CategoryName',
         align: 'left'
       },
       {
@@ -60,24 +61,13 @@ export default {
         align: 'right'
       }
     ],
-    tableData: [
-      {
-        Name: 'Toilets',
-        Id: 1,
-        HighLevelCategory: 1
-      },
-      {
-        Name: 'Schools',
-        Id: 2,
-        HighLevelCategory: 0
-      },
-      {
-        Name: 'Water',
-        Id: 3,
-        HighLevelCategory: 1
-      }
-    ]
+    tableData: []
   }),
+  mounted () {
+    axios.get('http://localhost:5000/categories').then(response => {
+      this.tableData = response.data
+    })
+  },
   methods: {
     deleteRow: function (rowId) {
       if (confirm('Are you sure you want to delete category with ID ' + rowId + '?')) {
