@@ -7,7 +7,6 @@
       :data="tableData"
       :columns="columns"
       row-key="Name"
-      :separator="separator"
     >
       <template v-slot:body-cell-edit="cellProperties">
         <q-td :props="cellProperties">
@@ -54,10 +53,10 @@ export default {
     ],
     tableData: []
   }),
-  mounted: () => {
-    axios
-      .get('http://localhost:5000/regions')
-      .then(response => (this.data.tableData = response))
+  mounted () {
+    axios.get('http://localhost:5000/regions').then(response => {
+      this.tableData = response.data
+    })
   },
   methods: {
     deleteRow: function (rowId) {
@@ -66,11 +65,6 @@ export default {
       } else {
         console.log('Delete cancelled')
       }
-    },
-    loadData: function () {
-      axios
-        .get('http://localhost:5000/regions')
-        .then(response => (this.data.tableData = response))
     }
   }
 }

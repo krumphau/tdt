@@ -9,6 +9,7 @@ def do_selectmulti(sql):
         cursor.execute(sql)
         rows = cursor.fetchall()
         resp = jsonify(rows)
+        resp.headers.add('Access-Control-Allow-Origin', '*')
         return resp
     except Exception as e:
         print(e)
@@ -23,6 +24,7 @@ def do_selectmultibyid(sql, id):
         cursor.execute(sql, id)
         rows = cursor.fetchall()
         resp = jsonify(rows)
+        resp.headers.add('Access-Control-Allow-Origin', '*')
         return resp
     except Exception as e:
         print(e)
@@ -37,6 +39,7 @@ def do_selectsinglebyid(sql, id):
         cursor.execute(sql, id)
         row = cursor.fetchone()
         resp = jsonify(row)
+        resp.headers.add('Access-Control-Allow-Origin', '*')
         return resp
     except Exception as e:
         print(e)
@@ -51,6 +54,7 @@ def do_writedata(sql, data):
         cursor.execute(sql, data)
         conn.commit()
         resp = jsonify("Operation successful")
+        resp.headers.add('Access-Control-Allow-Origin', '*')
         return resp
     except Exception as e:
         print(e)        
