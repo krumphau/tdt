@@ -11,6 +11,14 @@ import otherbodies
 import projectofficers
 import regions
 import statuscodes
+import projectcategories
+import projectfunders
+import projectdocuments
+import projectngos
+import projectotherbodies
+import projectpurchaseditems
+import projectrelatedprojects
+import projectvisits
 		
 @app.route('/users')
 def users():

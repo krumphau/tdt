@@ -16,6 +16,20 @@ def do_selectmulti(sql):
         cursor.close() 
         conn.close()
 
+def do_selectmultibyid(sql, id):
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(sql, id)
+        rows = cursor.fetchall()
+        resp = jsonify(rows)
+        return resp
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close() 
+        conn.close()
+
 def do_selectsinglebyid(sql, id):
     try:
         conn = mysql.connect()

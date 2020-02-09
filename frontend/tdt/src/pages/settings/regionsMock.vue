@@ -27,9 +27,6 @@
 </template>
 
 <script>
-
-import axios from 'axios'
-
 export default {
   data: () => ({
     columns: [
@@ -52,13 +49,21 @@ export default {
         align: 'right'
       }
     ],
-    tableData: []
+    tableData: [
+      {
+        Name: 'Edinburgh',
+        Id: 1
+      },
+      {
+        Name: 'Glasgow',
+        Id: 2
+      },
+      {
+        Name: 'London',
+        Id: 3
+      }
+    ]
   }),
-  mounted: () => {
-    axios
-      .get('http://localhost:5000/regions')
-      .then(response => (this.data.tableData = response))
-  },
   methods: {
     deleteRow: function (rowId) {
       if (confirm('Are you sure you want to delete region with ID ' + rowId + '?')) {
@@ -66,11 +71,6 @@ export default {
       } else {
         console.log('Delete cancelled')
       }
-    },
-    loadData: function () {
-      axios
-        .get('http://localhost:5000/regions')
-        .then(response => (this.data.tableData = response))
     }
   }
 }

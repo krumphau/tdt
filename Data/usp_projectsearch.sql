@@ -1,6 +1,6 @@
 DELIMITER $$
-/*drop procedure `usp_SearchProjects`$$*/
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_SearchProjects` (inId int, inRegionID int, inName nvarchar(255), inNGOId int, Keywords nvarchar(255), inOfficerId int, inStatusCode int, inFunderId int)
+drop procedure if exists `usp_SearchProjects`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_SearchProjects` (inIdentifier varchar(255), inRegionID int, inName nvarchar(255), inNGOId int, Keywords nvarchar(255), inOfficerId int, inStatusCode int, inFunderId int)
 BEGIN
 
 SELECT Keywords;
@@ -40,7 +40,7 @@ SELECT `projects`.`Id`,
     `projects`.`TotalProjectCost`,
     `projects`.`LastUpdatedBy`
 FROM `tdt`.`projects`
-WHERE (inId = 0 OR `projects`.`Id` = inId)
+WHERE (inIdentifier = '' OR `projects`.`ProjectIdentifier` = inIdentifier)
 AND (inRegionID = 0 OR `projects`.`Region_Id` = inRegionID)
 AND (inName = '' OR `projects`.`ProjectName` = inName)
 AND (inNGOId = 0 OR EXISTS (select 1 from projectngos where Project_Id = `projects`.`Id` AND NGO_Id = inNGOId))
