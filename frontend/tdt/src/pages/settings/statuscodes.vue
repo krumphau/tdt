@@ -65,10 +65,11 @@ export default {
   },
   methods: {
     deleteRow: function (rowId) {
-      if (confirm('Are you sure you want to delete Status Code with ID ' + rowId + '?')) {
-        console.log('Delete confirmed')
+      if (confirm('Are you sure you want to delete status code with ID ' + rowId + '?')) {
+        confirm('params: { id:' + rowId + ' }')
+        axios.delete('http://localhost:5000/statuscode/' + rowId).then(location.reload(true))
       } else {
-        console.log('Delete cancelled')
+        confirm('Delete cancelled')
       }
     }
   }

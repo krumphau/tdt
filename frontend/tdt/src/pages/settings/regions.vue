@@ -61,9 +61,10 @@ export default {
   methods: {
     deleteRow: function (rowId) {
       if (confirm('Are you sure you want to delete region with ID ' + rowId + '?')) {
-        console.log('Delete confirmed')
+        confirm('params: { id:' + rowId + ' }')
+        axios.delete('http://localhost:5000/region/' + rowId).then(location.reload(true))
       } else {
-        console.log('Delete cancelled')
+        confirm('Delete cancelled')
       }
     }
   }

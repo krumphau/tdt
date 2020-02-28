@@ -6,26 +6,41 @@
       title="Categories"
       :data="tableData"
       :columns="columns"
-      row-key="Name"
-      :separator="separator"
+      :visible-columns="visibleColumns"
+      row-key="id"
+      :key="changeFlag"
     >
       <template v-slot:body-cell-edit="cellProperties">
         <q-td :props="cellProperties">
-            <a :href="'/editcategory/' + cellProperties.value">Edit</a>
+            <q-btn class="glossy" rounded color="teal-9" label="Edit" @click="showEdit = true"/>
         </q-td>
-    </template>
-     <template v-slot:body-cell-delete="cellProperties">
-        <q-td :props="cellProperties">
-            <a href="#" @click="deleteRow(cellProperties.value)">Delete</a>
-        </q-td>
-    </template>
-    <template v-slot:body-cell-highLevel="cellProperties">
-        <q-td :props="cellProperties">
-            <q-checkbox true-value=1 false-value=0 :value="cellProperties.value" />
-        </q-td>
-    </template>
+      </template>
+      <template v-slot:body-cell-delete="cellProperties">
+          <q-td :props="cellProperties">
+              <q-btn class="glossy" rounded color="teal-9" label="Delete" @click="deleteRow(cellProperties.value)"/>
+          </q-td>
+      </template>
+      <template v-slot:body-cell-highLevel="cellProperties">
+          <q-td :props="cellProperties">
+              <q-checkbox :value="getHighLevelBool(cellProperties.value)"/>
+          </q-td>
+      </template>
     </q-table>
   </div>
+  <div>
+    <q-btn class="glossy" rounded color="indigo-12" label="Add New" @click="showAdd = true"/>
+  </div>
+
+  <q-dialog v-model="showAdd" persistent>
+      <addCategory @close="closeDialogs()" @postFinished="refreshGrid()"/>
+    </q-dialog>
+
+    <q-dialog v-model="showEdit" persistent>
+        <editCategory
+        :name="name">
+        </editCategory>
+      </q-dialog>
+
 </template>
 
   </q-page>
@@ -35,7 +50,16 @@
 import axios from 'axios'
 export default {
   data: () => ({
+    visibleColumns: ['name', 'highLevel', 'edit', 'delete'],
+    props: ['id', 'name', 'highLevel'],
     columns: [
+      {
+        name: 'id',
+        label: 'Id',
+        field: 'Id',
+        align: 'left',
+        visible: 'false'
+      },
       {
         name: 'name',
         label: 'Name',
@@ -61,7 +85,10 @@ export default {
         align: 'right'
       }
     ],
-    tableData: []
+    tableData: [],
+    showAdd: false,
+    showEdit: false,
+    changeFlag: 0
   }),
   mounted () {
     axios.get('http://localhost:5000/categories').then(response => {
@@ -69,13 +96,35 @@ export default {
     })
   },
   methods: {
-    deleteRow: function (rowId) {
+    deleteRow (rowId) {
       if (confirm('Are you sure you want to delete category with ID ' + rowId + '?')) {
-        console.log('Delete confirmed')
+        confirm('params: { id:' + rowId + ' }')
+        axios.delete('http://localhost:5000/category/' + rowId, { headers: {
+          'Access-Control-Max-Age': 86400,
+          'Content-Type': 'text/plain'
+        } })
       } else {
-        console.log('Delete cancelled')
+        confirm('Delete cancelled')
       }
+    },
+    refreshGrid: function () {
+      alert('Category saved successfully')
+      axios.get('http://localhost:5000/categories').then(response => {
+        this.tableData = response.data
+        this.changeFlag += 1
+      })
+    },
+    closeDialogs: function () {
+      this.showAdd = false
+      this.showEdit = false
+    },
+    getHighLevelBool: function (rowValue) {
+      return rowValue === 1
     }
+  },
+  components: {
+    'addCategory': require('components/Modals/addCategory.vue').default,
+    'editCategory': require('components/Modals/editCategory.vue').default
   }
 }
 

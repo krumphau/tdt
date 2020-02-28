@@ -55,6 +55,7 @@ def do_writedata(sql, data):
         conn.commit()
         resp = jsonify("Operation successful")
         resp.headers.add('Access-Control-Allow-Origin', '*')
+        resp.headers.add('Access-Control-Allow-Methods', "*")
         return resp
     except Exception as e:
         print(e)        

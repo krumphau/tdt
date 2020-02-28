@@ -1,8 +1,8 @@
 <template>
-  <q-page>
+  <q-page padding>
     <div>
       <h3>TDT Projects</h3>
-      <q-btn label="Create New Project" />
+      <q-btn label="Create New Project" to="/project"/>
       <br/>
       <h5>Or choose an existing project...</h5>
       <q-btn-dropdown label="Please Select"/>
@@ -23,6 +23,7 @@
 
 <script>
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  drawer1: false
 }
 </script>

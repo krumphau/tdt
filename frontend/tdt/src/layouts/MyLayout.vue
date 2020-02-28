@@ -44,6 +44,21 @@
       </q-toolbar>
     </q-header>
 
+    <q-drawer
+      v-model="drawer1"
+      show-if-above
+      :width="200"
+      :breakpoint="400"
+    >
+      <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 100%">
+        <div class="absolute-top bg-transparent">
+          <q-avatar size="56px" class="q-mb-sm">
+            <img src="../assets/LogoOnTransparent.gif">
+          </q-avatar>
+        </div>
+      </q-img>
+    </q-drawer>
+
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -56,7 +71,7 @@ export default {
 
   data () {
     return {
-      leftDrawerOpen: false
+      drawer1: false
     }
   }
 }
