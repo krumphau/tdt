@@ -1,7 +1,7 @@
 <template>
     <q-card-actions align="right" class="text-primary">
-                <q-btn flat label="Cancel" v-close-popup />
-                <q-btn flat label="Save" type="submit" />
+                <q-btn class="glossy" rounded color="indigo-12" label="Cancel" v-close-popup />
+                <q-btn class="glossy" rounded color="indigo-12" label="Save" type="submit" />
     </q-card-actions>
 </template>
 

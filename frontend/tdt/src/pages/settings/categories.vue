@@ -1,5 +1,6 @@
 <template>
   <q-page padding>
+    <leftDrawer />
     <template>
   <div class="q-pa-md">
     <q-table
@@ -124,7 +125,8 @@ export default {
   },
   components: {
     'addCategory': require('components/Modals/addCategory.vue').default,
-    'editCategory': require('components/Modals/editCategory.vue').default
+    'editCategory': require('components/Modals/editCategory.vue').default,
+    'leftDrawer': require('components/plainLeftDrawer.vue').default
   }
 }
 
