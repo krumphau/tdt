@@ -20,6 +20,7 @@ import projectpurchaseditems
 import projectrelatedprojects
 import projectvisits
 import projects
+import searchprojects
 		
 @app.route('/users')
 def users():

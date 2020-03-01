@@ -9,6 +9,7 @@ import statusCodes from './store-statuscodes'
 import ngos from './store-ngos'
 import funders from './store-funders'
 import projectOfficers from './store-projectofficers'
+import projects from './store_projects'
 
 Vue.use(Vuex)
 
@@ -27,7 +28,8 @@ export default function (/* { ssrContext } */) {
       statusCodes,
       ngos,
       funders,
-      projectOfficers
+      projectOfficers,
+      projects
     },
 
     // enable strict mode (adds overhead!)

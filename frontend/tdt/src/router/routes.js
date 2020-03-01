@@ -24,7 +24,8 @@ const routes = [
       { path: 'project/otherbodies', component: () => import('pages/projects/projectotherbodies.vue') },
       { path: 'project/relatedprojects', component: () => import('pages/projects/projectrelated.vue') },
       { path: 'project/visits', component: () => import('pages/projects/projectvisits.vue') },
-      { path: 'project/website', component: () => import('pages/projects/projectwebsite.vue') }
+      { path: 'project/website', component: () => import('pages/projects/projectwebsite.vue') },
+      { path: 'project/search', component: () => import('pages/projects/projectSearchResults.vue') }
     ]
   }
 ]

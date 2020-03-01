@@ -2,7 +2,7 @@
     <q-page padding>
         <leftDrawer />
         <div>
-            <h5>Add New Project</h5>
+            <h5>Project Details</h5>
         </div>
         <!-- <q-item class="row" outlined>
             <q-item-label padding>
@@ -84,8 +84,8 @@
                         <td class="text-left">
                         </td>
                         <td class="text-right">
-                            <q-btn flat label="Edit" to="/" />
-                            <q-btn flat label="Delete" type="submit" />
+                            <q-btn class="glossy" rounded color="indigo-12" label="Edit" to="/" />
+                            <q-btn class="glossy" rounded color="indigo-12" label="Delete" type="submit" />
                         </td>
                     </tr>
                 </tbody>

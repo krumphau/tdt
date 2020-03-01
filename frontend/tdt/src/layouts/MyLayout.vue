@@ -11,25 +11,25 @@
             <q-item tag="label" clickable>
               <q-item-section><router-link to="/settings/districts">Districts</router-link></q-item-section>
             </q-item>
-            <q-item tag="label" clickable @click="add('email')">
+            <q-item tag="label" clickable>
               <q-item-section><router-link to="/settings/funders">Funders</router-link></q-item-section>
             </q-item>
-            <q-item tag="label" clickable @click="add('email')">
+            <q-item tag="label" clickable>
               <q-item-section><router-link to="/settings/ngos">NGOs</router-link></q-item-section>
             </q-item>
-            <q-item tag="label" clickable @click="add('email')">
+            <q-item tag="label" clickable>
               <q-item-section><router-link to="/settings/otherbodies">Other Bodies</router-link></q-item-section>
             </q-item>
-            <q-item tag="label" clickable @click="add('email')">
+            <q-item tag="label" clickable>
               <q-item-section><router-link to="/settings/projectofficers">Project Officers</router-link></q-item-section>
             </q-item>
-            <q-item tag="label" clickable @click="add('email')">
+            <q-item tag="label" clickable>
               <q-item-section><router-link to="/settings/regions">Regions</router-link></q-item-section>
             </q-item>
-            <q-item tag="label" clickable @click="add('email')">
+            <q-item tag="label" clickable>
               <q-item-section><router-link to="/settings/statuscodes">Status Codes</router-link></q-item-section>
             </q-item>
-            <q-item tag="label" clickable @click="add('title')">
+            <q-item tag="label" clickable>
               <q-item-section><router-link to="/settings/categories">Categories</router-link></q-item-section>
             </q-item>
           </q-list>
@@ -37,7 +37,7 @@
         <div><q-btn label="Reports"/></div>
         <div>
           <q-btn-dropdown label="Account">
-            <q-item tag="label" clickable @click="add('email')">
+            <q-item tag="label" clickable>
               <q-item-section>Log Out</q-item-section>
             </q-item>
           </q-btn-dropdown></div>

@@ -3,7 +3,7 @@ from flask import flash, request
 import sqlhelper
 
 @app.route('/search', methods=['POST'])
-def projectcategory_add():
+def project_search():
     try:
         content = request.json
         _identifier = content['Identifier']

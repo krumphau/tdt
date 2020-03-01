@@ -14,7 +14,7 @@ def projects():
 @app.route('/project/<int:id>', methods=['GET'])
 def project(id):
     try:
-        resp = sqlhelper.do_selectsinglebyid("CALL usp_GetProjectOfficer(%s)", id)
+        resp = sqlhelper.do_selectsinglebyid("CALL usp_GetProject(%s)", id)
         resp.status_code = 200
         return resp
     except Exception as e:
@@ -37,7 +37,7 @@ def project_add():
         _maincontact = content['MainContact']
         _image = content['Image']
         _info = content['Info']
-        sql = "CALL usp_InsertProjectOfficer(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        sql = "CALL usp_InsertProject(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         data = (_firstName,_lastName,_tel,_mob,_add1,_add2,_add3,_town,_county,_postcode,_maincontact,_image,_info,)
         resp = sqlhelper.do_writedata(sql, data)
         resp.status_code = 200
@@ -48,7 +48,7 @@ def project_add():
 @app.route('/project/<int:id>', methods=['DELETE'])
 def delete_project(id):
     try:
-        sql = "CALL usp_DeleteProjectOfficer(%s)"
+        sql = "CALL usp_DeleteProject(%s)"
         data = (id,)
         resp = sqlhelper.do_writedata(sql, data)
         resp.status_code = 200
@@ -74,7 +74,7 @@ def update_project(id):
         _image = content['Image']
         _info = content['Info']
 
-        sql = "CALL usp_UpdateProjectOfficer(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        sql = "CALL usp_UpdateProject(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         data = (id,_firstName,_lastName,_tel,_mob,_add1,_add2,_add3,_town,_county,_postcode,_maincontact,_image,_info,)
         resp = sqlhelper.do_writedata(sql, data)
         resp.status_code = 200

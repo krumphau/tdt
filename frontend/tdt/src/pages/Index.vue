@@ -4,104 +4,114 @@
     <div>
       <h3>TDT Projects</h3>
       <q-btn class="glossy" rounded color="indigo-12" label="Create New Project" to="/project"/>
-      <br/>
       <h5>Or choose an existing project...</h5>
-      <q-select v-model="searchProject" label="Project" map-options emit-value option-value="Id" option-label="ProjectName" outlined :options="existingProjects" />
-      <br/>
+      <q-select dense v-model="selectProject" label="Project" map-options emit-value option-value="Id" option-label="ProjectName" outlined :options="projects" @input="showDetails()"/>
       <h5>Search Projects</h5>
-      <q-input outlined label="Project Identifier" />
-      <q-input outlined label="Name" />
-      <q-input outlined label="Keywords" />
-      <q-item class="row">
-      <q-item-label>Region</q-item-label>
-        <q-item-section avatar>
-            <q-icon name="language" />
-        </q-item-section>
-        <q-item-section>
-          <q-select v-model="searchRegion" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="regions" />
-        </q-item-section>
-      </q-item>
-      <q-item class="row">
-      <q-item-label>NGO</q-item-label>
-        <q-item-section avatar>
-            <q-icon name="language" />
-        </q-item-section>
-        <q-item-section>
-          <q-select v-model="searchNGO" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="ngos" />
-        </q-item-section>
-      </q-item>
-      <q-item class="row">
-      <q-item-label>Project Officer</q-item-label>
-        <q-item-section avatar>
-            <q-icon name="language" />
-        </q-item-section>
-        <q-item-section>
-          <q-select v-model="searchOfficer" label="Please select" map-options emit-value option-value="Id" option-label="FullName" outlined :options="officers" />
-        </q-item-section>
-      </q-item>
-      <q-item class="row">
-      <q-item-label>Status Code</q-item-label>
-        <q-item-section avatar>
-            <q-icon name="language" />
-        </q-item-section>
-        <q-item-section>
-          <q-select v-model="searchStatusCode" label="Please select" map-options emit-value option-value="Id" option-label="Description" outlined :options="statuscodes" />
-        </q-item-section>
-      </q-item>
-      <q-item class="row">
-      <q-item-label>Funder</q-item-label>
-        <q-item-section avatar>
-            <q-icon name="language" />
-        </q-item-section>
-        <q-item-section>
-          <q-select v-model="searchFunder" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="funders" />
-        </q-item-section>
-      </q-item>
-      <q-btn class="glossy" rounded color="indigo-12" label="Search" />
+      <q-markup-table flat bordered>
+        <tbody>
+          <tr>
+            <td>
+              Project Identifier <q-input dense outlined v-model="searchIdentifier" />
+            </td>
+            <td>
+              Name <q-input dense outlined v-model="searchName" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Keywords <q-input dense outlined v-model="searchKeywords" />
+            </td>
+            <td>
+              Region <q-select dense v-model="searchRegion" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="regions" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              NGO <q-select dense v-model="searchNGO" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="NGOs" />
+            </td>
+            <td>
+              Project Officer <q-select dense v-model="searchOfficer" label="Please select" map-options emit-value option-value="Id" option-label="FullName" outlined :options="projectOfficers" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Status <q-select dense v-model="searchStatus" label="Please select" map-options emit-value option-value="Id" option-label="Description" outlined :options="statusCodes" />
+            </td>
+            <td>
+              Funder <q-select dense v-model="searchFunder" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="funders" />
+            </td>
+          </tr>
+        </tbody>
+      </q-markup-table>
+
+      <q-btn class="glossy" rounded color="indigo-12" label="Search" @click="doSearch()"/>
     </div>
   </q-page>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   name: 'PageIndex',
   data: () => ({
-    searchProject: null,
-    searchRegion: null,
-    searchNGO: null,
-    searchOfficer: null,
-    searchStatusCode: null,
+    selectProject: null,
     searchFunder: null,
-    existingProjects: [],
-    regions: [],
-    ngos: [],
-    officers: [],
-    statuscodes: [],
-    funders: []
+    searchStatus: null,
+    searchOfficer: null,
+    searchNGO: null,
+    searchRegion: null,
+    searchKeywords: null,
+    searchName: null,
+    searchIdentifier: null,
+    searchParams: {
+      Identifier: '',
+      Name: '',
+      Keywords: '',
+      RegionID: 0,
+      NGOId: 0,
+      OfficerId: 0,
+      Status: 0,
+      FunderId: 0
+    }
   }),
   mounted () {
-    axios.get('http://localhost:5000/projects').then(response => {
-      this.existingProjects = response.data
-    })
-    axios.get('http://localhost:5000/regions').then(response => {
-      this.regions = response.data
-    })
-    axios.get('http://localhost:5000/ngos').then(response => {
-      this.ngos = response.data
-    })
-    axios.get('http://localhost:5000/projectofficers').then(response => {
-      this.officers = response.data
-    })
-    axios.get('http://localhost:5000/statuscodes').then(response => {
-      this.statuscodes = response.data
-    })
-    axios.get('http://localhost:5000/funders').then(response => {
-      this.funders = response.data
+    this.$store.dispatch('projects/loadProjects')
+    this.$store.dispatch('regions/loadRegions')
+    this.$store.dispatch('ngos/loadNGOs')
+    this.$store.dispatch('projectOfficers/loadProjectOfficers')
+    this.$store.dispatch('statusCodes/loadStatusCodes')
+    this.$store.dispatch('funders/loadFunders')
+  },
+  computed: {
+    ...mapGetters({
+      projects: 'projects/projects',
+      regions: 'regions/regions',
+      NGOs: 'ngos/NGOs',
+      projectOfficers: 'projectOfficers/projectOfficers',
+      statusCodes: 'statusCodes/statusCodes',
+      funders: 'funders/funders'
     })
   },
   components: {
     'leftDrawer': require('components/plainLeftDrawer.vue').default
+  },
+  methods: {
+    doSearch () {
+      this.searchParams.Identifier = (this.searchIdentifier != null ? this.searchIdentifier : '')
+      this.searchParams.Name = (this.searchName != null ? this.searchName : '')
+      this.searchParams.Keywords = (this.searchKeywords != null ? this.searchKeywords : '')
+      this.searchParams.RegionID = (this.searchRegion != null ? this.searchRegion : 0)
+      this.searchParams.NGOId = (this.searchNGO != null ? this.searchNGO : 0)
+      this.searchParams.OfficerId = (this.searchOfficer != null ? this.searchOfficer : 0)
+      this.searchParams.Status = (this.searchStatus != null ? this.searchStatus : 0)
+      this.searchParams.FunderId = (this.searchFunder != null ? this.searchFunder : 0)
+      this.$q.localStorage.set('searchParams', this.searchParams)
+      this.$router.push('/project/search')
+    },
+    showDetails () {
+      this.$q.localStorage.set('selectedProjectId', this.selectProject)
+      this.$router.push('/project/details')
+    }
   }
 }
 </script>
