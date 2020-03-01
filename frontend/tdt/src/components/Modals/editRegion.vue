@@ -1,13 +1,11 @@
 <template>
     <q-card style="min-width: 350px">
-        <modal-header>Add New Category</modal-header>
+        <modal-header>Edit Region</modal-header>
 
         <form @submit.prevent="submitForm">
             <modal-name
-            :Name.sync="categoryToAdd.CategoryName"
+            :Name.sync="region.Name"
             ref="modalCatName"></modal-name>
-
-            <modal-highlevel :Selected.sync="categoryToAdd.HighLevelCategory"></modal-highlevel>
 
             <modal-buttons />
         </form>
@@ -17,31 +15,28 @@
 
 <script>
 export default {
+  props: ['region'],
   data () {
     return {
-      categoryToAdd: {
-        CategoryName: '',
-        HighLevelCategory: false
-      }
+      regionToEdit: {}
     }
   },
   methods: {
     submitForm () {
       this.$refs.modalCatName.$refs.Name.validate()
       if (!this.$refs.modalCatName.$refs.Name.hasError) {
-        this.saveCategory()
+        this.$store.dispatch('regions/updateRegion', { item: this.region })
         this.$emit('close')
       }
-    },
-    async saveCategory () {
-      this.$store.dispatch('categories/addCategory', { item: this.categoryToAdd })
     }
   },
   components: {
     'modal-header': require('components/Modals/Shared/modalHeader.vue').default,
     'modal-name': require('components/Modals/Shared/modalSettingName.vue').default,
-    'modal-highlevel': require('components/Modals/Shared/modalCheckbox.vue').default,
     'modal-buttons': require('components/Modals/Shared/modalButtons.vue').default
+  },
+  mounted () {
+    this.regionToEdit = Object.assign({}, this.name)
   }
 }
 </script>

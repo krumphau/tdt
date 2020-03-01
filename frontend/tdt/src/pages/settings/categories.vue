@@ -5,20 +5,19 @@
   <div class="q-pa-md">
     <q-table
       title="Categories"
-      :data="tableData"
+      :data="categories"
       :columns="columns"
       :visible-columns="visibleColumns"
       row-key="id"
-      :key="changeFlag"
     >
       <template v-slot:body-cell-edit="cellProperties">
         <q-td :props="cellProperties">
-            <q-btn class="glossy" rounded color="teal-9" label="Edit" @click="showEdit = true"/>
+            <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEditDialog(cellProperties.value)"/>
         </q-td>
       </template>
       <template v-slot:body-cell-delete="cellProperties">
           <q-td :props="cellProperties">
-              <q-btn class="glossy" rounded color="teal-9" label="Delete" @click="deleteRow(cellProperties.value)"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Delete" @click="deleteRow(cellProperties.value)"/>
           </q-td>
       </template>
       <template v-slot:body-cell-highLevel="cellProperties">
@@ -33,12 +32,12 @@
   </div>
 
   <q-dialog v-model="showAdd" persistent>
-      <addCategory @close="closeDialogs()" @postFinished="refreshGrid()"/>
+      <addCategory @close="closeDialogs()" />
     </q-dialog>
 
     <q-dialog v-model="showEdit" persistent>
-        <editCategory
-        :name="name">
+        <editCategory @close="closeDialogs()"
+        :category="selectedCategory">
         </editCategory>
       </q-dialog>
 
@@ -48,18 +47,18 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   data: () => ({
     visibleColumns: ['name', 'highLevel', 'edit', 'delete'],
     props: ['id', 'name', 'highLevel'],
+    selectedCategory: {},
     columns: [
       {
         name: 'id',
         label: 'Id',
         field: 'Id',
-        align: 'left',
-        visible: 'false'
+        align: 'left'
       },
       {
         name: 'name',
@@ -86,34 +85,22 @@ export default {
         align: 'right'
       }
     ],
-    tableData: [],
     showAdd: false,
-    showEdit: false,
-    changeFlag: 0
+    showEdit: false
   }),
   mounted () {
-    axios.get('http://localhost:5000/categories').then(response => {
-      this.tableData = response.data
-    })
+    this.$store.dispatch('categories/loadCategories')
+  },
+  computed: {
+    ...mapGetters('categories', ['categories'])
   },
   methods: {
     deleteRow (rowId) {
       if (confirm('Are you sure you want to delete category with ID ' + rowId + '?')) {
-        confirm('params: { id:' + rowId + ' }')
-        axios.delete('http://localhost:5000/category/' + rowId, { headers: {
-          'Access-Control-Max-Age': 86400,
-          'Content-Type': 'text/plain'
-        } })
+        this.$store.dispatch('categories/deleteCategory', rowId)
       } else {
-        confirm('Delete cancelled')
+        alert('Delete cancelled')
       }
-    },
-    refreshGrid: function () {
-      alert('Category saved successfully')
-      axios.get('http://localhost:5000/categories').then(response => {
-        this.tableData = response.data
-        this.changeFlag += 1
-      })
     },
     closeDialogs: function () {
       this.showAdd = false
@@ -121,6 +108,10 @@ export default {
     },
     getHighLevelBool: function (rowValue) {
       return rowValue === 1
+    },
+    showEditDialog: function (rowValue) {
+      this.selectedCategory = this.$store.getters['categories/getCategoryById'](rowValue)
+      this.showEdit = true
     }
   },
   components: {

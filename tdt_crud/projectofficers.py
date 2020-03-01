@@ -34,11 +34,11 @@ def projectofficer_add():
         _town = content['Town']
         _county = content['County']
         _postcode = content['PostCode']
-        _maincontact = content['MainContact']
         _image = content['Image']
         _info = content['Info']
+        _email = content['Email']
         sql = "CALL usp_InsertProjectOfficer(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        data = (_firstName,_lastName,_tel,_mob,_add1,_add2,_add3,_town,_county,_postcode,_maincontact,_image,_info,)
+        data = (_firstName,_lastName,_tel,_mob,_email,_add1,_add2,_add3,_town,_county,_postcode,_image,_info)
         resp = sqlhelper.do_writedata(sql, data)
         resp.status_code = 200
         return resp

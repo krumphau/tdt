@@ -1,35 +1,54 @@
 <template>
-  <q-page padding>
+   <q-page padding>
+    <leftDrawer />
     <template>
   <div class="q-pa-md">
     <q-table
       title="NGOs"
-      :data="tableData"
+      :data="NGOs"
       :columns="columns"
-      row-key="Name"
-      :separator="separator"
+      :visible-columns="visibleColumns"
+      row-key="id"
+      :key="changeFlag"
     >
       <template v-slot:body-cell-edit="cellProperties">
         <q-td :props="cellProperties">
-            <a :href="'/editngo/' + cellProperties.value">Edit</a>
+            <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEditDialog(cellProperties.value)"/>
         </q-td>
-    </template>
-     <template v-slot:body-cell-delete="cellProperties">
-        <q-td :props="cellProperties">
-            <a href="#" @click="deleteRow(cellProperties.value)">Delete</a>
-        </q-td>
-    </template>
+      </template>
+      <template v-slot:body-cell-delete="cellProperties">
+          <q-td :props="cellProperties">
+              <q-btn class="glossy" rounded color="indigo-12" label="Delete" @click="deleteRow(cellProperties.value)"/>
+          </q-td>
+      </template>
     </q-table>
   </div>
+  <div>
+    <q-btn class="glossy" rounded color="indigo-12" label="Add New" @click="showAdd = true"/>
+  </div>
+
+  <q-dialog v-model="showAdd" persistent>
+      <addNGO @close="closeDialogs()" />
+    </q-dialog>
+
+    <q-dialog v-model="showEdit" persistent>
+        <editNGO @close="closeDialogs()"
+        :NGO="selectedNGO">
+        </editNGO>
+      </q-dialog>
+
 </template>
 
   </q-page>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   data: () => ({
+    visibleColumns: ['name', 'edit', 'delete'],
+    props: ['id', 'name'],
+    selectedNGO: {},
     columns: [
       {
         name: 'name',
@@ -50,22 +69,39 @@ export default {
         align: 'right'
       }
     ],
-    tableData: []
+    showAdd: false,
+    showEdit: false
   }),
   mounted () {
-    axios.get('http://localhost:5000/ngos').then(response => {
-      this.tableData = response.data
-    })
+    this.$store.dispatch('ngos/loadNGOs')
+  },
+  computed: {
+    ...mapGetters('ngos', ['NGOs'])
   },
   methods: {
-    deleteRow: function (rowId) {
+    deleteRow (rowId) {
       if (confirm('Are you sure you want to delete NGO with ID ' + rowId + '?')) {
-        confirm('params: { id:' + rowId + ' }')
-        axios.delete('http://localhost:5000/ngo/' + rowId).then(location.reload(true))
+        this.$store.dispatch('ngos/deleteNGO', rowId)
       } else {
-        confirm('Delete cancelled')
+        alert('Delete cancelled')
       }
+    },
+    closeDialogs: function () {
+      this.showAdd = false
+      this.showEdit = false
+    },
+    getHighLevelBool: function (rowValue) {
+      return rowValue === 1
+    },
+    showEditDialog: function (rowValue) {
+      this.selectedNGO = this.$store.getters['ngos/getNGOById'](rowValue)
+      this.showEdit = true
     }
+  },
+  components: {
+    'addNGO': require('components/Modals/addNGO.vue').default,
+    'editNGO': require('components/Modals/editNGO.vue').default,
+    'leftDrawer': require('components/plainLeftDrawer.vue').default
   }
 }
 

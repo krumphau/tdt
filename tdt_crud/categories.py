@@ -24,9 +24,9 @@ def category(id):
 def category_add():
     try:
         content = request.json
-        _name = content['Name']
+        _name = content['CategoryName']
 
-        _highlevel = content['HighLevel'] if 'HighLevel' in content else 0
+        _highlevel = content['HighLevelCategory'] if 'HighLevelCategory' in content else 0
 
         sql = "CALL usp_InsertCategory(%s, %s)"
         data = (_name, _highlevel,)
@@ -47,33 +47,17 @@ def delete_category(id):
     except Exception as e:
         print(e)
 
-@app.route('/category/<int:id>', methods=['OPTIONS'])
-def options_category(id):
-    try:
-       resp = jsonify("") 
-       resp.headers.add('Access-Control-Allow-Origin', '*')
-       resp.headers.add('Access-Control-Allow-Origin', '*')
-       resp.headers.add('Access-Control-Max-Age', '1728000')
-       resp.headers.add('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-       resp.headers.add('Access-Control-Allow-Headers', 'Authorization,Content-Type,Accept,Origin,User-Agent,DNT,Cache-Control,X-Mx-ReqToken,Keep-Alive,X-Requested-With,If-Modified-Since')
-       resp.headers.add('Content-Length', '0')
-       resp.headers.add('Content-Type', 'text/plain charset=UTF-8')
-       resp.status_code = 204
-       return resp
-    except Exception as e:
-        print(e)
-
 @app.route('/category/<int:id>', methods=['PUT'])
 def update_category(id):
     try:
         content = request.json
-        _name = content['Name']
-        _highlevel = content['HighLevel'] if 'HighLevel' in content else 0
+        _name = content['CategoryName']
+        _highlevel = content['HighLevelCategory'] if 'HighLevelCategory' in content else 0
 
         sql = "CALL usp_UpdateCategory(%s, %s, %s)"
         data = (id,_name,_highlevel,)        
         resp = sqlhelper.do_writedata(sql, data)
         resp.status_code = 200
-        return resp
+        return request.json
     except Exception as e:
         print(e)

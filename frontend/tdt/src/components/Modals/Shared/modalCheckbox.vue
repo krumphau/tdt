@@ -1,6 +1,6 @@
 <template>
     <q-card-section>
-        <q-checkbox :value="Selected" label="High Level" />
+        <q-checkbox v-model="val" :value="Selected" label="High Level" />
     </q-card-section>
 </template>
 

@@ -39,7 +39,7 @@ def statuscode_add():
 @app.route('/statuscode/<int:id>', methods=['DELETE'])
 def delete_statuscode(id):
     try:
-        sql = "CALL usp_DeleteStatusCodes(%s)"
+        sql = "CALL usp_DeleteStatusCode(%s)"
         data = (id,)
         resp = sqlhelper.do_writedata(sql, data)
         resp.status_code = 200

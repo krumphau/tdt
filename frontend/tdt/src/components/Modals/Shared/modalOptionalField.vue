@@ -6,7 +6,6 @@
                 :value="Name"
                 @input="$emit('update:Name', $event)"
                 dense
-                :rules="[val => !!val || 'Field is required']"
                 ref="Name"/>
     </q-card-section>
 </template>

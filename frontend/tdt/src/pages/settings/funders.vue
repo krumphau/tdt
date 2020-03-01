@@ -1,11 +1,12 @@
 <template>
   <q-page padding>
+    <leftDrawer />
     <template>
   <div class="q-pa-md">
     <q-table
       grid
       title="Funders"
-      :data="tableData"
+      :data="funders"
       :columns="columns"
       row-key="Id"
       :filter="filter"
@@ -40,22 +41,37 @@
             </q-list>
             <q-separator />
             <q-card-section>
-              <q-btn label="Edit" align="left"/>
-              <q-btn label="Delete" align="right"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Edit" align="left" @click="showEditDialog(props.row.Id)"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Delete" align="right" @click="deleteRow(props.row.Id)"/>
             </q-card-section>
           </q-card>
         </div>
       </template>
     </q-table>
   </div>
-</template>
+  <div>
+    <q-btn class="glossy" rounded color="indigo-12" label="Add New" @click="showAdd = true"/>
+  </div>
+
+  <q-dialog v-model="showAdd" persistent>
+    <addFunder @close="closeDialogs()" />
+  </q-dialog>
+
+  <q-dialog v-model="showEdit" persistent>
+      <editFunder @close="closeDialogs()"
+      :funder="selectedFunder">
+      </editFunder>
+  </q-dialog>
+
+  </template>
   </q-page>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   data: () => ({
+    selectedFunder: {},
     columns: [
       {
         name: 'Id',
@@ -108,12 +124,36 @@ export default {
         field: 'Amount'
       }
     ],
-    tableData: []
+    showAdd: false,
+    showEdit: false
   }),
+  methods: {
+    deleteRow (rowId) {
+      if (confirm('Are you sure you want to delete funder with ID ' + rowId + '?')) {
+        this.$store.dispatch('funders/deleteFunder', rowId)
+      } else {
+        alert('Delete cancelled')
+      }
+    },
+    closeDialogs: function () {
+      this.showAdd = false
+      this.showEdit = false
+    },
+    showEditDialog: function (rowValue) {
+      this.selectedFunder = this.$store.getters['funders/getFunderById'](rowValue)
+      this.showEdit = true
+    }
+  },
   mounted () {
-    axios.get('http://localhost:5000/funders').then(response => {
-      this.tableData = response.data
-    })
+    this.$store.dispatch('funders/loadFunders')
+  },
+  computed: {
+    ...mapGetters('funders', ['funders'])
+  },
+  components: {
+    'addFunder': require('components/Modals/addFunder.vue').default,
+    'editFunder': require('components/Modals/editFunder.vue').default,
+    'leftDrawer': require('components/plainLeftDrawer.vue').default
   }
 }
 </script>

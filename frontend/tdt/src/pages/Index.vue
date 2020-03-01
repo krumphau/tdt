@@ -66,7 +66,6 @@
 import axios from 'axios'
 export default {
   name: 'PageIndex',
-  drawer1: false,
   data: () => ({
     searchProject: null,
     searchRegion: null,

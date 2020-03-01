@@ -165,8 +165,8 @@
                         <td class="text-left">
                         </td>
                         <td class="text-right">
-                            <q-btn flat label="Cancel" to="/" />
-                            <q-btn flat label="Save" type="submit" />
+                            <q-btn class="glossy" rounded color="indigo-12" label="Cancel" to="/" />
+                            <q-btn class="glossy" rounded color="indigo-12" label="Save" type="submit" />
                         </td>
                     </tr>
                 </tbody>
@@ -188,7 +188,7 @@ export default {
     }
   },
   components: {
-    'leftDrawer': require('components/projectLeftDrawer.vue').default
+    'leftDrawer': require('components/plainLeftDrawer.vue').default
   }
 }
 </script>

@@ -1,11 +1,12 @@
 <template>
   <q-page padding>
+    <leftDrawer />
     <template>
   <div class="q-pa-md">
     <q-table
       grid
       title="Project Officers"
-      :data="tableData"
+      :data="projectOfficers"
       :columns="columns"
       row-key="Id"
       :filter="filter"
@@ -41,22 +42,36 @@
             </q-list>
             <q-separator />
             <q-card-section>
-              <q-btn label="Edit" align="left"/>
-              <q-btn label="Delete" align="right"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Edit" align="left" @click="showEditDialog(props.row.Id)"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Delete" align="right" @click="deleteRow(props.row.Id)"/>
             </q-card-section>
           </q-card>
         </div>
       </template>
     </q-table>
   </div>
+  <div>
+    <q-btn class="glossy" rounded color="indigo-12" label="Add New" @click="showAdd = true"/>
+  </div>
+
+  <q-dialog v-model="showAdd" persistent>
+      <addOfficer @close="closeDialogs()" @postFinished="refreshGrid()"/>
+    </q-dialog>
+
+    <q-dialog v-model="showEdit" persistent>
+        <editOfficer
+        :officer="selectedOfficer">
+        </editOfficer>
+      </q-dialog>
 </template>
   </q-page>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   data: () => ({
+    selectedOfficer: {},
     columns: [
       {
         name: 'Id',
@@ -114,12 +129,36 @@ export default {
         field: 'Email'
       }
     ],
-    tableData: []
+    showAdd: false,
+    showEdit: false
   }),
+  methods: {
+    deleteRow (rowId) {
+      if (confirm('Are you sure you want to delete project officer with ID ' + rowId + '?')) {
+        this.$store.dispatch('projectOfficers/deleteProjectOfficer', rowId)
+      } else {
+        alert('Delete cancelled')
+      }
+    },
+    closeDialogs: function () {
+      this.showAdd = false
+      this.showEdit = false
+    },
+    showEditDialog: function (rowValue) {
+      this.selectedOfficer = this.$store.getters['projectOfficers/getProjectOfficerById'](rowValue)
+      this.showEdit = true
+    }
+  },
   mounted () {
-    axios.get('http://localhost:5000/projectofficers').then(response => {
-      this.tableData = response.data
-    })
+    this.$store.dispatch('projectOfficers/loadProjectOfficers')
+  },
+  computed: {
+    ...mapGetters('projectOfficers', ['projectOfficers'])
+  },
+  components: {
+    'addOfficer': require('components/Modals/addProjectOfficer.vue').default,
+    'editOfficer': require('components/Modals/editProjectOfficer.vue').default,
+    'leftDrawer': require('components/plainLeftDrawer.vue').default
   }
 }
 </script>

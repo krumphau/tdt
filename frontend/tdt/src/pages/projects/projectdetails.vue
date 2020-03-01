@@ -84,8 +84,8 @@
                         <td class="text-left">
                         </td>
                         <td class="text-right">
-                            <q-btn flat label="Cancel" to="/" />
-                            <q-btn flat label="Save" type="submit" />
+                            <q-btn flat label="Edit" to="/" />
+                            <q-btn flat label="Delete" type="submit" />
                         </td>
                     </tr>
                 </tbody>

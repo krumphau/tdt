@@ -55,9 +55,6 @@ export default {
   name: 'MyLayout',
 
   data () {
-    return {
-      drawer1: false
-    }
   }
 }
 </script>

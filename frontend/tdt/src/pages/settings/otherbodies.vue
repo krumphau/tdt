@@ -1,35 +1,54 @@
 <template>
-  <q-page padding>
+   <q-page padding>
+    <leftDrawer />
     <template>
   <div class="q-pa-md">
     <q-table
       title="Other Bodies"
-      :data="tableData"
+      :data="otherBodies"
       :columns="columns"
-      row-key="Name"
-      :separator="separator"
+      :visible-columns="visibleColumns"
+      row-key="id"
+      :key="changeFlag"
     >
       <template v-slot:body-cell-edit="cellProperties">
         <q-td :props="cellProperties">
-            <a :href="'/editob/' + cellProperties.value">Edit</a>
+            <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEditDialog(cellProperties.value)"/>
         </q-td>
-    </template>
-     <template v-slot:body-cell-delete="cellProperties">
-        <q-td :props="cellProperties">
-            <a href="#" @click="deleteRow(cellProperties.value)">Delete</a>
-        </q-td>
-    </template>
+      </template>
+      <template v-slot:body-cell-delete="cellProperties">
+          <q-td :props="cellProperties">
+              <q-btn class="glossy" rounded color="indigo-12" label="Delete" @click="deleteRow(cellProperties.value)"/>
+          </q-td>
+      </template>
     </q-table>
   </div>
+  <div>
+    <q-btn class="glossy" rounded color="indigo-12" label="Add New" @click="showAdd = true"/>
+  </div>
+
+  <q-dialog v-model="showAdd" persistent>
+      <addOtherBody @close="closeDialogs()" />
+    </q-dialog>
+
+    <q-dialog v-model="showEdit" persistent>
+        <editOtherBody @close="closeDialogs()"
+        :otherBody="selectedOtherBody">
+        </editOtherBody>
+      </q-dialog>
+
 </template>
 
   </q-page>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   data: () => ({
+    visibleColumns: ['name', 'edit', 'delete'],
+    props: ['id', 'name'],
+    selectedOtherBody: {},
     columns: [
       {
         name: 'name',
@@ -50,22 +69,39 @@ export default {
         align: 'right'
       }
     ],
-    tableData: []
+    showAdd: false,
+    showEdit: false
   }),
   mounted () {
-    axios.get('http://localhost:5000/districts').then(response => {
-      this.tableData = response.data
-    })
+    this.$store.dispatch('otherBodies/loadOtherBodies')
+  },
+  computed: {
+    ...mapGetters('otherBodies', ['otherBodies'])
   },
   methods: {
-    deleteRow: function (rowId) {
+    deleteRow (rowId) {
       if (confirm('Are you sure you want to delete Other Body with ID ' + rowId + '?')) {
-        confirm('params: { id:' + rowId + ' }')
-        axios.delete('http://localhost:5000/otherbody/' + rowId).then(location.reload(true))
+        this.$store.dispatch('otherBodies/deleteOtherBody', rowId)
       } else {
-        confirm('Delete cancelled')
+        alert('Delete cancelled')
       }
+    },
+    closeDialogs: function () {
+      this.showAdd = false
+      this.showEdit = false
+    },
+    getHighLevelBool: function (rowValue) {
+      return rowValue === 1
+    },
+    showEditDialog: function (rowValue) {
+      this.selectedotherBody = this.$store.getters['otherBodies/getOtherBodyById'](rowValue)
+      this.showEdit = true
     }
+  },
+  components: {
+    'addOtherBody': require('components/Modals/addOtherBody.vue').default,
+    'editOtherBody': require('components/Modals/editOtherBody.vue').default,
+    'leftDrawer': require('components/plainLeftDrawer.vue').default
   }
 }
 

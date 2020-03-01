@@ -1,13 +1,11 @@
 <template>
     <q-card style="min-width: 350px">
-        <modal-header>Edit Category</modal-header>
+        <modal-header>Edit Other Body</modal-header>
 
         <form @submit.prevent="submitForm">
             <modal-name
-            :Name.sync="category.CategoryName"
-            ref="modalCatName"></modal-name>
-
-            <modal-highlevel :Selected.sync="category.HighLevelCategory"></modal-highlevel>
+            :Name.sync="otherBody.Name"
+            ref="modalOBName"></modal-name>
 
             <modal-buttons />
         </form>
@@ -17,17 +15,17 @@
 
 <script>
 export default {
-  props: ['category'],
+  props: ['otherBody'],
   data () {
     return {
-      categoryToEdit: {}
+      otherBodyToEdit: {}
     }
   },
   methods: {
     submitForm () {
-      this.$refs.modalCatName.$refs.Name.validate()
-      if (!this.$refs.modalCatName.$refs.Name.hasError) {
-        this.$store.dispatch('categories/updateCategory', { item: this.category })
+      this.$refs.modalOBName.$refs.Name.validate()
+      if (!this.$refs.modalOBName.$refs.Name.hasError) {
+        this.$store.dispatch('otherBodies/updateOtherBody', { item: this.otherBody })
         this.$emit('close')
       }
     }
@@ -35,11 +33,10 @@ export default {
   components: {
     'modal-header': require('components/Modals/Shared/modalHeader.vue').default,
     'modal-name': require('components/Modals/Shared/modalSettingName.vue').default,
-    'modal-highlevel': require('components/Modals/Shared/modalCheckbox.vue').default,
     'modal-buttons': require('components/Modals/Shared/modalButtons.vue').default
   },
   mounted () {
-    this.categoryToEdit = Object.assign({}, this.category)
+    this.otherBodyToEdit = Object.assign({}, this.otherBody)
   }
 }
 </script>

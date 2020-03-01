@@ -49,7 +49,7 @@ def update_otherbody(id):
     try:
         content = request.json
         _name = content['Name']
-        sql = "CALL usp_UpdateOtherBodies(%s,%s)"
+        sql = "CALL usp_UpdateOtherBody(%s,%s)"
         data = (id,_name,)        
         resp = sqlhelper.do_writedata(sql, data)
         resp.status_code = 200

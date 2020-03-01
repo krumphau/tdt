@@ -1,6 +1,5 @@
 <template>
     <q-drawer
-      v-model="drawer1"
       show-if-above
       :width="200"
       :breakpoint="400"

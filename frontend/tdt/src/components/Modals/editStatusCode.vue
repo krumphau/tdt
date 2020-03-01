@@ -1,13 +1,15 @@
 <template>
     <q-card style="min-width: 350px">
-        <modal-header>Edit Category</modal-header>
+        <modal-header>Edit Status Code</modal-header>
 
         <form @submit.prevent="submitForm">
             <modal-name
-            :Name.sync="category.CategoryName"
-            ref="modalCatName"></modal-name>
+            :Name.sync="statusCode.Name"
+            ref="modalStatusCode"></modal-name>
 
-            <modal-highlevel :Selected.sync="category.HighLevelCategory"></modal-highlevel>
+            <modal-name
+            :Name.sync="statusCode.Name"
+            ref="modalDescription"></modal-name>
 
             <modal-buttons />
         </form>
@@ -17,17 +19,17 @@
 
 <script>
 export default {
-  props: ['category'],
+  props: ['statusCode'],
   data () {
     return {
-      categoryToEdit: {}
+      statusCodeToEdit: {}
     }
   },
   methods: {
     submitForm () {
-      this.$refs.modalCatName.$refs.Name.validate()
-      if (!this.$refs.modalCatName.$refs.Name.hasError) {
-        this.$store.dispatch('categories/updateCategory', { item: this.category })
+      this.$refs.modalStatusCode.$refs.Name.validate()
+      if (!this.$refs.modalStatusCode.$refs.Name.hasError) {
+        this.$store.dispatch('statusCodes/updateStatusCode', { item: this.statusCode })
         this.$emit('close')
       }
     }
@@ -35,11 +37,10 @@ export default {
   components: {
     'modal-header': require('components/Modals/Shared/modalHeader.vue').default,
     'modal-name': require('components/Modals/Shared/modalSettingName.vue').default,
-    'modal-highlevel': require('components/Modals/Shared/modalCheckbox.vue').default,
     'modal-buttons': require('components/Modals/Shared/modalButtons.vue').default
   },
   mounted () {
-    this.categoryToEdit = Object.assign({}, this.category)
+    this.statusCodeToEdit = Object.assign({}, this.name)
   }
 }
 </script>
