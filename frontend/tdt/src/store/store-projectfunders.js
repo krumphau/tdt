@@ -21,22 +21,22 @@ const actions = {
   addProjectFunder: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/projectfunder', item).then((response) => {
       commit('addProjectFunder', { funder: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteProjectFunder: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/projectfunder/' + id).then((response) => {
       commit('deleteProjectFunder', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   loadProjectFunders: function ({ commit, state }, id) {
     axios.get('http://localhost:5000/projectfunder/' + id).then((response) => {
       commit('setProjectFunders', { projectFunders: response.data })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

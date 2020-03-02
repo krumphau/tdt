@@ -35,44 +35,43 @@ const actions = {
     axios.get('http://localhost:5000/projects').then((response) => {
       context.commit('setProjects', { projects: response.data })
       return true
-    }, (err) => {
-      console.log(err)
+    }, () => {
       return false
     })
   },
   addProject: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/project', item).then((response) => {
       commit('addProject', { project: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteProject: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/project/' + id).then((response) => {
       commit('deleteProject', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   updateProject: function ({ commit, state }, { item }) {
     axios.put('http://localhost:5000/project/' + item.Id, item).then((response) => {
       commit('updateProject', { item: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   searchProjects: function ({ commit }, item) {
     axios.post('http://localhost:5000/search', item).then((response) => {
       commit('setSearchResults', { results: response.data })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   loadProjectDetails: function ({ commit, state }, id) {
     axios.get('http://localhost:5000/project/' + id).then((response) => {
       commit('setCurrentProject', { currentProject: response.data })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

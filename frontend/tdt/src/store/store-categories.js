@@ -26,30 +26,29 @@ const actions = {
     axios.get('http://localhost:5000/categories').then((response) => {
       context.commit('setCategories', { categories: response.data })
       return true
-    }, (err) => {
-      console.log(err)
+    }, () => {
       return false
     })
   },
   addCategory: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/category', item).then((response) => {
       commit('addCategory', { category: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteCategory: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/category/' + id).then((response) => {
       commit('deleteCategory', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   updateCategory: function ({ commit, state }, { item }) {
     axios.put('http://localhost:5000/category/' + item.Id, item).then((response) => {
       commit('updateCategory', { item: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

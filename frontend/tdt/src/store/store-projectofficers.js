@@ -26,30 +26,29 @@ const actions = {
     axios.get('http://localhost:5000/projectofficers').then((response) => {
       context.commit('setProjectOfficers', { projectOfficers: response.data })
       return true
-    }, (err) => {
-      console.log(err)
+    }, () => {
       return false
     })
   },
   addProjectOfficer: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/projectofficer', item).then((response) => {
       commit('addProjectOfficer', { projectOfficer: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteProjectOfficer: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/projectofficer/' + id).then((response) => {
       commit('deleteProjectOfficer', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   updateProjectOfficer: function ({ commit, state }, { item }) {
     axios.put('http://localhost:5000/projectofficer/' + item.Id, item).then((response) => {
       commit('updateProjectOfficer', { item: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

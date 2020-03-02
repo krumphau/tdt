@@ -26,30 +26,29 @@ const actions = {
     axios.get('http://localhost:5000/funders').then((response) => {
       context.commit('setFunders', { funders: response.data })
       return true
-    }, (err) => {
-      console.log(err)
+    }, () => {
       return false
     })
   },
   addFunder: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/funder', item).then((response) => {
       commit('addFunder', { funder: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteFunder: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/funder/' + id).then((response) => {
       commit('deleteFunder', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   updateFunder: function ({ commit, state }, { item }) {
     axios.put('http://localhost:5000/funder/' + item.Id, item).then((response) => {
       commit('updateFunder', { item: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

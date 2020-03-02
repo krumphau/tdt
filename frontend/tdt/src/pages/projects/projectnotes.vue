@@ -8,7 +8,7 @@
             <q-markup-table flat bordered>
                 <tbody>
                     <tr>
-                    <td class="text-left" width="20%">Project Status</td>
+                    <td class="text-left" width="20%">Project Progress</td>
                     <td class="text-left" >{{ project.StatusDescription }}</td>
                     </tr>
                     <tr>

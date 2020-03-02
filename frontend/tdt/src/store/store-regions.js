@@ -26,30 +26,29 @@ const actions = {
     axios.get('http://localhost:5000/regions').then((response) => {
       context.commit('setRegions', { regions: response.data })
       return true
-    }, (err) => {
-      console.log(err)
+    }, () => {
       return false
     })
   },
   addRegion: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/region', item).then((response) => {
       commit('addRegion', { region: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteRegion: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/region/' + id).then((response) => {
       commit('deleteRegion', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   updateRegion: function ({ commit, state }, { item }) {
     axios.put('http://localhost:5000/region/' + item.Id, item).then((response) => {
       commit('updateRegion', { item: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

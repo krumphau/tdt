@@ -21,22 +21,22 @@ const actions = {
   addProjectOtherBody: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/projectotherbody', item).then((response) => {
       commit('addProjectOtherBody', { projectOtherBody: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteProjectOtherBody: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/projectotherbody/' + id).then((response) => {
       commit('deleteProjectOtherBody', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   loadProjectOtherBodies: function ({ commit, state }, id) {
     axios.get('http://localhost:5000/projectotherbody/' + id).then((response) => {
       commit('setProjectOtherBodies', { projectOtherBodies: response.data })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

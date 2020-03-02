@@ -21,22 +21,22 @@ const actions = {
   addProjectNGO: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/projectngo', item).then((response) => {
       commit('addProjectNGO', { ngo: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteProjectNGO: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/projectngo/' + id).then((response) => {
       commit('deleteProjectNGO', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   loadProjectNGOs: function ({ commit, state }, id) {
     axios.get('http://localhost:5000/projectngo/' + id).then((response) => {
       commit('setProjectNGOs', { projectNGOs: response.data })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

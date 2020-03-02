@@ -13,7 +13,7 @@ const routes = [
       { path: 'settings/projectofficers', component: () => import('pages/settings/projectofficers.vue') },
       { path: 'settings/statuscodes', component: () => import('pages/settings/statuscodes.vue') },
       { path: 'settings/categories', component: () => import('pages/settings/categories.vue') },
-      { path: 'project', component: () => import('pages/projects/project.vue') },
+      { path: 'project', component: () => import('pages/projects/addproject.vue') },
       { path: 'project/categories', component: () => import('pages/projects/projectcategories.vue') },
       { path: 'project/details', component: () => import('pages/projects/projectdetails.vue') },
       { path: 'project/documents', component: () => import('pages/projects/projectdocs.vue') },
@@ -25,7 +25,9 @@ const routes = [
       { path: 'project/relatedprojects', component: () => import('pages/projects/projectrelated.vue') },
       { path: 'project/visits', component: () => import('pages/projects/projectvisits.vue') },
       { path: 'project/website', component: () => import('pages/projects/projectwebsite.vue') },
-      { path: 'project/search', component: () => import('pages/projects/projectSearchResults.vue') }
+      { path: 'project/search', component: () => import('pages/projects/projectsearchresults.vue') },
+      { path: 'reports/search', component: () => import('pages/reports/reportsearch.vue') },
+      { path: 'reports/results', component: () => import('pages/reports/reportresults.vue') }
     ]
   }
 ]

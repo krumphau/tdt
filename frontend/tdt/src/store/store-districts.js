@@ -26,30 +26,29 @@ const actions = {
     axios.get('http://localhost:5000/districts').then((response) => {
       context.commit('setDistricts', { districts: response.data })
       return true
-    }, (err) => {
-      console.log(err)
+    }, () => {
       return false
     })
   },
   addDistrict: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/district', item).then((response) => {
       commit('addDistrict', { District: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteDistrict: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/district/' + id).then((response) => {
       commit('deleteDistrict', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   updateDistrict: function ({ commit, state }, { item }) {
     axios.put('http://localhost:5000/district/' + item.Id, item).then((response) => {
       commit('updateDistrict', { item: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

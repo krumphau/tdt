@@ -26,30 +26,29 @@ const actions = {
     axios.get('http://localhost:5000/otherbodies').then((response) => {
       context.commit('setOtherBodies', { otherBodies: response.data })
       return true
-    }, (err) => {
-      console.log(err)
+    }, () => {
       return false
     })
   },
   addOtherBody: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/otherbody', item).then((response) => {
       commit('addOtherBody', { otherBody: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteOtherBody: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/otherbody/' + id).then((response) => {
       commit('deleteOtherBody', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   updateOtherBody: function ({ commit, state }, { item }) {
     axios.put('http://localhost:5000/otherbody/' + item.Id, item).then((response) => {
       commit('updateOtherBody', { item: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

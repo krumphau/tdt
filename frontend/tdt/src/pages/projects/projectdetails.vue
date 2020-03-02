@@ -40,12 +40,12 @@
                     <td class="text-left">{{ toCurrency(project.AmountGrantRequested) }}</td>
                     </tr>
                     <tr>
-                    <td class="text-left">Amount of Grant Approved</td>
-                    <td class="text-left">{{ toCurrency(project.AmountGrantApproved) }}</td>
-                    </tr>
-                    <tr>
                     <td class="text-left">Amount of Grant Recommended</td>
                     <td class="text-left">{{ toCurrency(project.AmountGrantRecommended) }}</td>
+                    </tr>
+                    <tr>
+                    <td class="text-left">Amount of Grant Approved</td>
+                    <td class="text-left">{{ toCurrency(project.AmountGrantApproved) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Paid</td>

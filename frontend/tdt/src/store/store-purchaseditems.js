@@ -21,22 +21,22 @@ const actions = {
   addPurchasedItem: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/purchaseditems', item).then((response) => {
       commit('addPurchasedItem', { purchasedItem: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deletePurchasedItem: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/purchaseditems/' + id).then((response) => {
       commit('deletePurchasedItem', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   loadPurchasedItems: function ({ commit, state }, id) {
     axios.get('http://localhost:5000/purchaseditems/' + id).then((response) => {
       commit('setPurchasedItems', { purchasedItems: response.data })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

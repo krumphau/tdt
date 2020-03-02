@@ -34,7 +34,7 @@
             </q-item>
           </q-list>
           </q-btn-dropdown></div>
-        <div><q-btn label="Reports"/></div>
+        <div><q-btn label="Reports" to="/reports/search"/></div>
         <div>
           <q-btn-dropdown label="Account">
             <q-item tag="label" clickable>
@@ -52,9 +52,6 @@
 
 <script>
 export default {
-  name: 'MyLayout',
-
-  data () {
-  }
+  name: 'MyLayout'
 }
 </script>

@@ -26,30 +26,29 @@ const actions = {
     axios.get('http://localhost:5000/statuscodes').then((response) => {
       context.commit('setStatusCodes', { statusCodes: response.data })
       return true
-    }, (err) => {
-      console.log(err)
+    }, () => {
       return false
     })
   },
   addStatusCode: function ({ commit }, { item }) {
     axios.post('http://localhost:5000/statuscode', item).then((response) => {
       commit('addStatusCode', { statusCode: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   deleteStatusCode: function ({ commit, state }, id) {
     axios.delete('http://localhost:5000/statuscode/' + id).then((response) => {
       commit('deleteStatusCode', { id: id })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   },
   updateStatusCode: function ({ commit, state }, { item }) {
     axios.put('http://localhost:5000/statuscode/' + item.Id, item).then((response) => {
       commit('updateStatusCode', { item: item })
-    }, (err) => {
-      console.log(err)
+    }, () => {
+      return false
     })
   }
 }

@@ -2,11 +2,8 @@
   <q-page padding>
     <leftDrawer />
     <div>
-      <h3>TDT Projects</h3>
-      <q-btn class="glossy" rounded color="indigo-12" label="Create New Project" to="/project"/>
-      <h5>Or choose an existing project...</h5>
-      <q-select dense v-model="selectProject" label="Project" map-options emit-value option-value="Id" option-label="ProjectName" outlined :options="projects" @input="showDetails()"/>
-      <h5>Search Projects</h5>
+      <h5>Reports</h5>
+      <div>Choose the criteria for your report:</div>
       <q-markup-table flat bordered>
         <tbody>
           <tr>
@@ -63,6 +60,9 @@ export default {
     searchKeywords: null,
     searchName: null,
     searchIdentifier: null,
+    searchDistrict: null,
+    searchCategory: null,
+    searchOtherBody: null,
     searchParams: {
       Identifier: '',
       Name: '',
@@ -72,8 +72,8 @@ export default {
       OfficerId: 0,
       Status: 0,
       FunderId: 0,
-      CategoryId: 0,
       DistrictId: 0,
+      CategoryId: 0,
       OtherBodyId: 0
     }
   }),
@@ -84,6 +84,9 @@ export default {
     this.$store.dispatch('projectOfficers/loadProjectOfficers')
     this.$store.dispatch('statusCodes/loadStatusCodes')
     this.$store.dispatch('funders/loadFunders')
+    this.$store.dispatch('categories/loadCategories')
+    this.$store.dispatch('districts/loadDistricts')
+    this.$store.dispatch('otherBodies/loadOtherBodies')
   },
   computed: {
     ...mapGetters({
@@ -92,7 +95,10 @@ export default {
       NGOs: 'ngos/NGOs',
       projectOfficers: 'projectOfficers/projectOfficers',
       statusCodes: 'statusCodes/statusCodes',
-      funders: 'funders/funders'
+      funders: 'funders/funders',
+      categories: 'categories/categories',
+      districts: 'districts/districts',
+      otherBodies: 'otherBodies/otherBodies'
     })
   },
   components: {
@@ -108,12 +114,11 @@ export default {
       this.searchParams.OfficerId = (this.searchOfficer != null ? this.searchOfficer : 0)
       this.searchParams.Status = (this.searchStatus != null ? this.searchStatus : 0)
       this.searchParams.FunderId = (this.searchFunder != null ? this.searchFunder : 0)
+      this.searchParams.CategoryId = (this.searchCategory != null ? this.searchCategory : 0)
+      this.searchParams.DistrictId = (this.searchDistrict != null ? this.searchDistrict : 0)
+      this.searchParams.OtherBodyId = (this.searchOtherBody != null ? this.searchOtherBody : 0)
       this.$q.localStorage.set('searchParams', this.searchParams)
-      this.$router.push('/project/search')
-    },
-    showDetails () {
-      this.$q.localStorage.set('selectedProjectId', this.selectProject)
-      this.$router.push('/project/details')
+      this.$router.push('/reports/results')
     }
   }
 }
