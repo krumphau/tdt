@@ -24,6 +24,9 @@ const mutations = {
   },
   setSearchResults: (state, { results }) => {
     state.searchResults = results
+  },
+  setCurrentProject: (state, { currentProject }) => {
+    state.currentProject = currentProject
   }
 }
 
@@ -64,6 +67,13 @@ const actions = {
     }, (err) => {
       console.log(err)
     })
+  },
+  loadProjectDetails: function ({ commit, state }, id) {
+    axios.get('http://localhost:5000/project/' + id).then((response) => {
+      commit('setCurrentProject', { currentProject: response.data })
+    }, (err) => {
+      console.log(err)
+    })
   }
 }
 
@@ -76,6 +86,9 @@ const getters = {
   },
   getProjectById: (state) => (id) => {
     return state.projects.find(projects => projects.Id === id)
+  },
+  getCurrentProject: (state) => {
+    return state.currentProject
   }
 }
 

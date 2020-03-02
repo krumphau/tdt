@@ -1,16 +1,22 @@
 <template>
-    <q-page>
-        <leftDrawer />
-        <h3>ProjectDocs</h3>
-    </q-page>
+  <q-page padding>
+    <leftDrawer />
+    <div>
+        <h5>{{ getProjectName() }} - Project Documents</h5>
+    </div>
+    <div class="q-pa-md">
+      Project documents to be implemented
+    </div>
+
+  </q-page>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   data: () => ({
-    visibleColumns: ['name', 'amount', 'edit', 'delete'],
-    props: ['id', 'name', 'highLevel'],
+    visibleColumns: ['name', 'edit', 'delete'],
+    props: ['id', 'name'],
     columns: [
       {
         name: 'id',
@@ -22,20 +28,8 @@ export default {
       {
         name: 'name',
         label: 'Name',
-        field: 'CategoryName',
+        field: 'Name',
         align: 'left'
-      },
-      {
-        name: 'amount',
-        label: 'Amount',
-        field: 'HighLevelCategory',
-        align: 'left'
-      },
-      {
-        name: 'edit',
-        label: 'Edit',
-        field: 'Id',
-        align: 'right'
       },
       {
         name: 'delete',
@@ -44,41 +38,31 @@ export default {
         align: 'right'
       }
     ],
-    tableData: [],
     showAdd: false,
     showEdit: false,
     changeFlag: 0
   }),
   mounted () {
-    axios.get('http://localhost:5000/categories').then(response => {
-      this.tableData = response.data
-    })
+    this.$store.dispatch('projectFunders/loadProjectFunders', this.$q.localStorage.getItem('selectedProjectId'))
+  },
+  computed: {
+    ...mapGetters('projectFunders', ['projectFunders'])
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to delete category with ID ' + rowId + '?')) {
+      if (confirm('Are you sure you want to remove funder with ID from the project' + rowId + '?')) {
         confirm('params: { id:' + rowId + ' }')
-        axios.delete('http://localhost:5000/category/' + rowId, { headers: {
-          'Access-Control-Max-Age': 86400,
-          'Content-Type': 'text/plain'
-        } })
+        this.$store.dispatch('projectFunders/deleteProjectFunder', rowId)
       } else {
         confirm('Delete cancelled')
       }
-    },
-    refreshGrid: function () {
-      alert('Category saved successfully')
-      axios.get('http://localhost:5000/categories').then(response => {
-        this.tableData = response.data
-        this.changeFlag += 1
-      })
     },
     closeDialogs: function () {
       this.showAdd = false
       this.showEdit = false
     },
-    getHighLevelBool: function (rowValue) {
-      return rowValue === 1
+    getProjectName () {
+      return this.$store.getters['projects/getProjectById'](this.$q.localStorage.getItem('selectedProjectId')).ProjectName
     }
   },
   components: {

@@ -17,9 +17,6 @@
       </template>
     </q-table>
   </div>
-  <div>
-    <q-btn class="glossy" rounded color="indigo-12" label="Blah" @click="blah()"/>
-  </div>
 
 </template>
 
@@ -55,7 +52,6 @@ export default {
     ]
   }),
   mounted () {
-    alert(this.$q.localStorage.getItem('searchParams').RegionID)
     this.$store.dispatch('projects/searchProjects', this.$q.localStorage.getItem('searchParams'))
   },
   computed: {
@@ -65,10 +61,8 @@ export default {
   },
   methods: {
     viewProject (rowId) {
-      alert(rowId)
-    },
-    blah () {
-      alert(this.$q.localStorage.getItem('searchParams').RegionID)
+      this.$q.localStorage.set('selectedProjectId', rowId)
+      this.$router.push('/project/details')
     }
   },
   components: {

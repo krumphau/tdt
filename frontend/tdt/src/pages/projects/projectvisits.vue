@@ -1,24 +1,25 @@
 <template>
   <q-page padding>
     <leftDrawer />
+    <div>
+        <h5>{{ getProjectName() }} - Purchased Items</h5>
+    </div>
     <template>
   <div class="q-pa-md">
     <q-table
-      title="Project Visit Dates"
-      :data="tableData"
+      :data="projectVisits"
       :columns="columns"
       :visible-columns="visibleColumns"
       row-key="id"
-      :key="changeFlag"
     >
-      <template v-slot:body-cell-edit="cellProperties">
-        <q-td :props="cellProperties">
-            <q-btn class="glossy" rounded color="teal-9" label="Edit" @click="showEdit = true"/>
-        </q-td>
-      </template>
       <template v-slot:body-cell-delete="cellProperties">
           <q-td :props="cellProperties">
-              <q-btn class="glossy" rounded color="teal-9" label="Delete" @click="deleteRow(cellProperties.value)"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Delete" @click="deleteRow(cellProperties.value)"/>
+          </q-td>
+      </template>
+      <template v-slot:body-cell-edit="cellProperties">
+          <q-td :props="cellProperties">
+              <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEdit = true"/>
           </q-td>
       </template>
     </q-table>
@@ -31,19 +32,13 @@
       <addCategory @close="closeDialogs()" @postFinished="refreshGrid()"/>
     </q-dialog>
 
-    <q-dialog v-model="showEdit" persistent>
-        <editCategory
-        :name="name">
-        </editCategory>
-      </q-dialog>
-
 </template>
 
   </q-page>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   data: () => ({
     visibleColumns: ['visitStart', 'visitEnd', 'visitor', 'edit', 'delete'],
@@ -87,46 +82,34 @@ export default {
         align: 'right'
       }
     ],
-    tableData: [],
     showAdd: false,
     showEdit: false,
     changeFlag: 0
   }),
   mounted () {
-    axios.get('http://localhost:5000/categories').then(response => {
-      this.tableData = response.data
-    })
+    this.$store.dispatch('projectVisits/loadProjectVisits', this.$q.localStorage.getItem('selectedProjectId'))
+  },
+  computed: {
+    ...mapGetters('projectVisits', ['projectVisits'])
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to delete category with ID ' + rowId + '?')) {
+      if (confirm('Are you sure you want to remove this visit from the project?')) {
         confirm('params: { id:' + rowId + ' }')
-        axios.delete('http://localhost:5000/category/' + rowId, { headers: {
-          'Access-Control-Max-Age': 86400,
-          'Content-Type': 'text/plain'
-        } })
+        this.$store.dispatch('projectVisits/deleteProjectVisit', rowId)
       } else {
         confirm('Delete cancelled')
       }
-    },
-    refreshGrid: function () {
-      alert('Category saved successfully')
-      axios.get('http://localhost:5000/categories').then(response => {
-        this.tableData = response.data
-        this.changeFlag += 1
-      })
     },
     closeDialogs: function () {
       this.showAdd = false
       this.showEdit = false
     },
-    getHighLevelBool: function (rowValue) {
-      return rowValue === 1
+    getProjectName () {
+      return this.$store.getters['projects/getProjectById'](this.$q.localStorage.getItem('selectedProjectId')).ProjectName
     }
   },
   components: {
-    'addCategory': require('components/Modals/addCategory.vue').default,
-    'editCategory': require('components/Modals/editCategory.vue').default,
     'leftDrawer': require('components/projectLeftDrawer.vue').default
   }
 }
