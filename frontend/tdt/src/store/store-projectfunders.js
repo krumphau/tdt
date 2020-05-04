@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   projectFunders: []
@@ -19,21 +20,21 @@ const mutations = {
 
 const actions = {
   addProjectFunder: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/projectfunder', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'projectfunder', item).then((response) => {
       commit('addProjectFunder', { funder: item })
     }, () => {
       return false
     })
   },
   deleteProjectFunder: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/projectfunder/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'projectfunder/' + id).then((response) => {
       commit('deleteProjectFunder', { id: id })
     }, () => {
       return false
     })
   },
   loadProjectFunders: function ({ commit, state }, id) {
-    axios.get('http://localhost:5000/projectfunder/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projectfunder/' + id).then((response) => {
       commit('setProjectFunders', { projectFunders: response.data })
     }, () => {
       return false

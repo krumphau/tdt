@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   projects: [],
@@ -32,7 +33,7 @@ const mutations = {
 
 const actions = {
   loadProjects: async function (context) {
-    axios.get('http://localhost:5000/projects').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projects').then((response) => {
       context.commit('setProjects', { projects: response.data })
       return true
     }, () => {
@@ -40,35 +41,35 @@ const actions = {
     })
   },
   addProject: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/project', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'project', item).then((response) => {
       commit('addProject', { project: item })
     }, () => {
       return false
     })
   },
   deleteProject: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/project/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'project/' + id).then((response) => {
       commit('deleteProject', { id: id })
     }, () => {
       return false
     })
   },
   updateProject: function ({ commit, state }, { item }) {
-    axios.put('http://localhost:5000/project/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'project/' + item.Id, item).then((response) => {
       commit('updateProject', { item: item })
     }, () => {
       return false
     })
   },
   searchProjects: function ({ commit }, item) {
-    axios.post('http://localhost:5000/search', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'search', item).then((response) => {
       commit('setSearchResults', { results: response.data })
     }, () => {
       return false
     })
   },
   loadProjectDetails: function ({ commit, state }, id) {
-    axios.get('http://localhost:5000/project/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'project/' + id).then((response) => {
       commit('setCurrentProject', { currentProject: response.data })
     }, () => {
       return false

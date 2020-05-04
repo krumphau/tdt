@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   districts: []
@@ -23,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadDistricts: async function (context) {
-    axios.get('http://localhost:5000/districts').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'districts').then((response) => {
       context.commit('setDistricts', { districts: response.data })
       return true
     }, () => {
@@ -31,21 +32,21 @@ const actions = {
     })
   },
   addDistrict: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/district', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'district', item).then((response) => {
       commit('addDistrict', { District: item })
     }, () => {
       return false
     })
   },
   deleteDistrict: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/district/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'district/' + id).then((response) => {
       commit('deleteDistrict', { id: id })
     }, () => {
       return false
     })
   },
   updateDistrict: function ({ commit, state }, { item }) {
-    axios.put('http://localhost:5000/district/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'district/' + item.Id, item).then((response) => {
       commit('updateDistrict', { item: item })
     }, () => {
       return false

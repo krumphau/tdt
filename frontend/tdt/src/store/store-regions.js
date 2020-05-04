@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   regions: []
@@ -23,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadRegions: async function (context) {
-    axios.get('http://localhost:5000/regions').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'regions').then((response) => {
       context.commit('setRegions', { regions: response.data })
       return true
     }, () => {
@@ -31,21 +32,21 @@ const actions = {
     })
   },
   addRegion: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/region', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'region', item).then((response) => {
       commit('addRegion', { region: item })
     }, () => {
       return false
     })
   },
   deleteRegion: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/region/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'region/' + id).then((response) => {
       commit('deleteRegion', { id: id })
     }, () => {
       return false
     })
   },
   updateRegion: function ({ commit, state }, { item }) {
-    axios.put('http://localhost:5000/region/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'region/' + item.Id, item).then((response) => {
       commit('updateRegion', { item: item })
     }, () => {
       return false

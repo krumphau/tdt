@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   projectOtherBodies: []
@@ -19,21 +20,21 @@ const mutations = {
 
 const actions = {
   addProjectOtherBody: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/projectotherbody', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'projectotherbody', item).then((response) => {
       commit('addProjectOtherBody', { projectOtherBody: item })
     }, () => {
       return false
     })
   },
   deleteProjectOtherBody: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/projectotherbody/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'projectotherbody/' + id).then((response) => {
       commit('deleteProjectOtherBody', { id: id })
     }, () => {
       return false
     })
   },
   loadProjectOtherBodies: function ({ commit, state }, id) {
-    axios.get('http://localhost:5000/projectotherbody/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projectotherbody/' + id).then((response) => {
       commit('setProjectOtherBodies', { projectOtherBodies: response.data })
     }, () => {
       return false

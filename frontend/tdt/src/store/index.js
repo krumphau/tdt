@@ -9,7 +9,7 @@ import statusCodes from './store-statuscodes'
 import ngos from './store-ngos'
 import funders from './store-funders'
 import projectOfficers from './store-projectofficers'
-import projects from './store_projects'
+import projects from './store-projects'
 import projectCategories from './store-projectcategories'
 import projectFunders from './store-projectfunders'
 import projectNGOs from './store-projectngos'
@@ -17,6 +17,7 @@ import projectOtherBodies from './store-projectotherbodies'
 import purchasedItems from './store-purchaseditems'
 import relatedProjects from './store-relatedprojects'
 import projectVisits from './store-projectvisits'
+import settings from './store-settings'
 
 Vue.use(Vuex)
 
@@ -43,7 +44,8 @@ export default function (/* { ssrContext } */) {
       projectOtherBodies,
       purchasedItems,
       relatedProjects,
-      projectVisits
+      projectVisits,
+      settings
     },
 
     // enable strict mode (adds overhead!)

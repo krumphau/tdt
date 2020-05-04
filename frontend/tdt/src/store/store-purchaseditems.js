@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   purchasedItems: []
@@ -19,21 +20,21 @@ const mutations = {
 
 const actions = {
   addPurchasedItem: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/purchaseditems', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'purchaseditems', item).then((response) => {
       commit('addPurchasedItem', { purchasedItem: item })
     }, () => {
       return false
     })
   },
   deletePurchasedItem: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/purchaseditems/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'purchaseditems/' + id).then((response) => {
       commit('deletePurchasedItem', { id: id })
     }, () => {
       return false
     })
   },
   loadPurchasedItems: function ({ commit, state }, id) {
-    axios.get('http://localhost:5000/purchaseditems/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'purchaseditems/' + id).then((response) => {
       commit('setPurchasedItems', { purchasedItems: response.data })
     }, () => {
       return false

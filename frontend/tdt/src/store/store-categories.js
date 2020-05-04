@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   categories: []
@@ -23,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadCategories: async function (context) {
-    axios.get('http://localhost:5000/categories').then((response) => {
+    axios.get(storeSettings.state.baseUrl + '/categories').then((response) => {
       context.commit('setCategories', { categories: response.data })
       return true
     }, () => {
@@ -31,21 +32,21 @@ const actions = {
     })
   },
   addCategory: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/category', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'category', item).then((response) => {
       commit('addCategory', { category: item })
     }, () => {
       return false
     })
   },
   deleteCategory: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/category/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'category/' + id).then((response) => {
       commit('deleteCategory', { id: id })
     }, () => {
       return false
     })
   },
   updateCategory: function ({ commit, state }, { item }) {
-    axios.put('http://localhost:5000/category/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'category/' + item.Id, item).then((response) => {
       commit('updateCategory', { item: item })
     }, () => {
       return false

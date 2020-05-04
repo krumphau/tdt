@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   otherBodies: []
@@ -23,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadOtherBodies: async function (context) {
-    axios.get('http://localhost:5000/otherbodies').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'otherbodies').then((response) => {
       context.commit('setOtherBodies', { otherBodies: response.data })
       return true
     }, () => {
@@ -31,21 +32,21 @@ const actions = {
     })
   },
   addOtherBody: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/otherbody', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'otherbody', item).then((response) => {
       commit('addOtherBody', { otherBody: item })
     }, () => {
       return false
     })
   },
   deleteOtherBody: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/otherbody/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'otherbody/' + id).then((response) => {
       commit('deleteOtherBody', { id: id })
     }, () => {
       return false
     })
   },
   updateOtherBody: function ({ commit, state }, { item }) {
-    axios.put('http://localhost:5000/otherbody/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'otherbody/' + item.Id, item).then((response) => {
       commit('updateOtherBody', { item: item })
     }, () => {
       return false

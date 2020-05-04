@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   statusCodes: []
@@ -23,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadStatusCodes: async function (context) {
-    axios.get('http://localhost:5000/statuscodes').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'statuscodes').then((response) => {
       context.commit('setStatusCodes', { statusCodes: response.data })
       return true
     }, () => {
@@ -31,21 +32,21 @@ const actions = {
     })
   },
   addStatusCode: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/statuscode', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'statuscode', item).then((response) => {
       commit('addStatusCode', { statusCode: item })
     }, () => {
       return false
     })
   },
   deleteStatusCode: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/statuscode/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'statuscode/' + id).then((response) => {
       commit('deleteStatusCode', { id: id })
     }, () => {
       return false
     })
   },
   updateStatusCode: function ({ commit, state }, { item }) {
-    axios.put('http://localhost:5000/statuscode/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'statuscode/' + item.Id, item).then((response) => {
       commit('updateStatusCode', { item: item })
     }, () => {
       return false

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import storeSettings from './store-settings'
 
 const state = {
   projectOfficers: []
@@ -23,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadProjectOfficers: async function (context) {
-    axios.get('http://localhost:5000/projectofficers').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projectofficers').then((response) => {
       context.commit('setProjectOfficers', { projectOfficers: response.data })
       return true
     }, () => {
@@ -31,21 +32,21 @@ const actions = {
     })
   },
   addProjectOfficer: function ({ commit }, { item }) {
-    axios.post('http://localhost:5000/projectofficer', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'projectofficer', item).then((response) => {
       commit('addProjectOfficer', { projectOfficer: item })
     }, () => {
       return false
     })
   },
   deleteProjectOfficer: function ({ commit, state }, id) {
-    axios.delete('http://localhost:5000/projectofficer/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'projectofficer/' + id).then((response) => {
       commit('deleteProjectOfficer', { id: id })
     }, () => {
       return false
     })
   },
   updateProjectOfficer: function ({ commit, state }, { item }) {
-    axios.put('http://localhost:5000/projectofficer/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'projectofficer/' + item.Id, item).then((response) => {
       commit('updateProjectOfficer', { item: item })
     }, () => {
       return false
