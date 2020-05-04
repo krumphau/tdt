@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/projectofficers')
+@application.route('/projectofficers')
 def projectofficers():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllProjectOfficers")
@@ -11,7 +11,7 @@ def projectofficers():
     except Exception as e:
         print(e)
 
-@app.route('/projectofficer/<int:id>', methods=['GET'])
+@application.route('/projectofficer/<int:id>', methods=['GET'])
 def projectofficer(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetProjectOfficer(%s)", id)
@@ -20,7 +20,7 @@ def projectofficer(id):
     except Exception as e:
         print(e)
 
-@app.route('/projectofficer', methods=['POST'])
+@application.route('/projectofficer', methods=['POST'])
 def projectofficer_add():
     try:
         content = request.json
@@ -45,7 +45,7 @@ def projectofficer_add():
     except Exception as e:
         print(e)        
 
-@app.route('/projectofficer/<int:id>', methods=['DELETE'])
+@application.route('/projectofficer/<int:id>', methods=['DELETE'])
 def delete_projectofficer(id):
     try:
         sql = "CALL usp_DeleteProjectOfficer(%s)"
@@ -56,7 +56,7 @@ def delete_projectofficer(id):
     except Exception as e:
         print(e)
 
-@app.route('/projectofficer/<int:id>', methods=['PUT'])
+@application.route('/projectofficer/<int:id>', methods=['PUT'])
 def update_projectofficer(id):
     try:
         content = request.json

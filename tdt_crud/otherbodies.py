@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/otherbodies')
+@application.route('/otherbodies')
 def otherbodies():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllOtherBodies()")
@@ -11,7 +11,7 @@ def otherbodies():
     except Exception as e:
         print(e)
 
-@app.route('/otherbody/<int:id>', methods=['GET'])
+@application.route('/otherbody/<int:id>', methods=['GET'])
 def otherbody(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetOtherBody(%s)", id)
@@ -20,7 +20,7 @@ def otherbody(id):
     except Exception as e:
         print(e)
 
-@app.route('/otherbody', methods=['POST'])
+@application.route('/otherbody', methods=['POST'])
 def otherbody_add():
     try:
         content = request.json
@@ -33,7 +33,7 @@ def otherbody_add():
     except Exception as e:
         print(e)        
 
-@app.route('/otherbody/<int:id>', methods=['DELETE'])
+@application.route('/otherbody/<int:id>', methods=['DELETE'])
 def delete_otherbody(id):
     try:
         sql = "CALL usp_DeleteOtherBody(%s)"
@@ -44,7 +44,7 @@ def delete_otherbody(id):
     except Exception as e:
         print(e)
 
-@app.route('/otherbody/<int:id>', methods=['PUT'])
+@application.route('/otherbody/<int:id>', methods=['PUT'])
 def update_otherbody(id):
     try:
         content = request.json

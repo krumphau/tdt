@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/projectotherbody', methods=['POST'])
+@application.route('/projectotherbody', methods=['POST'])
 def projectotherbody_add():
     try:
         content = request.json
@@ -17,7 +17,7 @@ def projectotherbody_add():
     except Exception as e:
         print(e)        
 
-@app.route('/projectotherbody/<int:id>', methods=['DELETE'])
+@application.route('/projectotherbody/<int:id>', methods=['DELETE'])
 def delete_projectotherbody(id):
     try:
         sql = "CALL usp_RemoveOtherBodyFromProject(%s)"
@@ -28,7 +28,7 @@ def delete_projectotherbody(id):
     except Exception as e:
         print(e)
 
-@app.route('/projectotherbody/<int:projectid>', methods=['GET'])
+@application.route('/projectotherbody/<int:projectid>', methods=['GET'])
 def projectotherbody(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetOtherBodiesForProject(%s)", projectid)

@@ -1,4 +1,4 @@
-from app import app
+from app import application
 from flaskext.mysql import MySQL
 
 mysql = MySQL()
@@ -6,9 +6,9 @@ mysql = MySQL()
 # MySQL configurations
 #app.config['MYSQL_DATABASE_USER'] = 'admin'
 #app.config['MYSQL_DATABASE_PASSWORD'] = '12345678'
-app.config['MYSQL_DATABASE_USER'] = 'tdtuser'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'cabbage123!'
-app.config['MYSQL_DATABASE_DB'] = 'tdt'
-app.config['MYSQL_DATABASE_HOST'] = '127.0.0.1'
+application.config['MYSQL_DATABASE_USER'] = 'tdtUser'
+application.config['MYSQL_DATABASE_PASSWORD'] = 'Zh8h(^Wp.UNX'
+application.config['MYSQL_DATABASE_DB'] = 'tdt'
+application.config['MYSQL_DATABASE_HOST'] = 'tdt-test.c26o2raecheb.eu-west-2.rds.amazonaws.com'
 ##app.config['MYSQL_DATABASE_HOST'] = 'tdtdev2.czut1xdglafi.eu-west-2.rds.amazonaws.com'
-mysql.init_app(app)
+mysql.init_app(application)

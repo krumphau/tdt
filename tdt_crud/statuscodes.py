@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/statuscodes')
+@application.route('/statuscodes')
 def statuscodes():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllProjectStatusCodes()")
@@ -11,7 +11,7 @@ def statuscodes():
     except Exception as e:
         print(e)
 
-@app.route('/statuscode/<int:id>', methods=['GET'])
+@application.route('/statuscode/<int:id>', methods=['GET'])
 def statuscode(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetStatusCode(%s)", id)
@@ -20,7 +20,7 @@ def statuscode(id):
     except Exception as e:
         print(e)
 
-@app.route('/statuscode', methods=['POST'])
+@application.route('/statuscode', methods=['POST'])
 def statuscode_add():
     try:
         content = request.json
@@ -36,7 +36,7 @@ def statuscode_add():
     except Exception as e:
         print(e)        
 
-@app.route('/statuscode/<int:id>', methods=['DELETE'])
+@application.route('/statuscode/<int:id>', methods=['DELETE'])
 def delete_statuscode(id):
     try:
         sql = "CALL usp_DeleteStatusCode(%s)"
@@ -47,7 +47,7 @@ def delete_statuscode(id):
     except Exception as e:
         print(e)
 
-@app.route('/statuscode/<int:id>', methods=['PUT'])
+@application.route('/statuscode/<int:id>', methods=['PUT'])
 def update_statuscode(id):
     try:
         content = request.json

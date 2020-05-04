@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request, jsonify
 import sqlhelper
 
-@app.route('/categories')
+@application.route('/categories')
 def categories():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllCategories()")
@@ -11,7 +11,7 @@ def categories():
     except Exception as e:
         print(e)
 
-@app.route('/category/<int:id>', methods=['GET'])
+@application.route('/category/<int:id>', methods=['GET'])
 def category(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetCategory(%s)", id)
@@ -20,7 +20,7 @@ def category(id):
     except Exception as e:
         print(e)
 
-@app.route('/category', methods=['POST'])
+@application.route('/category', methods=['POST'])
 def category_add():
     try:
         content = request.json
@@ -36,7 +36,7 @@ def category_add():
     except Exception as e:
         print(e)        
 
-@app.route('/category/<int:id>', methods=['DELETE'])
+@application.route('/category/<int:id>', methods=['DELETE'])
 def delete_category(id):
     try:
         sql = "CALL usp_DeleteCategory(%s)"
@@ -47,7 +47,7 @@ def delete_category(id):
     except Exception as e:
         print(e)
 
-@app.route('/category/<int:id>', methods=['PUT'])
+@application.route('/category/<int:id>', methods=['PUT'])
 def update_category(id):
     try:
         content = request.json

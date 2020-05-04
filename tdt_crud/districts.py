@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/districts')
+@application.route('/districts')
 def districts():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllDistricts()")
@@ -11,7 +11,7 @@ def districts():
     except Exception as e:
         print(e)
 
-@app.route('/district/<int:id>', methods=['GET'])
+@application.route('/district/<int:id>', methods=['GET'])
 def district(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetDistrict(%s)", id)
@@ -20,7 +20,7 @@ def district(id):
     except Exception as e:
         print(e)
 
-@app.route('/district', methods=['POST'])
+@application.route('/district', methods=['POST'])
 def district_add():
     try:
         content = request.json
@@ -33,7 +33,7 @@ def district_add():
     except Exception as e:
         print(e)        
 
-@app.route('/district/<int:id>', methods=['DELETE'])
+@application.route('/district/<int:id>', methods=['DELETE'])
 def delete_district(id):
     try:
         sql = "CALL usp_DeleteDistrict(%s)"
@@ -44,7 +44,7 @@ def delete_district(id):
     except Exception as e:
         print(e)
 
-@app.route('/district/<int:id>', methods=['PUT'])
+@application.route('/district/<int:id>', methods=['PUT'])
 def update_district(id):
     try:
         content = request.json

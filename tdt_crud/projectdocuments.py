@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/projectdocument', methods=['POST'])
+@application.route('/projectdocument', methods=['POST'])
 def projectdocument_add():
     try:
         content = request.json
@@ -20,7 +20,7 @@ def projectdocument_add():
     except Exception as e:
         print(e)        
 
-@app.route('/projectdocument/<int:id>', methods=['DELETE'])
+@application.route('/projectdocument/<int:id>', methods=['DELETE'])
 def delete_projectdocument(id):
     try:
         sql = "CALL usp_RemoveDocumentFromProject(%s)"
@@ -31,7 +31,7 @@ def delete_projectdocument(id):
     except Exception as e:
         print(e)
 
-@app.route('/projectdocument/<int:projectid>', methods=['GET'])
+@application.route('/projectdocument/<int:projectid>', methods=['GET'])
 def projectdocument(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetDocsForProject(%s)", projectid)

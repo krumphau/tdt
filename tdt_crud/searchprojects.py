@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/search', methods=['POST'])
+@application.route('/search', methods=['POST'])
 def project_search():
     try:
         content = request.json

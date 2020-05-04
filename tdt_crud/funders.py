@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/funders')
+@application.route('/funders')
 def funders():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllFunders()")
@@ -11,7 +11,7 @@ def funders():
     except Exception as e:
         print(e)
 
-@app.route('/funder/<int:id>', methods=['GET'])
+@application.route('/funder/<int:id>', methods=['GET'])
 def funder(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetFunders(%s)", id)
@@ -20,7 +20,7 @@ def funder(id):
     except Exception as e:
         print(e)
 
-@app.route('/funder', methods=['POST'])
+@application.route('/funder', methods=['POST'])
 def funder_add():
     try:
         content = request.json        
@@ -42,7 +42,7 @@ def funder_add():
     except Exception as e:
         print(e)        
 
-@app.route('/funder/<int:id>', methods=['DELETE'])
+@application.route('/funder/<int:id>', methods=['DELETE'])
 def delete_funder(id):
     try:
         sql = "CALL usp_DeleteFunder(%s)"
@@ -53,7 +53,7 @@ def delete_funder(id):
     except Exception as e:
         print(e)
 
-@app.route('/funder/<int:id>', methods=['PUT'])
+@application.route('/funder/<int:id>', methods=['PUT'])
 def update_funder(id):
     try:
         content = request.json

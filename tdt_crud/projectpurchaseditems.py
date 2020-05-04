@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/purchaseditem', methods=['POST'])
+@application.route('/purchaseditem', methods=['POST'])
 def purchaseditem_add():
     try:
         content = request.json
@@ -19,7 +19,7 @@ def purchaseditem_add():
     except Exception as e:
         print(e)        
 
-@app.route('/purchaseditems/<int:id>', methods=['DELETE'])
+@application.route('/purchaseditems/<int:id>', methods=['DELETE'])
 def delete_purchaseditem(id):
     try:
         sql = "CALL usp_RemovePurchasedItemFromProject(%s)"
@@ -30,7 +30,7 @@ def delete_purchaseditem(id):
     except Exception as e:
         print(e)
 
-@app.route('/purchaseditems/<int:projectid>', methods=['GET'])
+@application.route('/purchaseditems/<int:projectid>', methods=['GET'])
 def purchaseditem(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetPurchasedItemsForProject(%s)", projectid)

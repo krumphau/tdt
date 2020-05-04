@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/projectcategory', methods=['POST'])
+@application.route('/projectcategory', methods=['POST'])
 def projectcategory_add():
     try:
         content = request.json
@@ -17,7 +17,7 @@ def projectcategory_add():
     except Exception as e:
         print(e)        
 
-@app.route('/projectcategory/<int:id>', methods=['DELETE'])
+@application.route('/projectcategory/<int:id>', methods=['DELETE'])
 def delete_projectcategory(id):
     try:
         sql = "CALL usp_RemoveCategoryFromProject(%s)"
@@ -28,7 +28,7 @@ def delete_projectcategory(id):
     except Exception as e:
         print(e)
 
-@app.route('/projectcategory/<int:projectid>', methods=['GET'])
+@application.route('/projectcategory/<int:projectid>', methods=['GET'])
 def projectcategory(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetCategoriesForProject(%s)", projectid)

@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/regions')
+@application.route('/regions')
 def regions():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllRegions")
@@ -11,7 +11,7 @@ def regions():
     except Exception as e:
         print(e)
 
-@app.route('/region/<int:id>', methods=['GET'])
+@application.route('/region/<int:id>', methods=['GET'])
 def region(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetRegion(%s)", id)
@@ -20,7 +20,7 @@ def region(id):
     except Exception as e:
         print(e)
 
-@app.route('/region', methods=['POST'])
+@application.route('/region', methods=['POST'])
 def region_add():
     try:
         content = request.json
@@ -33,7 +33,7 @@ def region_add():
     except Exception as e:
         print(e)        
 
-@app.route('/region/<int:id>', methods=['DELETE'])
+@application.route('/region/<int:id>', methods=['DELETE'])
 def delete_region(id):
     try:
         sql = "CALL usp_DeleteRegion(%s)"
@@ -44,7 +44,7 @@ def delete_region(id):
     except Exception as e:
         print(e)
 
-@app.route('/region/<int:id>', methods=['PUT'])
+@application.route('/region/<int:id>', methods=['PUT'])
 def update_region(id):
     try:
         content = request.json

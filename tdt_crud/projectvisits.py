@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/projectvisit', methods=['POST'])
+@application.route('/projectvisit', methods=['POST'])
 def projectvisit_add():
     try:
         content = request.json
@@ -17,7 +17,7 @@ def projectvisit_add():
     except Exception as e:
         print(e)        
 
-@app.route('/projectvisit/<int:id>', methods=['DELETE'])
+@application.route('/projectvisit/<int:id>', methods=['DELETE'])
 def delete_projectvisit(id):
     try:
         sql = "CALL usp_RemoveVisitFromProject(%s)"
@@ -28,7 +28,7 @@ def delete_projectvisit(id):
     except Exception as e:
         print(e)
 
-@app.route('/projectvisit/<int:projectid>', methods=['GET'])
+@application.route('/projectvisit/<int:projectid>', methods=['GET'])
 def projectvisit(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetVisitsForProject(%s)", projectid)

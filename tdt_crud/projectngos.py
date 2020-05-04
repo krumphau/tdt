@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/projectngo', methods=['POST'])
+@application.route('/projectngo', methods=['POST'])
 def projectngo_add():
     try:
         content = request.json
@@ -17,7 +17,7 @@ def projectngo_add():
     except Exception as e:
         print(e)        
 
-@app.route('/projectngo/<int:id>', methods=['DELETE'])
+@application.route('/projectngo/<int:id>', methods=['DELETE'])
 def delete_projectngo(id):
     try:
         sql = "CALL usp_RemoveNGOFromProject(%s)"
@@ -28,11 +28,11 @@ def delete_projectngo(id):
     except Exception as e:
         print(e)
 
-        from app import app
+        from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/projectngo/<int:projectid>', methods=['GET'])
+@application.route('/projectngo/<int:projectid>', methods=['GET'])
 def projectngo(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetNGOsForProject(%s)", projectid)

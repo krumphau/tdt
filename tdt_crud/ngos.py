@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/ngos')
+@application.route('/ngos')
 def ngos():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllNGOs")
@@ -11,7 +11,7 @@ def ngos():
     except Exception as e:
         print(e)
 
-@app.route('/ngo/<int:id>', methods=['GET'])
+@application.route('/ngo/<int:id>', methods=['GET'])
 def ngo(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetNGO(%s)", id)
@@ -20,7 +20,7 @@ def ngo(id):
     except Exception as e:
         print(e)
 
-@app.route('/ngo', methods=['POST'])
+@application.route('/ngo', methods=['POST'])
 def ngo_add():
     try:
         content = request.json
@@ -33,7 +33,7 @@ def ngo_add():
     except Exception as e:
         print(e)        
 
-@app.route('/ngo/<int:id>', methods=['DELETE'])
+@application.route('/ngo/<int:id>', methods=['DELETE'])
 def delete_ngo(id):
     try:
         sql = "CALL usp_DeleteNGO(%s)"
@@ -44,7 +44,7 @@ def delete_ngo(id):
     except Exception as e:
         print(e)
 
-@app.route('/ngo/<int:id>', methods=['PUT'])
+@application.route('/ngo/<int:id>', methods=['PUT'])
 def update_ngo(id):
     try:
         content = request.json

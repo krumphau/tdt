@@ -1,8 +1,8 @@
-from app import app
+from application import application
 from flask import flash, request
 import sqlhelper
 
-@app.route('/projectfunder', methods=['POST'])
+@application.route('/projectfunder', methods=['POST'])
 def projectfunder_add():
     try:
         content = request.json
@@ -17,7 +17,7 @@ def projectfunder_add():
     except Exception as e:
         print(e)        
 
-@app.route('/projectfunder/<int:id>', methods=['DELETE'])
+@application.route('/projectfunder/<int:id>', methods=['DELETE'])
 def delete_projectfunder(id):
     try:
         sql = "CALL usp_RemoveFunderFromProject(%s)"
@@ -28,7 +28,7 @@ def delete_projectfunder(id):
     except Exception as e:
         print(e)
 
-@app.route('/projectfunder/<int:projectid>', methods=['GET'])
+@application.route('/projectfunder/<int:projectid>', methods=['GET'])
 def projectfunder(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetFundersForProject(%s)", projectid)

@@ -1,8 +1,8 @@
-from app import app
-from flask import flash, request
+from application import application
+from flask import flash, request, jsonify
 import sqlhelper
 
-@app.route('/projects')
+@application.route('/projects')
 def projects():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllProjects")
@@ -11,7 +11,7 @@ def projects():
     except Exception as e:
         print(e)
 
-@app.route('/project/<int:id>', methods=['GET'])
+@application.route('/project/<int:id>', methods=['GET'])
 def project(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetProject(%s)", id)
@@ -20,7 +20,7 @@ def project(id):
     except Exception as e:
         print(e)
 
-@app.route('/project', methods=['POST'])
+@application.route('/project', methods=['POST'])
 def project_add():
     try:
         content = request.json
@@ -53,7 +53,7 @@ def project_add():
     except Exception as e:
         print(e)        
 
-@app.route('/project/<int:id>', methods=['DELETE'])
+@application.route('/project/<int:id>', methods=['DELETE'])
 def delete_project(id):
     try:
         sql = "CALL usp_DeleteProject(%s)"
@@ -64,7 +64,7 @@ def delete_project(id):
     except Exception as e:
         print(e)
 
-@app.route('/project/<int:id>', methods=['PUT'])
+@application.route('/project/<int:id>', methods=['PUT'])
 def update_project(id):
     try:
         content = request.json
