@@ -8,7 +8,7 @@
             ref="modalStatusCode"></modal-name>
 
             <modal-name
-            :Name.sync="statusCode.Name"
+            :Name.sync="statusCode.Description"
             ref="modalDescription"></modal-name>
 
             <modal-buttons />

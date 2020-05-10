@@ -15,6 +15,10 @@ const mutations = {
   },
   addProjectVisit: (state, { projectVisit }) => {
     state.projectVisits.push(projectVisit)
+  },
+  updateProjectVisit: (state, { item }) => {
+    let idx = state.projectVisits.map(p => p.id).indexOf(item.id)
+    state.projectVisits.splice(idx, 1, item)
   }
 }
 
@@ -36,6 +40,13 @@ const actions = {
   loadProjectVisits: function ({ commit, state }, id) {
     axios.get(storeSettings.state.baseUrl + 'projectvisit/' + id).then((response) => {
       commit('setProjectVisits', { projectVisits: response.data })
+    }, () => {
+      return false
+    })
+  },
+  updateProjectVisit: function ({ commit, state }, { item }) {
+    axios.put(storeSettings.state.baseUrl + 'projectvisit/' + item.Id, item).then((response) => {
+      commit('updateProjectVisit', { item: item })
     }, () => {
       return false
     })

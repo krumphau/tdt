@@ -19,6 +19,22 @@ def purchaseditem_add():
     except Exception as e:
         print(e)        
 
+@application.route('/purchaseditem/<int:id>', methods=['PUT'])
+def purchaseditem_update(id):
+    try:
+        content = request.json
+        _purchaseditem = content['PurchasedItem']
+        _datepurchased = content['DatePurchased']
+        _itemcost = content['ItemCost']
+
+        sql = "CALL usp_UpdatePurchasedItem(%s, %s, %s, %s)"
+        data = (id, _purchaseditem, _datepurchased, _itemcost,)
+        resp = sqlhelper.do_writedata(sql, data)
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        print(e)        
+
 @application.route('/purchaseditems/<int:id>', methods=['DELETE'])
 def delete_purchaseditem(id):
     try:

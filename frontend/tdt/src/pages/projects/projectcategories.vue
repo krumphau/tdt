@@ -26,13 +26,6 @@
   <q-dialog v-model="showAdd" persistent>
       <addCategory @close="closeDialogs()" @postFinished="refreshGrid()"/>
     </q-dialog>
-
-    <q-dialog v-model="showEdit" persistent>
-        <editCategory
-        :name="name">
-        </editCategory>
-      </q-dialog>
-
 </template>
 
   </q-page>
@@ -77,7 +70,7 @@ export default {
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to remove category with ID from the project' + rowId + '?')) {
+      if (confirm('Are you sure you want to remove this category from the project?')) {
         confirm('params: { id:' + rowId + ' }')
         this.$store.dispatch('projectCategories/deleteProjectCategory', rowId)
       } else {
@@ -93,6 +86,7 @@ export default {
     }
   },
   components: {
+    'addCategory': require('components/Modals/ProjectPages/addProjectCategory.vue').default,
     'leftDrawer': require('components/projectLeftDrawer.vue').default
   }
 }

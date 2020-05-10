@@ -4,10 +4,32 @@
     <div>
         <h5>{{ getProjectName() }} - Project Documents</h5>
     </div>
-    <div class="q-pa-md">
-      Project documents to be implemented
-    </div>
+      <div class="q-pa-md">
+    <q-table
+      :data="projectDocuments"
+      :columns="columns"
+      :visible-columns="visibleColumns"
+      row-key="id"
+    >
+      <template v-slot:body-cell-path="cellProperties">
+          <q-td :props="cellProperties">
+              <q-btn type="a" class="glossy" rounded color="indigo-12" label="Download" :href="'http://localhost:5000/download/' + cellProperties.value" />
+          </q-td>
+      </template>
+      <template v-slot:body-cell-delete="cellProperties">
+          <q-td :props="cellProperties">
+              <q-btn class="glossy" rounded color="indigo-12" label="Delete" @click="deleteRow(cellProperties.value)"/>
+          </q-td>
+      </template>
+    </q-table>
+  </div>
+  <div>
+    <q-btn class="glossy" rounded color="indigo-12" label="Add New" @click="showAdd = true"/>
+  </div>
 
+<q-dialog v-model="showAdd" persistent>
+      <addDocument @close="closeDialogs()" @postFinished="refreshGrid()"/>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -15,8 +37,8 @@
 import { mapGetters } from 'vuex'
 export default {
   data: () => ({
-    visibleColumns: ['name', 'edit', 'delete'],
-    props: ['id', 'name'],
+    visibleColumns: ['name', 'path', 'desc', 'category', 'delete'],
+    props: ['id', 'name', 'path', 'desc', 'category'],
     columns: [
       {
         name: 'id',
@@ -28,7 +50,25 @@ export default {
       {
         name: 'name',
         label: 'Name',
-        field: 'Name',
+        field: 'DocName',
+        align: 'left'
+      },
+      {
+        name: 'path',
+        label: 'Download',
+        field: 'FilePath',
+        align: 'left'
+      },
+      {
+        name: 'desc',
+        label: 'Description',
+        field: 'Description',
+        align: 'left'
+      },
+      {
+        name: 'category',
+        label: 'Category',
+        field: 'DocCategory',
         align: 'left'
       },
       {
@@ -43,16 +83,16 @@ export default {
     changeFlag: 0
   }),
   mounted () {
-    this.$store.dispatch('projectFunders/loadProjectFunders', this.$q.localStorage.getItem('selectedProjectId'))
+    this.$store.dispatch('projectDocuments/loadProjectDocuments', this.$q.localStorage.getItem('selectedProjectId'))
   },
   computed: {
-    ...mapGetters('projectFunders', ['projectFunders'])
+    ...mapGetters('projectDocuments', ['projectDocuments'])
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to remove funder with ID from the project' + rowId + '?')) {
+      if (confirm('Are you sure you want to remove document with ID from the project' + rowId + '?')) {
         confirm('params: { id:' + rowId + ' }')
-        this.$store.dispatch('projectFunders/deleteProjectFunder', rowId)
+        this.$store.dispatch('projectDocuments/deleteProjectDocument', rowId)
       } else {
         confirm('Delete cancelled')
       }
@@ -66,6 +106,7 @@ export default {
     }
   },
   components: {
+    'addDocument': require('components/Modals/ProjectPages/addProjectDocument.vue').default,
     'leftDrawer': require('components/projectLeftDrawer.vue').default
   }
 }

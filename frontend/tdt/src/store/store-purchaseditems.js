@@ -15,12 +15,16 @@ const mutations = {
   },
   addPurchasedItem: (state, { purchasedItem }) => {
     state.purchasedItems.push(purchasedItem)
+  },
+  updatePurchasedItem: (state, { item }) => {
+    let idx = state.purchasedItems.map(p => p.id).indexOf(item.id)
+    state.purchasedItems.splice(idx, 1, item)
   }
 }
 
 const actions = {
   addPurchasedItem: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'purchaseditems', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'purchaseditem', item).then((response) => {
       commit('addPurchasedItem', { purchasedItem: item })
     }, () => {
       return false
@@ -36,6 +40,13 @@ const actions = {
   loadPurchasedItems: function ({ commit, state }, id) {
     axios.get(storeSettings.state.baseUrl + 'purchaseditems/' + id).then((response) => {
       commit('setPurchasedItems', { purchasedItems: response.data })
+    }, () => {
+      return false
+    })
+  },
+  updatePurchasedItem: function ({ commit, state }, { item }) {
+    axios.put(storeSettings.state.baseUrl + 'purchaseditem/' + item.Id, item).then((response) => {
+      commit('updatePurchasedItem', { item: item })
     }, () => {
       return false
     })

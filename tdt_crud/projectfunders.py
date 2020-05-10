@@ -8,9 +8,10 @@ def projectfunder_add():
         content = request.json
         _projectid = content['ProjectId']
         _categoryid = content['FunderId']
+        _amount = content['AmountFunded']
 
-        sql = "CALL usp_AddFunderToProject(%s, %s)"
-        data = (_projectid, _categoryid,)
+        sql = "CALL usp_AddFunderToProject(%s, %s, %s)"
+        data = (_projectid, _categoryid, _amount,)
         resp = sqlhelper.do_writedata(sql, data)
         resp.status_code = 200
         return resp

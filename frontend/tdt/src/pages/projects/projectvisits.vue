@@ -2,7 +2,7 @@
   <q-page padding>
     <leftDrawer />
     <div>
-        <h5>{{ getProjectName() }} - Purchased Items</h5>
+        <h5>{{ getProjectName() }} - Visit Dates</h5>
     </div>
     <template>
   <div class="q-pa-md">
@@ -19,7 +19,7 @@
       </template>
       <template v-slot:body-cell-edit="cellProperties">
           <q-td :props="cellProperties">
-              <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEdit = true"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEditDialog(cellProperties.value)"/>
           </q-td>
       </template>
     </q-table>
@@ -29,9 +29,11 @@
   </div>
 
   <q-dialog v-model="showAdd" persistent>
-      <addCategory @close="closeDialogs()" @postFinished="refreshGrid()"/>
-    </q-dialog>
-
+      <addProjectVisit @close="closeDialogs()" @postFinished="refreshGrid()"/>
+  </q-dialog>
+  <q-dialog v-model="showEdit" persistent>
+    <editProjectVisit @close="closeDialogs()" @postFinished="refreshGrid()" :projectVisit="selectedVisit" />
+  </q-dialog>
 </template>
 
   </q-page>
@@ -84,6 +86,7 @@ export default {
     ],
     showAdd: false,
     showEdit: false,
+    selectedVisit: [],
     changeFlag: 0
   }),
   mounted () {
@@ -107,9 +110,16 @@ export default {
     },
     getProjectName () {
       return this.$store.getters['projects/getProjectById'](this.$q.localStorage.getItem('selectedProjectId')).ProjectName
+    },
+    showEditDialog: function (rowValue) {
+      alert(rowValue)
+      this.selectedVisit = this.$store.getters['projectVisits/getProjectVisitById'](rowValue)
+      this.showEdit = true
     }
   },
   components: {
+    'addProjectVisit': require('components/Modals/ProjectPages/addProjectVisitDate.vue').default,
+    'editProjectVisit': require('components/Modals/ProjectPages/editProjectVisitDate.vue').default,
     'leftDrawer': require('components/projectLeftDrawer.vue').default
   }
 }

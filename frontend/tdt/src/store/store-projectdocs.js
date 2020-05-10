@@ -1,0 +1,70 @@
+import axios from 'axios'
+import storeSettings from './store-settings'
+
+const state = {
+  projectDocuments: []
+}
+
+const mutations = {
+  setProjectDocuments: (state, { projectDocuments }) => {
+    state.projectDocuments = projectDocuments
+  },
+  deleteProjectDocument: (state, { id }) => {
+    let idx = state.documents.map(p => p.id).indexOf(id)
+    state.projectDocuments.splice(idx, 1)
+  },
+  addProjectDocument: (state, { document }) => {
+    state.projectDocuments.push(document)
+  }
+}
+
+const actions = {
+  addProjectDocument: function ({ commit }, { item }) {
+    axios.post(storeSettings.state.baseUrl + 'projectdocument', item).then((response) => {
+      commit('addProjectDocument', { document: item })
+    }, () => {
+      return false
+    })
+  },
+  deleteProjectDocument: function ({ commit, state }, id) {
+    axios.delete(storeSettings.state.baseUrl + 'projectdocument/' + id).then((response) => {
+      commit('deleteProjectDocument', { id: id })
+    }, () => {
+      return false
+    })
+  },
+  loadProjectDocuments: function ({ commit, state }, id) {
+    axios.get(storeSettings.state.baseUrl + 'projectdocument/' + id).then((response) => {
+      commit('setProjectDocuments', { projectDocuments: response.data })
+    }, () => {
+      return false
+    })
+  },
+  uploadFile: function ({ commit }, { fileData, projectId }) {
+    console.log(projectId)
+    axios.post(storeSettings.state.baseUrl + 'upload/' + projectId, fileData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    }).then((response) => {
+      return response.data
+    }, () => {
+      return false
+    })
+  }
+}
+
+const getters = {
+  projectDocuments: (state) => {
+    return state.projectDocuments
+  },
+  getProjectDocumentById: (state) => (id) => {
+    return state.projectDocuments.find(projectDocuments => projectDocuments.Id === id)
+  }
+}
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions,
+  getters
+}

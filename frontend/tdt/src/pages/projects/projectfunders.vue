@@ -24,7 +24,7 @@
   </div>
 
   <q-dialog v-model="showAdd" persistent>
-      <addCategory @close="closeDialogs()" @postFinished="refreshGrid()"/>
+      <addFunder @close="closeDialogs()" @postFinished="refreshGrid()"/>
     </q-dialog>
 
 </template>
@@ -36,7 +36,7 @@
 import { mapGetters } from 'vuex'
 export default {
   data: () => ({
-    visibleColumns: ['name', 'edit', 'delete'],
+    visibleColumns: ['name', 'amount', 'delete'],
     props: ['id', 'name'],
     columns: [
       {
@@ -50,6 +50,12 @@ export default {
         name: 'name',
         label: 'Name',
         field: 'Name',
+        align: 'left'
+      },
+      {
+        name: 'amount',
+        label: 'Amount Funded',
+        field: 'AmountFunded',
         align: 'left'
       },
       {
@@ -87,6 +93,7 @@ export default {
     }
   },
   components: {
+    'addFunder': require('components/Modals/ProjectPages/addProjectFunder.vue').default,
     'leftDrawer': require('components/projectLeftDrawer.vue').default
   }
 }

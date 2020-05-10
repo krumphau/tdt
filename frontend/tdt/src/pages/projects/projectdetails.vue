@@ -79,73 +79,88 @@
                         <td class="text-left">
                         </td>
                         <td class="text-right">
-                            <q-btn class="glossy" rounded color="indigo-12" label="Edit" to="/" />
-                            <q-btn class="glossy" rounded color="indigo-12" label="Delete" type="submit" />
+                            <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEditDialog()" />
+                            <q-btn class="glossy" rounded color="indigo-12" label="Delete" @click="deleteProject()" />
                         </td>
                     </tr>
                 </tbody>
             </q-markup-table>
         </div>
+
+        <q-dialog v-model="showEdit" persistent>
+        <editProject @close="closeDialog()"
+        :project="project">
+        </editProject>
+      </q-dialog>
+
     </q-page>
+
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-export default {
-  data () {
-    return {
-      model: null,
-      options: [
-        'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
-      ],
-      date: ''
+export default { data: () => ({
+  showEdit: false
+}),
+mounted () {
+  this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
+},
+computed: {
+  ...mapGetters({
+    project: 'projects/getCurrentProject'
+  })
+},
+components: {
+  'leftDrawer': require('components/projectLeftDrawer.vue').default
+},
+methods: {
+  getRegion (regionId) {
+    if (this.$store.getters['regions/regions'].length === 0) {
+      this.$store.dispatch('regions/loadRegions')
     }
+    return this.$store.getters['regions/getRegionById'](regionId).Name
   },
-  mounted () {
-    this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
+  getDistrict (districtId) {
+    if (this.$store.getters['districts/districts'].length === 0) {
+      this.$store.dispatch('districts/loadDistricts')
+    }
+    return this.$store.getters['districts/getDistrictById'](districtId).Name
   },
-  computed: {
-    ...mapGetters({
-      project: 'projects/getCurrentProject'
-    })
+  getProjOfficer (officerId) {
+    if (this.$store.getters['projectOfficers/projectOfficers'].length === 0) {
+      this.$store.dispatch('projectOfficers/loadProjectOfficers')
+    }
+    return this.$store.getters['projectOfficers/getProjectOfficerById'](officerId).FullName
   },
-  components: {
-    'leftDrawer': require('components/projectLeftDrawer.vue').default
-  },
-  methods: {
-    getRegion (regionId) {
-      if (this.$store.getters['regions/regions'].length === 0) {
-        this.$store.dispatch('regions/loadRegions')
-      }
-      return this.$store.getters['regions/getRegionById'](regionId).Name
-    },
-    getDistrict (districtId) {
-      if (this.$store.getters['districts/districts'].length === 0) {
-        this.$store.dispatch('districts/loadDistricts')
-      }
-      return this.$store.getters['districts/getDistrictById'](districtId).Name
-    },
-    getProjOfficer (officerId) {
-      if (this.$store.getters['projectOfficers/projectOfficers'].length === 0) {
-        this.$store.dispatch('projectOfficers/loadProjectOfficers')
-      }
-      return this.$store.getters['projectOfficers/getProjectOfficerById'](officerId).FullName
-    },
-    toCurrency (value) {
-      if (isNaN(value)) {
-        return ''
-      }
+  toCurrency (value) {
+    if (isNaN(value)) {
+      return ''
+    }
 
-      var formatter = new Intl.NumberFormat('en-GB', {
-        style: 'currency',
-        currency: 'GBP',
-        minimumFractionDigits: 0
-      })
-      return formatter.format(value)
-    },
-    getProjectName () {
-      return this.$store.getters['projects/getProjectById'](this.$q.localStorage.getItem('selectedProjectId')).ProjectName
+    var formatter = new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: 'GBP',
+      minimumFractionDigits: 0
+    })
+    return formatter.format(value)
+  },
+  getProjectName () {
+    return this.$store.getters['projects/getProjectById'](this.$q.localStorage.getItem('selectedProjectId')).ProjectName
+  },
+  showEditDialog () {
+    this.$router.push('/editproject')
+  },
+  deleteProject () {
+    if (confirm('Are you sure you want to delete this project? !!!WARNING this cannot be undone!!!')) {
+      this.$store.dispatch('projects/deleteProject', this.$q.localStorage.getItem('selectedProjectId'))
+      this.$router.push('/')
+    } else {
+      alert('Delete cancelled')
     }
+  },
+  closeDialog: function () {
+    this.showEdit = false
   }
+}
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
     <q-card-section class="q-pt-none">
-            <q-input
+            <q-select
                 outlined
-                :label="Label"
+                label="Name"
                 :value="Name"
                 @input="$emit('update:Name', $event)"
                 dense
@@ -13,6 +13,6 @@
 
 <script>
 export default {
-  props: ['Name', 'Label']
+  props: ['Name']
 }
 </script>

@@ -17,8 +17,10 @@
     "aws-amplify-vue": "^1.1.4",
     "aws-appsync": "^3.0.2",
     "axios": "^0.18.1",
+    "json2csv": "^5.0.1",
     "quasar": "^1.0.0",
-    "vue-i18n": "^8.0.0"
+    "vue-i18n": "^8.0.0",
+    "vue-json-excel": "^0.2.98"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",

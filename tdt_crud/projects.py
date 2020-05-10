@@ -68,22 +68,68 @@ def delete_project(id):
 def update_project(id):
     try:
         content = request.json
-        _firstName = content['FirstName']
-        _lastName = content['LastName']
-        _tel = content['Tel']
-        _mob = content['Mobile']
-        _add1 = content['Address1']
-        _add2 = content['Address2']
-        _add3 = content['Address3']
-        _town = content['Town']
-        _county = content['County']
-        _postcode = content['PostCode']
-        _maincontact = content['MainContact']
-        _image = content['Image']
-        _info = content['Info']
+        _projectId = content['ProjectIdentifier']
+        _projectName = content['ProjectName']
+        _projectDesc = content['ProjectDescription']
+        _appDate = content['ApplicationDate']
+        _grantApprovedDate = content['DateGrantApproved']
+        _grantPaidDate = content['DateGrantPaid']
+        _targetCompletion = content['TargetCompletionDate']
+        _grantRequested = content['AmountGrantRequested']
+        _grantRecommended = content['AmountGrantRecommended']
+        _grantApproved = content['AmountGrantApproved']
+        _grantPaid = content['AmountGrantPaid']
+        _totalCost = content['TotalProjectCost']
+        _statusCodeId = content['StatusCode_Id']
+        _regionId = content['Region_Id']
+        _districtId = content['District_Id']
+        _projectOfficerId = content['ProjOfficer_Id']
+        _lastUpdatedBy = content['LastUpdatedBy']
 
-        sql = "CALL usp_UpdateProject(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        data = (id,_firstName,_lastName,_tel,_mob,_add1,_add2,_add3,_town,_county,_postcode,_maincontact,_image,_info,)
+        sql = "CALL usp_UpdateProjectDetails(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        data = (id, _projectId, _projectName, _projectDesc, _appDate, _grantApprovedDate, _grantPaidDate, _targetCompletion, _grantRequested, _grantRecommended, _grantApproved,
+                _grantPaid, _totalCost, _statusCodeId, _regionId, _districtId, _projectOfficerId, _lastUpdatedBy,)
+        resp = sqlhelper.do_writedata(sql, data)
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        print(e)
+
+@application.route('/project/<int:id>/notes', methods=['PUT'])
+def update_project_notes(id):
+    try:
+        content = request.json
+        _statusDesc = content['StatusDescription'] 
+        _projOfficerRec = content['ProjOfficerRecommendation']
+        _keywords = content['Keywords']
+        _summary = content['Summary']
+        _problems = content['Problems']
+        _strengthsWeaknesses = content['StrengthsWeaknesses']
+        _financeOtherFunders = content['FinanceOtherFunders']
+        _localContrib = content['LocalContribution']
+        _lastUpdatedBy = content['LastUpdatedBy']
+
+        sql = "CALL usp_UpdateProjectNotes(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        data = (id, _statusDesc, _projOfficerRec, _keywords, _summary, _problems, _strengthsWeaknesses, _financeOtherFunders, _localContrib, _lastUpdatedBy,)
+        resp = sqlhelper.do_writedata(sql, data)
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        print(e)
+
+@application.route('/project/<int:id>/metadata', methods=['PUT'])
+def update_project_metadata(id):
+    try:
+        content = request.json
+        _impact = content['Impact'] 
+        _websitePicture = content['WebsitePicture']
+        _caption = content['Caption']
+        _latitude = content['Latitude']
+        _longitude = content['Longitude']
+        _lastUpdatedBy = content['LastUpdatedBy']
+
+        sql = "CALL usp_UpdateProjectMetadata(%s,%s,%s,%s,%s,%s,%s)"
+        data = (id, _impact, _websitePicture, _caption, _latitude, _longitude, _lastUpdatedBy,)
         resp = sqlhelper.do_writedata(sql, data)
         resp.status_code = 200
         return resp

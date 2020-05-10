@@ -43,7 +43,7 @@
                         <td class="text-left">
                         </td>
                         <td class="text-right">
-                            <q-btn class="glossy" rounded color="indigo-12" label="Edit" />
+                            <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEditDialog()"/>
                         </td>
                     </tr>
                 </tbody>
@@ -69,6 +69,9 @@ export default {
   methods: {
     getProjectName () {
       return this.$store.getters['projects/getProjectById'](this.$q.localStorage.getItem('selectedProjectId')).ProjectName
+    },
+    showEditDialog () {
+      this.$router.push('/editprojectnotes')
     }
   }
 }

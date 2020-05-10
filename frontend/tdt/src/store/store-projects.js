@@ -15,6 +15,14 @@ const mutations = {
     let idx = state.projects.map(p => p.id).indexOf(item.id)
     state.projects.splice(idx, 1, item)
   },
+  updateProjectNotes: (state, { item }) => {
+    let idx = state.projects.map(p => p.id).indexOf(item.id)
+    state.projects.splice(idx, 1, item)
+  },
+  updateProjectMeta: (state, { item }) => {
+    let idx = state.projects.map(p => p.id).indexOf(item.id)
+    state.projects.splice(idx, 1, item)
+  },
   deleteProject: (state, { id }) => {
     let idx = state.projects.map(p => p.id).indexOf(id)
     state.projects.splice(idx, 1)
@@ -57,6 +65,20 @@ const actions = {
   updateProject: function ({ commit, state }, { item }) {
     axios.put(storeSettings.state.baseUrl + 'project/' + item.Id, item).then((response) => {
       commit('updateProject', { item: item })
+    }, () => {
+      return false
+    })
+  },
+  updateProjectNotes: function ({ commit, state }, { item }) {
+    axios.put(storeSettings.state.baseUrl + 'project/' + item.Id + '/notes', item).then((response) => {
+      commit('updateProjectNotes', { item: item })
+    }, () => {
+      return false
+    })
+  },
+  updateProjectMeta: function ({ commit, state }, { item }) {
+    axios.put(storeSettings.state.baseUrl + 'project/' + item.Id + '/metadata', item).then((response) => {
+      commit('updateProjectMeta', { item: item })
     }, () => {
       return false
     })

@@ -11,6 +11,7 @@ import funders from './store-funders'
 import projectOfficers from './store-projectofficers'
 import projects from './store-projects'
 import projectCategories from './store-projectcategories'
+import projectDocuments from './store-projectdocs'
 import projectFunders from './store-projectfunders'
 import projectNGOs from './store-projectngos'
 import projectOtherBodies from './store-projectotherbodies'
@@ -39,6 +40,7 @@ export default function (/* { ssrContext } */) {
       projectOfficers,
       projects,
       projectCategories,
+      projectDocuments,
       projectFunders,
       projectNGOs,
       projectOtherBodies,

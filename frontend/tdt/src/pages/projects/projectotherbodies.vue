@@ -24,7 +24,7 @@
   </div>
 
   <q-dialog v-model="showAdd" persistent>
-      <addCategory @close="closeDialogs()" @postFinished="refreshGrid()"/>
+      <addOtherBody @close="closeDialogs()" @postFinished="refreshGrid()"/>
     </q-dialog>
 
 </template>
@@ -87,6 +87,7 @@ export default {
     }
   },
   components: {
+    'addOtherBody': require('components/Modals/ProjectPages/addProjectOtherBody.vue').default,
     'leftDrawer': require('components/projectLeftDrawer.vue').default
   }
 }

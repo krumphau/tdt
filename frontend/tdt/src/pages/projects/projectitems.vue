@@ -19,7 +19,7 @@
       </template>
       <template v-slot:body-cell-edit="cellProperties">
           <q-td :props="cellProperties">
-              <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEdit = true"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEditDialog(cellProperties.value)"/>
           </q-td>
       </template>
     </q-table>
@@ -29,7 +29,11 @@
   </div>
 
   <q-dialog v-model="showAdd" persistent>
-      <addCategory @close="closeDialogs()" @postFinished="refreshGrid()"/>
+      <addPurchasedItem @close="closeDialogs()" @postFinished="refreshGrid()"/>
+    </q-dialog>
+
+    <q-dialog v-model="showEdit" persistent>
+      <editPurchasedItem @close="closeDialogs()" @postFinished="refreshGrid()" :purchasedItem="selectedItem" />
     </q-dialog>
 
 </template>
@@ -66,7 +70,7 @@ export default {
       {
         name: 'cost',
         label: 'Cost',
-        field: 'ItemCose',
+        field: 'ItemCost',
         align: 'left'
       },
       {
@@ -84,6 +88,7 @@ export default {
     ],
     showAdd: false,
     showEdit: false,
+    selectedItem: {},
     changeFlag: 0
   }),
   mounted () {
@@ -96,7 +101,7 @@ export default {
     deleteRow (rowId) {
       if (confirm('Are you sure you want to remove this purchased item from the project?')) {
         confirm('params: { id:' + rowId + ' }')
-        this.$store.dispatch('projectPurchaseditems/deleteProjectPurchaseditem', rowId)
+        this.$store.dispatch('purchasedItems/deletePurchasedItem', rowId)
       } else {
         confirm('Delete cancelled')
       }
@@ -107,9 +112,16 @@ export default {
     },
     getProjectName () {
       return this.$store.getters['projects/getProjectById'](this.$q.localStorage.getItem('selectedProjectId')).ProjectName
+    },
+    showEditDialog: function (rowValue) {
+      alert(rowValue)
+      this.selectedItem = this.$store.getters['purchasedItems/getPurchasedItemById'](rowValue)
+      this.showEdit = true
     }
   },
   components: {
+    'addPurchasedItem': require('components/Modals/ProjectPages/addProjectPurchasedItem.vue').default,
+    'editPurchasedItem': require('components/Modals/ProjectPages/editProjectPurchasedItem.vue').default,
     'leftDrawer': require('components/projectLeftDrawer.vue').default
   }
 }

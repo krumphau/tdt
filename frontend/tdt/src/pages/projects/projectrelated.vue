@@ -17,11 +17,6 @@
               <q-btn class="glossy" rounded color="indigo-12" label="Delete" @click="deleteRow(cellProperties.value)"/>
           </q-td>
       </template>
-      <template v-slot:body-cell-edit="cellProperties">
-          <q-td :props="cellProperties">
-              <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEdit = true"/>
-          </q-td>
-      </template>
     </q-table>
   </div>
   <div>
@@ -29,7 +24,7 @@
   </div>
 
   <q-dialog v-model="showAdd" persistent>
-      <addCategory @close="closeDialogs()" @postFinished="refreshGrid()"/>
+      <addRelatedProject @close="closeDialogs()" @postFinished="refreshGrid()"/>
     </q-dialog>
 
 </template>
@@ -84,7 +79,7 @@ export default {
     deleteRow (rowId) {
       if (confirm('Are you sure you want to remove this relationship from the project?')) {
         confirm('params: { id:' + rowId + ' }')
-        this.$store.dispatch('projectPurchaseditems/deleteProjectPurchaseditem', rowId)
+        this.$store.dispatch('relatedProjects/deleteRelatedProject', rowId)
       } else {
         confirm('Delete cancelled')
       }
@@ -98,6 +93,7 @@ export default {
     }
   },
   components: {
+    'addRelatedProject': require('components/Modals/ProjectPages/addRelatedProject.vue').default,
     'leftDrawer': require('components/projectLeftDrawer.vue').default
   }
 }
