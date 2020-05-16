@@ -21,6 +21,7 @@ import projectvisits
 import projects
 import searchprojects
 import test
+import users
 
 @application.errorhandler(404)
 def not_found(error=None):

@@ -20,21 +20,21 @@ const mutations = {
 
 const actions = {
   addProjectFunder: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'projectfunder', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'projectfunder', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addProjectFunder', { funder: item })
     }, () => {
       return false
     })
   },
   deleteProjectFunder: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'projectfunder/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'projectfunder/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteProjectFunder', { id: id })
     }, () => {
       return false
     })
   },
   loadProjectFunders: function ({ commit, state }, id) {
-    axios.get(storeSettings.state.baseUrl + 'projectfunder/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projectfunder/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('setProjectFunders', { projectFunders: response.data })
     }, () => {
       return false

@@ -30,7 +30,9 @@ const routes = [
       { path: 'project/website', component: () => import('pages/projects/projectwebsite.vue') },
       { path: 'project/search', component: () => import('pages/projects/projectsearchresults.vue') },
       { path: 'reports/search', component: () => import('pages/reports/reportsearch.vue') },
-      { path: 'reports/results', component: () => import('pages/reports/reportresults.vue') }
+      { path: 'reports/results', component: () => import('pages/reports/reportresults.vue') },
+      { path: 'login', component: () => import('pages/security/login.vue') },
+      { path: 'notuser', component: () => import('pages/notuser.vue') }
     ]
   }
 ]

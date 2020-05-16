@@ -24,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadCategories: async function (context) {
-    axios.get(storeSettings.state.baseUrl + '/categories').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'categories', { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       context.commit('setCategories', { categories: response.data })
       return true
     }, () => {
@@ -32,21 +32,21 @@ const actions = {
     })
   },
   addCategory: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'category', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'category', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addCategory', { category: item })
     }, () => {
       return false
     })
   },
   deleteCategory: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'category/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'category/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteCategory', { id: id })
     }, () => {
       return false
     })
   },
   updateCategory: function ({ commit, state }, { item }) {
-    axios.put(storeSettings.state.baseUrl + 'category/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'category/' + item.Id, item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('updateCategory', { item: item })
     }, () => {
       return false

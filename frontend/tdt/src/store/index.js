@@ -19,6 +19,7 @@ import purchasedItems from './store-purchaseditems'
 import relatedProjects from './store-relatedprojects'
 import projectVisits from './store-projectvisits'
 import settings from './store-settings'
+import users from './store-users'
 
 Vue.use(Vuex)
 
@@ -47,7 +48,8 @@ export default function (/* { ssrContext } */) {
       purchasedItems,
       relatedProjects,
       projectVisits,
-      settings
+      settings,
+      users
     },
 
     // enable strict mode (adds overhead!)

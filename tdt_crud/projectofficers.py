@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/projectofficers')
+@require_appkey
 def projectofficers():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllProjectOfficers")
@@ -12,6 +14,7 @@ def projectofficers():
         print(e)
 
 @application.route('/projectofficer/<int:id>', methods=['GET'])
+@require_appkey
 def projectofficer(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetProjectOfficer(%s)", id)
@@ -21,6 +24,7 @@ def projectofficer(id):
         print(e)
 
 @application.route('/projectofficer', methods=['POST'])
+@require_appkey
 def projectofficer_add():
     try:
         content = request.json
@@ -46,6 +50,7 @@ def projectofficer_add():
         print(e)        
 
 @application.route('/projectofficer/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_projectofficer(id):
     try:
         sql = "CALL usp_DeleteProjectOfficer(%s)"
@@ -57,6 +62,7 @@ def delete_projectofficer(id):
         print(e)
 
 @application.route('/projectofficer/<int:id>', methods=['PUT'])
+@require_appkey
 def update_projectofficer(id):
     try:
         content = request.json

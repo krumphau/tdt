@@ -84,6 +84,13 @@ export default {
     showEdit: false
   }),
   mounted () {
+    if (!this.$store.getters['users/user']) {
+      this.$router.push('/notuser')
+    } else {
+      if (!this.$store.getters['users/user'].Email) {
+        this.$router.push('/notuser')
+      }
+    }
     this.$store.dispatch('statusCodes/loadStatusCodes')
   },
   computed: {

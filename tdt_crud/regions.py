@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/regions')
+@require_appkey
 def regions():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllRegions")
@@ -12,6 +14,7 @@ def regions():
         print(e)
 
 @application.route('/region/<int:id>', methods=['GET'])
+@require_appkey
 def region(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetRegion(%s)", id)
@@ -21,6 +24,7 @@ def region(id):
         print(e)
 
 @application.route('/region', methods=['POST'])
+@require_appkey
 def region_add():
     try:
         content = request.json
@@ -34,6 +38,7 @@ def region_add():
         print(e)        
 
 @application.route('/region/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_region(id):
     try:
         sql = "CALL usp_DeleteRegion(%s)"
@@ -45,6 +50,7 @@ def delete_region(id):
         print(e)
 
 @application.route('/region/<int:id>', methods=['PUT'])
+@require_appkey
 def update_region(id):
     try:
         content = request.json

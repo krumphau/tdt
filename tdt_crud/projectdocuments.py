@@ -3,11 +3,13 @@ from application import application
 from flask import flash, request, redirect, send_file, render_template
 import sqlhelper
 from filehelper import list_files, download_file, upload_file, download_file_from_folder
+from authhelper import require_appkey
 
 UPLOAD_FOLDER = "uploads"
 BUCKET = "tdt-document-files"
 
 @application.route('/projectdocument', methods=['POST'])
+@require_appkey
 def projectdocument_add():
     try:
         content = request.json
@@ -26,6 +28,7 @@ def projectdocument_add():
         print(e)        
 
 @application.route('/projectdocument/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_projectdocument(id):
     try:
         sql = "CALL usp_RemoveDocumentFromProject(%s)"
@@ -37,6 +40,7 @@ def delete_projectdocument(id):
         print(e)
 
 @application.route('/projectdocument/<int:projectid>', methods=['GET'])
+@require_appkey
 def projectdocument(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetDocsForProject(%s)", projectid)
@@ -47,11 +51,13 @@ def projectdocument(projectid):
 
 
 @application.route("/storage")
+@require_appkey
 def storage():
     contents = list_files(BUCKET)
     return render_template('storage.html', contents=contents)
 
 @application.route("/upload/<projectid>", methods=['POST'])
+@require_appkey
 def upload(projectid):
     if request.method == "POST":
         f = request.files['file']
@@ -63,6 +69,7 @@ def upload(projectid):
 
 
 @application.route("/download/<filename>", methods=['GET'])
+@require_appkey
 def download(filename):
     if request.method == 'GET':
         output = download_file(filename, BUCKET)
@@ -70,6 +77,7 @@ def download(filename):
         return send_file(output, as_attachment=True)
 
 @application.route("/download/<foldername>/<filename>", methods=['GET'])
+@require_appkey
 def download_fromfolder(foldername, filename):
     if request.method == 'GET':
         output = download_file_from_folder(filename, foldername, BUCKET)

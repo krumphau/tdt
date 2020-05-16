@@ -24,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadRegions: async function (context) {
-    axios.get(storeSettings.state.baseUrl + 'regions').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'regions', { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       context.commit('setRegions', { regions: response.data })
       return true
     }, () => {
@@ -32,21 +32,21 @@ const actions = {
     })
   },
   addRegion: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'region', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'region', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addRegion', { region: item })
     }, () => {
       return false
     })
   },
   deleteRegion: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'region/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'region/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteRegion', { id: id })
     }, () => {
       return false
     })
   },
   updateRegion: function ({ commit, state }, { item }) {
-    axios.put(storeSettings.state.baseUrl + 'region/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'region/' + item.Id, item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('updateRegion', { item: item })
     }, () => {
       return false

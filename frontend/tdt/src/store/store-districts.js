@@ -24,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadDistricts: async function (context) {
-    axios.get(storeSettings.state.baseUrl + 'districts').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'districts', { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       context.commit('setDistricts', { districts: response.data })
       return true
     }, () => {
@@ -32,21 +32,21 @@ const actions = {
     })
   },
   addDistrict: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'district', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'district', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addDistrict', { District: item })
     }, () => {
       return false
     })
   },
   deleteDistrict: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'district/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'district/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteDistrict', { id: id })
     }, () => {
       return false
     })
   },
   updateDistrict: function ({ commit, state }, { item }) {
-    axios.put(storeSettings.state.baseUrl + 'district/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'district/' + item.Id, item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('updateDistrict', { item: item })
     }, () => {
       return false

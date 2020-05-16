@@ -20,21 +20,21 @@ const mutations = {
 
 const actions = {
   addProjectCategory: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'projectcategory', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'projectcategory', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addProjectCategory', { category: item })
     }, () => {
       return false
     })
   },
   deleteProjectCategory: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'projectcategory/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'projectcategory/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteProjectCategory', { id: id })
     }, () => {
       return false
     })
   },
   loadProjectCategories: function ({ commit, state }, id) {
-    axios.get(storeSettings.state.baseUrl + 'projectcategory/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projectcategory/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('setProjectCategories', { projectCategories: response.data })
     }, () => {
       return false

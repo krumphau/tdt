@@ -80,6 +80,13 @@ export default {
     json_data: []
   }),
   mounted () {
+    if (!this.$store.getters['users/user']) {
+      this.$router.push('/notuser')
+    } else {
+      if (!this.$store.getters['users/user'].Email) {
+        this.$router.push('/notuser')
+      }
+    }
     this.$store.dispatch('projects/searchProjects', this.$q.localStorage.getItem('searchParams'))
   },
   computed: {
@@ -94,12 +101,12 @@ export default {
     },
     generateReport () {
       const csv = parse(this.searchResults)
-      console.log(csv)
       var hiddenElement = document.createElement('a')
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv)
       hiddenElement.target = '_blank'
       hiddenElement.download = 'report.csv'
       hiddenElement.click()
+      hiddenElement.remove()
     }
   },
   components: {

@@ -24,28 +24,28 @@ const mutations = {
 
 const actions = {
   addProjectVisit: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'projectvisit', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'projectvisit', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addProjectVisit', { projectVisit: item })
     }, () => {
       return false
     })
   },
   deleteProjectVisit: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'projectvisit/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'projectvisit/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteProjectVisit', { id: id })
     }, () => {
       return false
     })
   },
   loadProjectVisits: function ({ commit, state }, id) {
-    axios.get(storeSettings.state.baseUrl + 'projectvisit/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projectvisit/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('setProjectVisits', { projectVisits: response.data })
     }, () => {
       return false
     })
   },
   updateProjectVisit: function ({ commit, state }, { item }) {
-    axios.put(storeSettings.state.baseUrl + 'projectvisit/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'projectvisit/' + item.Id, item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('updateProjectVisit', { item: item })
     }, () => {
       return false

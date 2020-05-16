@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/otherbodies')
+@require_appkey
 def otherbodies():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllOtherBodies()")
@@ -12,6 +14,7 @@ def otherbodies():
         print(e)
 
 @application.route('/otherbody/<int:id>', methods=['GET'])
+@require_appkey
 def otherbody(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetOtherBody(%s)", id)
@@ -21,6 +24,7 @@ def otherbody(id):
         print(e)
 
 @application.route('/otherbody', methods=['POST'])
+@require_appkey
 def otherbody_add():
     try:
         content = request.json
@@ -34,6 +38,7 @@ def otherbody_add():
         print(e)        
 
 @application.route('/otherbody/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_otherbody(id):
     try:
         sql = "CALL usp_DeleteOtherBody(%s)"
@@ -45,6 +50,7 @@ def delete_otherbody(id):
         print(e)
 
 @application.route('/otherbody/<int:id>', methods=['PUT'])
+@require_appkey
 def update_otherbody(id):
     try:
         content = request.json

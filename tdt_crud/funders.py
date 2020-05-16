@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/funders')
+@require_appkey
 def funders():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllFunders()")
@@ -12,6 +14,7 @@ def funders():
         print(e)
 
 @application.route('/funder/<int:id>', methods=['GET'])
+@require_appkey
 def funder(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetFunders(%s)", id)
@@ -21,6 +24,7 @@ def funder(id):
         print(e)
 
 @application.route('/funder', methods=['POST'])
+@require_appkey
 def funder_add():
     try:
         content = request.json        
@@ -43,6 +47,7 @@ def funder_add():
         print(e)        
 
 @application.route('/funder/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_funder(id):
     try:
         sql = "CALL usp_DeleteFunder(%s)"
@@ -54,6 +59,7 @@ def delete_funder(id):
         print(e)
 
 @application.route('/funder/<int:id>', methods=['PUT'])
+@require_appkey
 def update_funder(id):
     try:
         content = request.json

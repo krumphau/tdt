@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/statuscodes')
+@require_appkey
 def statuscodes():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllProjectStatusCodes()")
@@ -12,6 +14,7 @@ def statuscodes():
         print(e)
 
 @application.route('/statuscode/<int:id>', methods=['GET'])
+@require_appkey
 def statuscode(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetStatusCode(%s)", id)
@@ -21,6 +24,7 @@ def statuscode(id):
         print(e)
 
 @application.route('/statuscode', methods=['POST'])
+@require_appkey
 def statuscode_add():
     try:
         content = request.json
@@ -37,6 +41,7 @@ def statuscode_add():
         print(e)        
 
 @application.route('/statuscode/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_statuscode(id):
     try:
         sql = "CALL usp_DeleteStatusCode(%s)"
@@ -48,6 +53,7 @@ def delete_statuscode(id):
         print(e)
 
 @application.route('/statuscode/<int:id>', methods=['PUT'])
+@require_appkey
 def update_statuscode(id):
     try:
         content = request.json

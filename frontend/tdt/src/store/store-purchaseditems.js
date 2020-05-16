@@ -24,28 +24,28 @@ const mutations = {
 
 const actions = {
   addPurchasedItem: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'purchaseditem', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'purchaseditem', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addPurchasedItem', { purchasedItem: item })
     }, () => {
       return false
     })
   },
   deletePurchasedItem: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'purchaseditems/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'purchaseditems/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deletePurchasedItem', { id: id })
     }, () => {
       return false
     })
   },
   loadPurchasedItems: function ({ commit, state }, id) {
-    axios.get(storeSettings.state.baseUrl + 'purchaseditems/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'purchaseditems/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('setPurchasedItems', { purchasedItems: response.data })
     }, () => {
       return false
     })
   },
   updatePurchasedItem: function ({ commit, state }, { item }) {
-    axios.put(storeSettings.state.baseUrl + 'purchaseditem/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'purchaseditem/' + item.Id, item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('updatePurchasedItem', { item: item })
     }, () => {
       return false

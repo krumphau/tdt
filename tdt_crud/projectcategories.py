@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/projectcategory', methods=['POST'])
+@require_appkey
 def projectcategory_add():
     try:
         content = request.json
@@ -18,6 +20,7 @@ def projectcategory_add():
         print(e)        
 
 @application.route('/projectcategory/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_projectcategory(id):
     try:
         sql = "CALL usp_RemoveCategoryFromProject(%s)"
@@ -29,6 +32,7 @@ def delete_projectcategory(id):
         print(e)
 
 @application.route('/projectcategory/<int:projectid>', methods=['GET'])
+@require_appkey
 def projectcategory(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetCategoriesForProject(%s)", projectid)

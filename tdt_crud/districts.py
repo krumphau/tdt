@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/districts')
+@require_appkey
 def districts():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllDistricts()")
@@ -12,6 +14,7 @@ def districts():
         print(e)
 
 @application.route('/district/<int:id>', methods=['GET'])
+@require_appkey
 def district(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetDistrict(%s)", id)
@@ -21,6 +24,7 @@ def district(id):
         print(e)
 
 @application.route('/district', methods=['POST'])
+@require_appkey
 def district_add():
     try:
         content = request.json
@@ -34,6 +38,7 @@ def district_add():
         print(e)        
 
 @application.route('/district/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_district(id):
     try:
         sql = "CALL usp_DeleteDistrict(%s)"
@@ -45,6 +50,7 @@ def delete_district(id):
         print(e)
 
 @application.route('/district/<int:id>', methods=['PUT'])
+@require_appkey
 def update_district(id):
     try:
         content = request.json

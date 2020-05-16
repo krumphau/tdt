@@ -20,21 +20,21 @@ const mutations = {
 
 const actions = {
   addProjectDocument: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'projectdocument', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'projectdocument', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addProjectDocument', { document: item })
     }, () => {
       return false
     })
   },
   deleteProjectDocument: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'projectdocument/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'projectdocument/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteProjectDocument', { id: id })
     }, () => {
       return false
     })
   },
   loadProjectDocuments: function ({ commit, state }, id) {
-    axios.get(storeSettings.state.baseUrl + 'projectdocument/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projectdocument/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('setProjectDocuments', { projectDocuments: response.data })
     }, () => {
       return false
@@ -43,7 +43,7 @@ const actions = {
   uploadFile: function ({ commit }, { fileData, projectId }) {
     console.log(projectId)
     axios.post(storeSettings.state.baseUrl + 'upload/' + projectId, fileData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
+      headers: { 'Content-Type': 'multipart/form-data', 'x-api-key': storeSettings.state.apiKey }
     }).then((response) => {
       return response.data
     }, () => {

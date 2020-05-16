@@ -51,7 +51,19 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  created () {
+    if (!this.$store.getters['projects/getCurrentProject'].ProjectName) {
+      this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
+    }
+  },
   mounted () {
+    if (!this.$store.getters['users/user']) {
+      this.$router.push('/notuser')
+    } else {
+      if (!this.$store.getters['users/user'].Email) {
+        this.$router.push('/notuser')
+      }
+    }
     this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
   },
   computed: {
@@ -64,7 +76,7 @@ export default {
   },
   methods: {
     getProjectName () {
-      return this.$store.getters['projects/getProjectById'](this.$q.localStorage.getItem('selectedProjectId')).ProjectName
+      return this.$store.getters['projects/getCurrentProject'].ProjectName
     },
     showEditDialog () {
       this.$router.push('/editprojectwebsite')

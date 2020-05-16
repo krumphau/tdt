@@ -24,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadStatusCodes: async function (context) {
-    axios.get(storeSettings.state.baseUrl + 'statuscodes').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'statuscodes', { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       context.commit('setStatusCodes', { statusCodes: response.data })
       return true
     }, () => {
@@ -32,21 +32,21 @@ const actions = {
     })
   },
   addStatusCode: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'statuscode', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'statuscode', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addStatusCode', { statusCode: item })
     }, () => {
       return false
     })
   },
   deleteStatusCode: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'statuscode/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'statuscode/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteStatusCode', { id: id })
     }, () => {
       return false
     })
   },
   updateStatusCode: function ({ commit, state }, { item }) {
-    axios.put(storeSettings.state.baseUrl + 'statuscode/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'statuscode/' + item.Id, item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('updateStatusCode', { item: item })
     }, () => {
       return false

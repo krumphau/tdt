@@ -11,5 +11,26 @@
           </q-avatar>
         </div>
       </q-img>
+      <div class="absolute-bottom bg-transparent">
+            <q-item>
+            <q-item-section avatar>
+                <q-icon name="account_circle" />
+            </q-item-section>
+
+            <q-item-section>{{ this.fullname }}</q-item-section>
+            </q-item>
+        </div>
+
     </q-drawer>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    fullname: ''
+  }),
+  mounted () {
+    this.fullname = this.$msal.data.user.name
+  }
+}
+</script>

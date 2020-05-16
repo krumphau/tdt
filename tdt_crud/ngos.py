@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/ngos')
+@require_appkey
 def ngos():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllNGOs")
@@ -12,6 +14,7 @@ def ngos():
         print(e)
 
 @application.route('/ngo/<int:id>', methods=['GET'])
+@require_appkey
 def ngo(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetNGO(%s)", id)
@@ -21,6 +24,7 @@ def ngo(id):
         print(e)
 
 @application.route('/ngo', methods=['POST'])
+@require_appkey
 def ngo_add():
     try:
         content = request.json
@@ -34,6 +38,7 @@ def ngo_add():
         print(e)        
 
 @application.route('/ngo/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_ngo(id):
     try:
         sql = "CALL usp_DeleteNGO(%s)"
@@ -45,6 +50,7 @@ def delete_ngo(id):
         print(e)
 
 @application.route('/ngo/<int:id>', methods=['PUT'])
+@require_appkey
 def update_ngo(id):
     try:
         content = request.json

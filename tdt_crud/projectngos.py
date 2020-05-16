@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/projectngo', methods=['POST'])
+@require_appkey
 def projectngo_add():
     try:
         content = request.json
@@ -18,6 +20,7 @@ def projectngo_add():
         print(e)        
 
 @application.route('/projectngo/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_projectngo(id):
     try:
         sql = "CALL usp_RemoveNGOFromProject(%s)"
@@ -33,6 +36,7 @@ from flask import flash, request
 import sqlhelper
 
 @application.route('/projectngo/<int:projectid>', methods=['GET'])
+@require_appkey
 def projectngo(projectid):
     try:
         resp = sqlhelper.do_selectmultibyid("CALL usp_GetNGOsForProject(%s)", projectid)

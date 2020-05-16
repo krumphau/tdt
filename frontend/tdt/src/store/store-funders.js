@@ -24,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadFunders: async function (context) {
-    axios.get(storeSettings.state.baseUrl + 'funders').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'funders', { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       context.commit('setFunders', { funders: response.data })
       return true
     }, () => {
@@ -32,21 +32,21 @@ const actions = {
     })
   },
   addFunder: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'funder', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'funder', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addFunder', { funder: item })
     }, () => {
       return false
     })
   },
   deleteFunder: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'funder/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'funder/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteFunder', { id: id })
     }, () => {
       return false
     })
   },
   updateFunder: function ({ commit, state }, { item }) {
-    axios.put(storeSettings.state.baseUrl + 'funder/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'funder/' + item.Id, item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('updateFunder', { item: item })
     }, () => {
       return false

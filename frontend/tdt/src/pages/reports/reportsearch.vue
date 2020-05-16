@@ -40,8 +40,9 @@
           </tr>
         </tbody>
       </q-markup-table>
-
-      <q-btn class="glossy" rounded color="indigo-12" label="Search" @click="doSearch()"/>
+    </div>
+    <div class="q-pa-md">
+          <q-btn class="glossy" rounded color="indigo-12" label="Search" @click="doSearch()"/>
     </div>
   </q-page>
 </template>
@@ -78,6 +79,13 @@ export default {
     }
   }),
   mounted () {
+    if (!this.$store.getters['users/user']) {
+      this.$router.push('/notuser')
+    } else {
+      if (!this.$store.getters['users/user'].Email) {
+        this.$router.push('/notuser')
+      }
+    }
     this.$store.dispatch('projects/loadProjects')
     this.$store.dispatch('regions/loadRegions')
     this.$store.dispatch('ngos/loadNGOs')

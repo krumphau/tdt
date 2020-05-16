@@ -102,7 +102,25 @@ import { mapGetters } from 'vuex'
 export default { data: () => ({
   showEdit: false
 }),
+created () {
+  if (this.$store.getters['regions/regions'].length === 0) {
+    this.$store.dispatch('regions/loadRegions')
+  }
+  if (this.$store.getters['districts/districts'].length === 0) {
+    this.$store.dispatch('districts/loadDistricts')
+  }
+  if (this.$store.getters['projectOfficers/projectOfficers'].length === 0) {
+    this.$store.dispatch('projectOfficers/loadProjectOfficers')
+  }
+},
 mounted () {
+  if (!this.$store.getters['users/user']) {
+    this.$router.push('/notuser')
+  } else {
+    if (!this.$store.getters['users/user'].Email) {
+      this.$router.push('/notuser')
+    }
+  }
   this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
 },
 computed: {
@@ -115,21 +133,12 @@ components: {
 },
 methods: {
   getRegion (regionId) {
-    if (this.$store.getters['regions/regions'].length === 0) {
-      this.$store.dispatch('regions/loadRegions')
-    }
     return this.$store.getters['regions/getRegionById'](regionId).Name
   },
   getDistrict (districtId) {
-    if (this.$store.getters['districts/districts'].length === 0) {
-      this.$store.dispatch('districts/loadDistricts')
-    }
     return this.$store.getters['districts/getDistrictById'](districtId).Name
   },
   getProjOfficer (officerId) {
-    if (this.$store.getters['projectOfficers/projectOfficers'].length === 0) {
-      this.$store.dispatch('projectOfficers/loadProjectOfficers')
-    }
     return this.$store.getters['projectOfficers/getProjectOfficerById'](officerId).FullName
   },
   toCurrency (value) {
@@ -145,7 +154,7 @@ methods: {
     return formatter.format(value)
   },
   getProjectName () {
-    return this.$store.getters['projects/getProjectById'](this.$q.localStorage.getItem('selectedProjectId')).ProjectName
+    return this.project.ProjectName
   },
   showEditDialog () {
     this.$router.push('/editproject')

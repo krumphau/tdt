@@ -20,21 +20,21 @@ const mutations = {
 
 const actions = {
   addProjectNGO: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'projectngo', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'projectngo', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addProjectNGO', { ngo: item })
     }, () => {
       return false
     })
   },
   deleteProjectNGO: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'projectngo/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'projectngo/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteProjectNGO', { id: id })
     }, () => {
       return false
     })
   },
   loadProjectNGOs: function ({ commit, state }, id) {
-    axios.get(storeSettings.state.baseUrl + 'projectngo/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projectngo/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('setProjectNGOs', { projectNGOs: response.data })
     }, () => {
       return false

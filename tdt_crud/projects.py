@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request, jsonify
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/projects')
+@require_appkey
 def projects():
     try:
         resp = sqlhelper.do_selectmulti("CALL usp_GetAllProjects")
@@ -12,6 +14,7 @@ def projects():
         print(e)
 
 @application.route('/project/<int:id>', methods=['GET'])
+@require_appkey
 def project(id):
     try:
         resp = sqlhelper.do_selectsinglebyid("CALL usp_GetProject(%s)", id)
@@ -21,6 +24,7 @@ def project(id):
         print(e)
 
 @application.route('/project', methods=['POST'])
+@require_appkey
 def project_add():
     try:
         content = request.json
@@ -54,6 +58,7 @@ def project_add():
         print(e)        
 
 @application.route('/project/<int:id>', methods=['DELETE'])
+@require_appkey
 def delete_project(id):
     try:
         sql = "CALL usp_DeleteProject(%s)"
@@ -65,6 +70,7 @@ def delete_project(id):
         print(e)
 
 @application.route('/project/<int:id>', methods=['PUT'])
+@require_appkey
 def update_project(id):
     try:
         content = request.json
@@ -96,6 +102,7 @@ def update_project(id):
         print(e)
 
 @application.route('/project/<int:id>/notes', methods=['PUT'])
+@require_appkey
 def update_project_notes(id):
     try:
         content = request.json
@@ -118,6 +125,7 @@ def update_project_notes(id):
         print(e)
 
 @application.route('/project/<int:id>/metadata', methods=['PUT'])
+@require_appkey
 def update_project_metadata(id):
     try:
         content = request.json

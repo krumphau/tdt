@@ -214,6 +214,13 @@ export default {
     }
   },
   mounted () {
+    if (!this.$store.getters['users/user']) {
+      this.$router.push('/notuser')
+    } else {
+      if (!this.$store.getters['users/user'].Email) {
+        this.$router.push('/notuser')
+      }
+    }
     this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
     this.$store.dispatch('regions/loadRegions')
     this.$store.dispatch('projectOfficers/loadProjectOfficers')

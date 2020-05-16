@@ -24,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadOtherBodies: async function (context) {
-    axios.get(storeSettings.state.baseUrl + 'otherbodies').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'otherbodies', { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       context.commit('setOtherBodies', { otherBodies: response.data })
       return true
     }, () => {
@@ -32,21 +32,21 @@ const actions = {
     })
   },
   addOtherBody: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'otherbody', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'otherbody', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addOtherBody', { otherBody: item })
     }, () => {
       return false
     })
   },
   deleteOtherBody: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'otherbody/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'otherbody/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteOtherBody', { id: id })
     }, () => {
       return false
     })
   },
   updateOtherBody: function ({ commit, state }, { item }) {
-    axios.put(storeSettings.state.baseUrl + 'otherbody/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'otherbody/' + item.Id, item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('updateOtherBody', { item: item })
     }, () => {
       return false

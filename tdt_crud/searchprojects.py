@@ -1,8 +1,10 @@
 from application import application
 from flask import flash, request
 import sqlhelper
+from authhelper import require_appkey
 
 @application.route('/search', methods=['POST'])
+@require_appkey
 def project_search():
     try:
         content = request.json

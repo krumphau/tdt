@@ -52,6 +52,13 @@ export default {
     ]
   }),
   mounted () {
+    if (!this.$store.getters['users/user']) {
+      this.$router.push('/notuser')
+    } else {
+      if (!this.$store.getters['users/user'].Email) {
+        this.$router.push('/notuser')
+      }
+    }
     this.$store.dispatch('projects/searchProjects', this.$q.localStorage.getItem('searchParams'))
   },
   computed: {

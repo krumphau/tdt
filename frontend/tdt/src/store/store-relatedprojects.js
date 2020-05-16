@@ -20,21 +20,21 @@ const mutations = {
 
 const actions = {
   addRelatedProject: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'relatedproject', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'relatedproject', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addRelatedProject', { relatedProject: item })
     }, () => {
       return false
     })
   },
   deleteRelatedProject: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'relatedproject/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'relatedproject/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteRelatedProject', { id: id })
     }, () => {
       return false
     })
   },
   loadRelatedProjects: function ({ commit, state }, id) {
-    axios.get(storeSettings.state.baseUrl + 'relatedproject/' + id).then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'relatedproject/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('setRelatedProjects', { relatedProjects: response.data })
     }, () => {
       return false

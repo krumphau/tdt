@@ -84,6 +84,13 @@ export default {
     this.$store.dispatch('projectOfficers/loadProjectOfficers')
     this.$store.dispatch('statusCodes/loadStatusCodes')
     this.$store.dispatch('funders/loadFunders')
+    if (!this.$store.getters['users/user']) {
+      this.$router.push('/notuser')
+    } else {
+      if (!this.$store.getters['users/user'].Email) {
+        this.$router.push('/notuser')
+      }
+    }
   },
   computed: {
     ...mapGetters({

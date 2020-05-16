@@ -24,7 +24,7 @@ const mutations = {
 
 const actions = {
   loadProjectOfficers: async function (context) {
-    axios.get(storeSettings.state.baseUrl + 'projectofficers').then((response) => {
+    axios.get(storeSettings.state.baseUrl + 'projectofficers', { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       context.commit('setProjectOfficers', { projectOfficers: response.data })
       return true
     }, () => {
@@ -32,21 +32,21 @@ const actions = {
     })
   },
   addProjectOfficer: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'projectofficer', item).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'projectofficer', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addProjectOfficer', { projectOfficer: item })
     }, () => {
       return false
     })
   },
   deleteProjectOfficer: function ({ commit, state }, id) {
-    axios.delete(storeSettings.state.baseUrl + 'projectofficer/' + id).then((response) => {
+    axios.delete(storeSettings.state.baseUrl + 'projectofficer/' + id, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('deleteProjectOfficer', { id: id })
     }, () => {
       return false
     })
   },
   updateProjectOfficer: function ({ commit, state }, { item }) {
-    axios.put(storeSettings.state.baseUrl + 'projectofficer/' + item.Id, item).then((response) => {
+    axios.put(storeSettings.state.baseUrl + 'projectofficer/' + item.Id, item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('updateProjectOfficer', { item: item })
     }, () => {
       return false
