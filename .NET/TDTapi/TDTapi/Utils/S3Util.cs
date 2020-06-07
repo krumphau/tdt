@@ -13,8 +13,8 @@ namespace TDTapi.Utils
 {
     public class S3Util
     {
-        string accessKey = "AKIAY55ZWNALB7TSZF66";
-        string secretKey = "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";
+        string accessKey = "x";
+        string secretKey = "z";
         string bucketName = "tdt-document-files";
         string downloadFolder = @".\downloads";
         AmazonS3Config config = new AmazonS3Config();
