@@ -19,23 +19,23 @@
               Keywords <q-input dense outlined v-model="searchKeywords" />
             </td>
             <td>
-              Region <q-select dense v-model="searchRegion" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="regions" />
+              Region <q-select dense v-model="searchRegion" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="regions" />
             </td>
           </tr>
           <tr>
             <td>
-              NGO <q-select dense v-model="searchNGO" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="NGOs" />
+              NGO <q-select dense v-model="searchNGO" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="NGOs" />
             </td>
             <td>
-              Project Officer <q-select dense v-model="searchOfficer" label="Please select" map-options emit-value option-value="Id" option-label="FullName" outlined :options="projectOfficers" />
+              Project Officer <q-select dense v-model="searchOfficer" label="Please select" map-options emit-value option-value="id" option-label="fullName" outlined :options="projectOfficers" />
             </td>
           </tr>
           <tr>
             <td>
-              Status <q-select dense v-model="searchStatus" label="Please select" map-options emit-value option-value="Id" option-label="Description" outlined :options="statusCodes" />
+              Status <q-select dense v-model="searchStatus" label="Please select" map-options emit-value option-value="id" option-label="description" outlined :options="statusCodes" />
             </td>
             <td>
-              Funder <q-select dense v-model="searchFunder" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="funders" />
+              Funder <q-select dense v-model="searchFunder" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="funders" />
             </td>
           </tr>
         </tbody>
@@ -79,13 +79,7 @@ export default {
     }
   }),
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('projects/loadProjects')
     this.$store.dispatch('regions/loadRegions')
     this.$store.dispatch('ngos/loadNGOs')
@@ -127,6 +121,25 @@ export default {
       this.searchParams.OtherBodyId = (this.searchOtherBody != null ? this.searchOtherBody : 0)
       this.$q.localStorage.set('searchParams', this.searchParams)
       this.$router.push('/reports/results')
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   }
 }

@@ -32,7 +32,7 @@ const actions = {
     })
   },
   addStatusCode: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'statuscode', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'statuscodes', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addStatusCode', { statusCode: item })
     }, () => {
       return false
@@ -59,7 +59,7 @@ const getters = {
     return state.statusCodes
   },
   getStatusCodeById: (state) => (id) => {
-    return state.statusCodes.find(statusCodes => statusCodes.Id === id)
+    return state.statusCodes.find(statusCodes => statusCodes.id === id)
   }
 }
 

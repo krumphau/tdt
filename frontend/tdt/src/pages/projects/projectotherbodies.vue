@@ -42,20 +42,20 @@ export default {
       {
         name: 'id',
         label: 'Id',
-        field: 'Id',
+        field: 'id',
         align: 'left',
         visible: 'false'
       },
       {
         name: 'name',
         label: 'Name',
-        field: 'Name',
+        field: 'name',
         align: 'left'
       },
       {
         name: 'delete',
         label: 'Delete',
-        field: 'Id',
+        field: 'id',
         align: 'right'
       }
     ],
@@ -64,18 +64,12 @@ export default {
     changeFlag: 0
   }),
   created () {
-    if (!this.$store.getters['projects/getCurrentProject'].ProjectName) {
+    if (!this.$store.getters['projects/getCurrentProject'].projectName) {
       this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
     }
   },
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('projectOtherBodies/loadProjectOtherBodies', this.$q.localStorage.getItem('selectedProjectId'))
   },
   computed: {
@@ -83,11 +77,10 @@ export default {
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to remove Other Body with ID from the project' + rowId + '?')) {
-        confirm('params: { id:' + rowId + ' }')
+      if (confirm('Are you sure you want to remove Other Body with ID ' + rowId + ' from the project?')) {
         this.$store.dispatch('projectOtherBodies/deleteProjectOtherBody', rowId)
       } else {
-        confirm('Delete cancelled')
+        alert('Delete cancelled')
       }
     },
     closeDialogs: function () {
@@ -95,7 +88,26 @@ export default {
       this.showEdit = false
     },
     getProjectName () {
-      return this.$store.getters['projects/getCurrentProject'].ProjectName
+      return this.$store.getters['projects/getCurrentProject'].projectName
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   },
   components: {

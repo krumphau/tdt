@@ -26,7 +26,7 @@
         >
           <q-card :class="props.selected ? 'bg-grey-2' : ''">
             <q-card-section>
-              {{ props.row.Name }}
+              {{ props.row.name }}
             </q-card-section>
             <q-separator />
             <q-list dense>
@@ -76,52 +76,52 @@ export default {
       {
         name: 'Id',
         label: 'Id',
-        field: 'Id'
+        field: 'id'
       },
       {
         name: 'name',
         label: 'Name',
-        field: 'Name'
+        field: 'name'
       },
       {
         name: 'address1',
         label: 'Address 1',
-        field: 'Address1'
+        field: 'address1'
       },
       {
         name: 'address2',
         label: 'Address 2',
-        field: 'Address2'
+        field: 'address2'
       },
       {
         name: 'address3',
         label: 'Address 3',
-        field: 'Address3'
+        field: 'address3'
       },
       {
         name: 'town',
         label: 'Town',
-        field: 'Town'
+        field: 'town'
       },
       {
         name: 'county',
         label: 'County',
-        field: 'County'
+        field: 'county'
       },
       {
         name: 'tel',
         label: 'Telephone',
-        field: 'Tel'
+        field: 'tel'
       },
       {
         name: 'mainContact',
         label: 'Main Contact',
-        field: 'MainContact'
+        field: 'mainContact'
       },
       {
         name: 'amount',
         label: 'Amount',
-        field: 'Amount'
+        field: 'amount'
       }
     ],
     showAdd: false,
@@ -142,16 +142,29 @@ export default {
     showEditDialog: function (rowValue) {
       this.selectedFunder = this.$store.getters['funders/getFunderById'](rowValue)
       this.showEdit = true
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   },
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('funders/loadFunders')
   },
   computed: {

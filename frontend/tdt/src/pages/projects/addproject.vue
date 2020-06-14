@@ -18,11 +18,11 @@
                 <tbody>
                     <tr>
                     <td class="text-left" width="20%">Project Identifier</td>
-                    <td class="text-right"><q-input outlined dense v-model="projectToAdd.ProjectIdentifier"></q-input></td>
+                    <td class="text-right"><q-input outlined dense v-model="projectToAdd.projectIdentifier"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Project Name</td>
-                    <td class="text-right"><q-input outlined dense v-model="projectToAdd.ProjectName"></q-input></td>
+                    <td class="text-right"><q-input outlined dense v-model="projectToAdd.projectName"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Project Description</td>
@@ -180,7 +180,6 @@
                 </tbody>
             </q-markup-table>
             </form>
-            <pre>{{ projectToAdd }}</pre>
         </div>
     </q-page>
 </template>
@@ -191,8 +190,8 @@ export default {
   data () {
     return {
       projectToAdd: {
-        ProjectIdentifier: null,
-        ProjectName: null,
+        projectIdentifier: null,
+        projectName: null,
         ProjectDescription: null,
         ApplicationDate: null,
         DateGrantApproved: null,
@@ -212,13 +211,7 @@ export default {
     }
   },
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('regions/loadRegions')
     this.$store.dispatch('projectOfficers/loadProjectOfficers')
     this.$store.dispatch('statusCodes/loadStatusCodes')
@@ -243,7 +236,27 @@ export default {
     async saveProject () {
       this.$store.dispatch('projects/addProject', { item: this.projectToAdd })
       alert('Project added')
+      this.$store.dispatch('projects/loadProjects')
       this.$router.push('/')
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   }
 }

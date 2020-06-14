@@ -17,7 +17,7 @@ public static class ProjectDocumentService
             spParams.Add("@ProjectId", projectDocument.ProjectId);
             spParams.Add("@DocName", projectDocument.DocName);
             spParams.Add("@FilePath", projectDocument.FilePath);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_AddDocumentToProject(@ProjectId, @DocName, @FilePath)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_AddDocumentToProject(@ProjectId, @DocName, @FilePath)", spParams);
         }
         catch (Exception)
         {

@@ -59,7 +59,7 @@
                 </tbody>
             </q-markup-table>
             </form>
-            <pre>{{ project }}</pre>
+            <pre> {{ projectToEdit }} </pre>
         </div>
     </q-page>
 </template>
@@ -84,13 +84,7 @@ export default {
     }
   },
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
   },
   computed: {
@@ -110,18 +104,38 @@ export default {
       this.saveProject()
     },
     populateEditProject () {
-      this.projectToEdit.StatusDescription = this.project.StatusDescription
-      this.projectToEdit.ProjOfficerRecommendation = this.project.ProjOfficerRecommendation
-      this.projectToEdit.Keywords = this.project.Keywords
-      this.projectToEdit.Summary = this.project.Summary
-      this.projectToEdit.Problems = this.project.Problems
-      this.projectToEdit.StrengthsWeaknesses = this.project.StrengthsWeaknesses
-      this.projectToEdit.FinanceOtherFunders = this.project.FinanceOtherFunders
-      this.projectToEdit.LocalContribution = this.project.LocalContribution
+      this.projectToEdit.StatusDescription = this.project.statusDescription
+      this.projectToEdit.ProjOfficerRecommendation = this.project.projOfficerRecommendation
+      this.projectToEdit.Keywords = this.project.keywords
+      this.projectToEdit.Summary = this.project.summary
+      this.projectToEdit.Problems = this.project.problems
+      this.projectToEdit.StrengthsWeaknesses = this.project.strengthsWeaknesses
+      this.projectToEdit.FinanceOtherFunders = this.project.financeOtherFunders
+      this.projectToEdit.LocalContribution = this.project.localContribution
     },
     async saveProject () {
       this.$store.dispatch('projects/updateProjectNotes', { item: this.projectToEdit })
       alert('Project notes updated')
+      this.$router.push('/project/notes')
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   }
 }

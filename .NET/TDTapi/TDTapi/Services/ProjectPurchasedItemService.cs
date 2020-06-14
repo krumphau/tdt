@@ -16,7 +16,7 @@ public static class ProjectPurchasedItemService
             spParams.Add("@PurchasedItem", projectPurchasedItem.PurchasedItem);
             spParams.Add("@DatePurchased", projectPurchasedItem.DatePurchased);
             spParams.Add("@ItemCost", projectPurchasedItem.ItemCost);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_AddPurchasedItemToProject(@ProjectId, @PurchasedItem, @DatePurchased, @ItemCost)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_AddPurchasedItemToProject(@ProjectId, @PurchasedItem, @DatePurchased, @ItemCost)", spParams);
         }
         catch (Exception)
         {

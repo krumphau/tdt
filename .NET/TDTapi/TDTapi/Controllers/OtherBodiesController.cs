@@ -23,11 +23,12 @@ namespace TDTapi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] OtherBodyModel otherbody)
+        public OtherBodyModel Post([FromBody] OtherBodyModel otherbody)
         {
             Response.StatusCode = 201;
             string result = OtherBodyService.CreateOtherBody(otherbody, dbConn);
-            return "Posted " + result;
+            otherbody.Id = Convert.ToInt32(result);
+            return otherbody;
         }
 
         [HttpGet]

@@ -18,5 +18,7 @@ namespace TDTapi.Models
         public int CategoryId { get; set; }
         public int DistrictId { get; set; }
         public int OtherBodyId { get; set; }
+        public string ProjectOfficerName { get; set; }
+        public string StatusCode { get; set; }
     }
 }

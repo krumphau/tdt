@@ -4,13 +4,12 @@
 
         <form @submit.prevent="submitForm">
             <modal-name
-            :Name.sync="otherBody.Name"
+            :Name.sync="otherBody.name"
             ref="modalOBName"></modal-name>
 
             <modal-buttons />
         </form>
     </q-card>
-
 </template>
 
 <script>

@@ -13,5 +13,6 @@ namespace TDTapi.Models
         public int ProjectId { get; set; }
         [Display(Name = "NGO_Id")]
         public int NGOId { get; set; }
+        public string Name { get; set; }
     }
 }

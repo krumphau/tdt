@@ -14,7 +14,7 @@ namespace TDTapi.Services
         {
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@Name", ngo.Name);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_InsertNGO(@Name)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_InsertNGO(@Name)", spParams);
         }
 
         public static List<NGOModel> GetAllNGOs(string connstring)

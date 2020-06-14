@@ -8,8 +8,7 @@
       :data="districts"
       :columns="columns"
       :visible-columns="visibleColumns"
-      row-key="id"
-      :key="changeFlag"
+      row-key="Id"
     >
       <template v-slot:body-cell-edit="cellProperties">
         <q-td :props="cellProperties">
@@ -53,19 +52,19 @@ export default {
       {
         name: 'name',
         label: 'Name',
-        field: 'Name',
+        field: 'name',
         align: 'left'
       },
       {
         name: 'edit',
         label: 'Edit',
-        field: 'Id',
+        field: 'id',
         align: 'right'
       },
       {
         name: 'delete',
         label: 'Delete',
-        field: 'Id',
+        field: 'id',
         align: 'right'
       }
     ],
@@ -73,13 +72,7 @@ export default {
     showEdit: false
   }),
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('districts/loadDistricts')
   },
   computed: {
@@ -101,8 +94,28 @@ export default {
       return rowValue === 1
     },
     showEditDialog: function (rowValue) {
+      alert(rowValue)
       this.selectedDistrict = this.$store.getters['districts/getDistrictById'](rowValue)
       this.showEdit = true
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   },
   components: {

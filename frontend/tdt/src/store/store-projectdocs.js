@@ -41,7 +41,6 @@ const actions = {
     })
   },
   uploadFile: function ({ commit }, { fileData, projectId }) {
-    console.log(projectId)
     axios.post(storeSettings.state.baseUrl + 'upload/' + projectId, fileData, {
       headers: { 'Content-Type': 'multipart/form-data', 'x-api-key': storeSettings.state.apiKey }
     }).then((response) => {
@@ -57,7 +56,7 @@ const getters = {
     return state.projectDocuments
   },
   getProjectDocumentById: (state) => (id) => {
-    return state.projectDocuments.find(projectDocuments => projectDocuments.Id === id)
+    return state.projectDocuments.find(projectDocuments => projectDocuments.id === id)
   }
 }
 

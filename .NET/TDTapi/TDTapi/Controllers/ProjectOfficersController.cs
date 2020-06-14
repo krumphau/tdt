@@ -23,11 +23,12 @@ namespace TDTapi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] ProjectOfficerModel projectofficer)
+        public ProjectOfficerModel Post([FromBody] ProjectOfficerModel projectofficer)
         {
             Response.StatusCode = 201;
             string result = ProjectOfficerService.CreateProjectOfficer(projectofficer, dbConn);
-            return "Posted " + result;
+            projectofficer.Id = Convert.ToInt32(result);
+            return projectofficer;
         }
 
         [HttpGet]

@@ -23,7 +23,7 @@ namespace TDTapi.Services
             spParams.Add("@Tel", funder.Tel);
             spParams.Add("@MainContact", funder.MainContact);
             spParams.Add("@Amount", funder.Amount);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_InsertFunder(@Name, @Address1, @Address2, @Address3, @Town, @County, @PostCode, @Tel, @MainContact, @Amount)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_InsertFunder(@Name, @Address1, @Address2, @Address3, @Town, @County, @PostCode, @Tel, @MainContact, @Amount)", spParams);
         }
 
         public static List<FunderModel> GetAllFunders(string connstring)

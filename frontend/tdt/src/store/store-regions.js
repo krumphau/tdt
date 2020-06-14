@@ -32,7 +32,7 @@ const actions = {
     })
   },
   addRegion: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'region', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'regions', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addRegion', { region: item })
     }, () => {
       return false
@@ -59,7 +59,7 @@ const getters = {
     return state.regions
   },
   getRegionById: (state) => (id) => {
-    return state.regions.find(regions => regions.Id === id)
+    return state.regions.find(regions => regions.id === id)
   }
 }
 

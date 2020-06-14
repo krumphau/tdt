@@ -23,11 +23,12 @@ namespace TDTapi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] CategoryModel category)
+        public CategoryModel Post([FromBody] CategoryModel category)
         {
             Response.StatusCode = 201;
             string result = CategoryService.CreateCategory(category, dbConn);
-            return "Posted " + result;
+            category.Id = Convert.ToInt32(result);
+            return category;
         }
 
         [HttpGet]

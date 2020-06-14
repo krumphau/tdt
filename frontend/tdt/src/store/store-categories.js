@@ -32,8 +32,8 @@ const actions = {
     })
   },
   addCategory: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'category', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addCategory', { category: item })
+    axios.post(storeSettings.state.baseUrl + 'categories', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
+      commit('addCategory', { category: response.data })
     }, () => {
       return false
     })
@@ -59,7 +59,7 @@ const getters = {
     return state.categories
   },
   getCategoryById: (state) => (id) => {
-    return state.categories.find(categories => categories.Id === id)
+    return state.categories.find(categories => categories.id === id)
   }
 }
 

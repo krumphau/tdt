@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/purchaseditem', methods=['POST'])
+@app.route('/purchaseditem', methods=['POST'])
 @require_appkey
 def purchaseditem_add():
     try:
@@ -21,7 +21,7 @@ def purchaseditem_add():
     except Exception as e:
         print(e)        
 
-@application.route('/purchaseditem/<int:id>', methods=['PUT'])
+@app.route('/purchaseditem/<int:id>', methods=['PUT'])
 @require_appkey
 def purchaseditem_update(id):
     try:
@@ -38,7 +38,7 @@ def purchaseditem_update(id):
     except Exception as e:
         print(e)        
 
-@application.route('/purchaseditems/<int:id>', methods=['DELETE'])
+@app.route('/purchaseditems/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_purchaseditem(id):
     try:
@@ -50,7 +50,7 @@ def delete_purchaseditem(id):
     except Exception as e:
         print(e)
 
-@application.route('/purchaseditems/<int:projectid>', methods=['GET'])
+@app.route('/purchaseditems/<int:projectid>', methods=['GET'])
 @require_appkey
 def purchaseditem(projectid):
     try:

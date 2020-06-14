@@ -14,7 +14,7 @@ namespace TDTapi.Services
         {
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@Name", ngo.Name);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_InsertOtherBody(@Name)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_InsertOtherBody(@Name)", spParams);
         }
 
         public static List<OtherBodyModel> GetAllOtherBodies(string connstring)

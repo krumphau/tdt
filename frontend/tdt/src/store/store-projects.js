@@ -107,7 +107,7 @@ const getters = {
     return state.searchResults
   },
   getProjectById: (state) => (id) => {
-    return state.projects.find(projects => projects.Id === id)
+    return state.projects.find(projects => projects.id === id)
   },
   getCurrentProject: (state) => {
     return state.currentProject

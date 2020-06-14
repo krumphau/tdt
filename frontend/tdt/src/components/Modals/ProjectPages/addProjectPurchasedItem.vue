@@ -18,11 +18,10 @@
              </q-input>
             </q-card-section>
             <q-card-section class="q-pt-none">
-             <q-input dense v-model="purchasedItemToAdd.ItemCost" label="Item Cost" outlined  />
+             <q-input dense v-model.number="purchasedItemToAdd.ItemCost" label="Item Cost" outlined />
             </q-card-section>
            <modal-buttons />
         </form>
-        <pre>{{ purchasedItemToAdd }}</pre>
     </q-card>
 
 </template>
@@ -35,7 +34,7 @@ export default {
         ProjectId: this.$q.localStorage.getItem('selectedProjectId'),
         PurchasedItem: null,
         DatePurchased: null,
-        ItemCost: null
+        ItemCost: 0
       }
     }
   },

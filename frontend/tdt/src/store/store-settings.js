@@ -1,5 +1,5 @@
 const state = {
-  baseUrl: 'http://127.0.0.1:5000/',
+  baseUrl: 'https://localhost:44349/',
   apiKey: 'CBAEA0AB-D7E2-4639-A54E-EAD7E6A14869',
   msalConfig: {
     auth: {

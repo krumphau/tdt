@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/user/<string:email>', methods=['GET'])
+@app.route('/user/<string:email>', methods=['GET'])
 @require_appkey
 def get_user(email):
     try:

@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/projectotherbody', methods=['POST'])
+@app.route('/projectotherbody', methods=['POST'])
 @require_appkey
 def projectotherbody_add():
     try:
@@ -19,7 +19,7 @@ def projectotherbody_add():
     except Exception as e:
         print(e)        
 
-@application.route('/projectotherbody/<int:id>', methods=['DELETE'])
+@app.route('/projectotherbody/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_projectotherbody(id):
     try:
@@ -31,7 +31,7 @@ def delete_projectotherbody(id):
     except Exception as e:
         print(e)
 
-@application.route('/projectotherbody/<int:projectid>', methods=['GET'])
+@app.route('/projectotherbody/<int:projectid>', methods=['GET'])
 @require_appkey
 def projectotherbody(projectid):
     try:

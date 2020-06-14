@@ -13,5 +13,6 @@ namespace TDTapi.Models
         public int ProjectId { get; set; }
         [Display(Name = "OtherBody_Id")]
         public int OtherBodyId { get; set; }
+        public string Name { get; set; }
     }
 }

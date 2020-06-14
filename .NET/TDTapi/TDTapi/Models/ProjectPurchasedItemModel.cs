@@ -12,7 +12,7 @@ namespace TDTapi.Models
         [Display(Name = "Project_Id")]
         public int ProjectId { get; set; }
         public string PurchasedItem { get; set; }
-        public DateTime DatePurchased { get; set; }
+        public string DatePurchased { get; set; }
         public decimal ItemCost { get; set; }
     }
 }

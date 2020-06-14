@@ -4,7 +4,7 @@
 
         <form @submit.prevent="submitForm">
             <q-card-section class="q-pt-none">
-             <q-select dense v-model="ngoToAdd.NgoId" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="ngos" />
+             <q-select dense v-model="ngoToAdd.NgoId" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="ngos" />
             </q-card-section>
            <modal-buttons />
         </form>

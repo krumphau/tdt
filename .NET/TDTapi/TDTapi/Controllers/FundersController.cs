@@ -58,11 +58,12 @@ namespace TDTapi.Controllers
         }
 
         [Route("/projectfunder")]
-        public string PostProjectFunder([FromBody] ProjectFunderModel projectCategory)
+        public ProjectFunderModel PostProjectFunder([FromBody] ProjectFunderModel projectFunder)
         {
             Response.StatusCode = 201;
-            string result = ProjectFunderService.AddProjectFunder(projectCategory, dbConn);
-            return "Posted " + result;
+            string result = ProjectFunderService.AddProjectFunder(projectFunder, dbConn);
+            projectFunder.Id = Convert.ToInt32(result);
+            return projectFunder;
         }
 
         [Route("/projectfunder/{id}")]

@@ -9,71 +9,71 @@
                 <tbody>
                     <tr>
                     <td class="text-left" width="20%">Project Identifier</td>
-                    <td class="text-left">{{ project.ProjectIdentifier }}</td>
+                    <td class="text-left">{{ project.projectIdentifier }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Project Name</td>
-                    <td class="text-left">{{ project.ProjectName }}</td>
+                    <td class="text-left">{{ project.projectName }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Project Description</td>
-                    <td class="text-left">{{ project.ProjectDescription }}</td>
+                    <td class="text-left">{{ project.projectDescription }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Application Date</td>
-                    <td class="text-left">{{ project.ApplicationDate }}</td>
+                    <td class="text-left">{{ project.applicationDate }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Date Grant Approved</td>
-                    <td class="text-left">{{ project.DateGrantApproved }}</td>
+                    <td class="text-left">{{ project.dateGrantApproved }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Date Grant Paid</td>
-                    <td class="text-left">{{ project.DateGrantPaid }}</td>
+                    <td class="text-left">{{ project.dateGrantPaid }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Target Completion Date</td>
-                    <td class="text-left">{{ project.TargetCompletionDate }}</td>
+                    <td class="text-left">{{ project.targetCompletionDate }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Requested</td>
-                    <td class="text-left">{{ toCurrency(project.AmountGrantRequested) }}</td>
+                    <td class="text-left">{{ toCurrency(project.amountGrantRequested) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Recommended</td>
-                    <td class="text-left">{{ toCurrency(project.AmountGrantRecommended) }}</td>
+                    <td class="text-left">{{ toCurrency(project.amountGrantRecommended) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Approved</td>
-                    <td class="text-left">{{ toCurrency(project.AmountGrantApproved) }}</td>
+                    <td class="text-left">{{ toCurrency(project.amountGrantApproved) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Paid</td>
-                    <td class="text-left">{{ toCurrency(project.AmountGrantPaid) }}</td>
+                    <td class="text-left">{{ toCurrency(project.amountGrantPaid) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Total Project Cost</td>
-                    <td class="text-left">{{ toCurrency(project.TotalProjectCost) }}</td>
+                    <td class="text-left">{{ toCurrency(project.totalProjectCost) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Status Code</td>
-                    <td class="text-left">{{ project.StatusDescription }}</td>
+                    <td class="text-left">{{ project.statusDescription }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Status Code Changed</td>
-                    <td class="text-left">{{ project.StatusCodeDate }}</td>
+                    <td class="text-left">{{ project.statusCodeDate }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Region</td>
-                    <td class="text-left">{{ getRegion(project.Region_Id) }}</td>
+                    <td class="text-left">{{ getRegion(project.region_Id) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">District</td>
-                    <td class="text-left">{{ getDistrict(project.District_Id) }}</td>
+                    <td class="text-left">{{ getDistrict(project.district_Id) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Project Officer</td>
-                    <td class="text-left">{{ getProjOfficer(project.ProjOfficer_Id) }}</td>
+                    <td class="text-left">{{ getProjOfficer(project.projOfficer_Id) }}</td>
                     </tr>
                     <tr>
                         <td class="text-left">
@@ -114,13 +114,7 @@ created () {
   }
 },
 mounted () {
-  if (!this.$store.getters['users/user']) {
-    this.$router.push('/notuser')
-  } else {
-    if (!this.$store.getters['users/user'].Email) {
-      this.$router.push('/notuser')
-    }
-  }
+  this.load()
   this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
 },
 computed: {
@@ -133,13 +127,13 @@ components: {
 },
 methods: {
   getRegion (regionId) {
-    return this.$store.getters['regions/getRegionById'](regionId).Name
+    return (regionId == null ? '' : this.$store.getters['regions/getRegionById'](regionId).name)
   },
   getDistrict (districtId) {
-    return this.$store.getters['districts/getDistrictById'](districtId).Name
+    return (districtId == null ? '' : this.$store.getters['districts/getDistrictById'](districtId).name)
   },
   getProjOfficer (officerId) {
-    return this.$store.getters['projectOfficers/getProjectOfficerById'](officerId).FullName
+    return (officerId == null ? '' : this.$store.getters['projectOfficers/getProjectOfficerById'](officerId).fullName)
   },
   toCurrency (value) {
     if (isNaN(value)) {
@@ -154,7 +148,7 @@ methods: {
     return formatter.format(value)
   },
   getProjectName () {
-    return this.project.ProjectName
+    return this.project.projectName
   },
   showEditDialog () {
     this.$router.push('/editproject')
@@ -169,6 +163,25 @@ methods: {
   },
   closeDialog: function () {
     this.showEdit = false
+  },
+  // Returns a Promise that resolves after "ms" Milliseconds
+  timer (ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  },
+  async load () { // We need to wrap the loop into an async function for this to work
+    for (var i = 0; i < 50; i++) {
+      await this.timer(5000) // then the created Promise can be awaited
+      if (!this.$store.getters['users/loading']) {
+        break
+      }
+    }
+    if (!this.$store.getters['users/user']) {
+      this.$router.push('/notuser')
+    } else {
+      if (!this.$store.getters['users/user'].email) {
+        this.$router.push('/notuser')
+      }
+    }
   }
 }
 }

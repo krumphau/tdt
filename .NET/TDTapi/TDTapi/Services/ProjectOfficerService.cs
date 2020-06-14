@@ -23,7 +23,7 @@ public static class ProjectOfficerService
         spParams.Add("@PostCode", projectofficer.PostCode);
         spParams.Add("@Info", projectofficer.Info);
         spParams.Add("@Email", projectofficer.Email);
-        return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_InsertProjectOfficer(@FirstName, @LastName, @Tel, @Mobile, @Address1, @Address2, @Address3, @Town, @County, @PostCode, @Info, @Email)", spParams);
+        return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_InsertProjectOfficer(@FirstName, @LastName, @Tel, @Mobile, @Address1, @Address2, @Address3, @Town, @County, @PostCode, @Info, @Email)", spParams);
     }
 
     public static List<ProjectOfficerModel> GetAllProjectOfficers(string connstring)

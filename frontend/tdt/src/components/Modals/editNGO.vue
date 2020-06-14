@@ -4,7 +4,7 @@
 
         <form @submit.prevent="submitForm">
             <modal-name
-            :Name.sync="NGO.Name"
+            :Name.sync="NGO.name"
             ref="modalCatName"></modal-name>
 
             <modal-buttons />

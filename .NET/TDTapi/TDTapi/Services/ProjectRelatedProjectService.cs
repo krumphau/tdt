@@ -49,7 +49,7 @@ public static class ProjectRelatedProjectService
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@ProjectId", relatedProject.ProjectId);
             spParams.Add("@RelationshipKey", relatedProject.RelationshipKey);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_AddRelatedProject(@ProjectId, @RelationshipKey)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_AddRelatedProject(@ProjectId, @RelationshipKey)", spParams);
         }
         catch (Exception)
         {

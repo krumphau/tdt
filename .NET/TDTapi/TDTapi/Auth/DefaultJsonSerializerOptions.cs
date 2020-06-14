@@ -6,7 +6,7 @@ namespace TDTapi.Auth
     {
         public static JsonSerializerOptions Options => new JsonSerializerOptions
         {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            //PropertyNamingPolicy = JsonNamingPolicy.,
             IgnoreNullValues = true
         };
     }

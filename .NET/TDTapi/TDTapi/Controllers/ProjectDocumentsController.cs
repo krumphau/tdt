@@ -26,12 +26,13 @@ namespace TDTapi.Controllers
 
         [Route("/projectdocument")]
         [HttpPost]
-        public string Post([FromBody] ProjectDocumentModel projectDoc)
+        public ProjectDocumentModel Post([FromBody] ProjectDocumentModel projectDoc)
         {
             Response.StatusCode = 201;
 
             string result = ProjectDocumentService.AddProjectDocument(projectDoc, dbConn);
-            return "Posted " + result;
+            projectDoc.Id = Convert.ToInt32(result);
+            return projectDoc;
         }
 
         [Route("/projectdocument/{id}")]

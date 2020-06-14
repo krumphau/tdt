@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/statuscodes')
+@app.route('/statuscodes')
 @require_appkey
 def statuscodes():
     try:
@@ -13,7 +13,7 @@ def statuscodes():
     except Exception as e:
         print(e)
 
-@application.route('/statuscode/<int:id>', methods=['GET'])
+@app.route('/statuscode/<int:id>', methods=['GET'])
 @require_appkey
 def statuscode(id):
     try:
@@ -23,7 +23,7 @@ def statuscode(id):
     except Exception as e:
         print(e)
 
-@application.route('/statuscode', methods=['POST'])
+@app.route('/statuscode', methods=['POST'])
 @require_appkey
 def statuscode_add():
     try:
@@ -40,7 +40,7 @@ def statuscode_add():
     except Exception as e:
         print(e)        
 
-@application.route('/statuscode/<int:id>', methods=['DELETE'])
+@app.route('/statuscode/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_statuscode(id):
     try:
@@ -52,7 +52,7 @@ def delete_statuscode(id):
     except Exception as e:
         print(e)
 
-@application.route('/statuscode/<int:id>', methods=['PUT'])
+@app.route('/statuscode/<int:id>', methods=['PUT'])
 @require_appkey
 def update_statuscode(id):
     try:

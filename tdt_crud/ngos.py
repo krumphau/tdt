@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/ngos')
+@app.route('/ngos')
 @require_appkey
 def ngos():
     try:
@@ -13,7 +13,7 @@ def ngos():
     except Exception as e:
         print(e)
 
-@application.route('/ngo/<int:id>', methods=['GET'])
+@app.route('/ngo/<int:id>', methods=['GET'])
 @require_appkey
 def ngo(id):
     try:
@@ -23,7 +23,7 @@ def ngo(id):
     except Exception as e:
         print(e)
 
-@application.route('/ngo', methods=['POST'])
+@app.route('/ngo', methods=['POST'])
 @require_appkey
 def ngo_add():
     try:
@@ -37,7 +37,7 @@ def ngo_add():
     except Exception as e:
         print(e)        
 
-@application.route('/ngo/<int:id>', methods=['DELETE'])
+@app.route('/ngo/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_ngo(id):
     try:
@@ -49,7 +49,7 @@ def delete_ngo(id):
     except Exception as e:
         print(e)
 
-@application.route('/ngo/<int:id>', methods=['PUT'])
+@app.route('/ngo/<int:id>', methods=['PUT'])
 @require_appkey
 def update_ngo(id):
     try:

@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/districts')
+@app.route('/districts')
 @require_appkey
 def districts():
     try:
@@ -13,7 +13,7 @@ def districts():
     except Exception as e:
         print(e)
 
-@application.route('/district/<int:id>', methods=['GET'])
+@app.route('/district/<int:id>', methods=['GET'])
 @require_appkey
 def district(id):
     try:
@@ -23,7 +23,7 @@ def district(id):
     except Exception as e:
         print(e)
 
-@application.route('/district', methods=['POST'])
+@app.route('/district', methods=['POST'])
 @require_appkey
 def district_add():
     try:
@@ -37,7 +37,7 @@ def district_add():
     except Exception as e:
         print(e)        
 
-@application.route('/district/<int:id>', methods=['DELETE'])
+@app.route('/district/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_district(id):
     try:
@@ -49,7 +49,7 @@ def delete_district(id):
     except Exception as e:
         print(e)
 
-@application.route('/district/<int:id>', methods=['PUT'])
+@app.route('/district/<int:id>', methods=['PUT'])
 @require_appkey
 def update_district(id):
     try:

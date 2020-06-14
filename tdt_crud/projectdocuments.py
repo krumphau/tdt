@@ -1,5 +1,5 @@
 import os
-from application import application
+from app import app
 from flask import flash, request, redirect, send_file, render_template
 import sqlhelper
 from filehelper import list_files, download_file, upload_file, download_file_from_folder
@@ -8,7 +8,7 @@ from authhelper import require_appkey
 UPLOAD_FOLDER = "uploads"
 BUCKET = "tdt-document-files"
 
-@application.route('/projectdocument', methods=['POST'])
+@app.route('/projectdocument', methods=['POST'])
 @require_appkey
 def projectdocument_add():
     try:
@@ -27,7 +27,7 @@ def projectdocument_add():
     except Exception as e:
         print(e)        
 
-@application.route('/projectdocument/<int:id>', methods=['DELETE'])
+@app.route('/projectdocument/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_projectdocument(id):
     try:
@@ -39,7 +39,7 @@ def delete_projectdocument(id):
     except Exception as e:
         print(e)
 
-@application.route('/projectdocument/<int:projectid>', methods=['GET'])
+@app.route('/projectdocument/<int:projectid>', methods=['GET'])
 @require_appkey
 def projectdocument(projectid):
     try:
@@ -50,25 +50,25 @@ def projectdocument(projectid):
         print(e)
 
 
-@application.route("/storage")
+@app.route("/storage")
 @require_appkey
 def storage():
     contents = list_files(BUCKET)
     return render_template('storage.html', contents=contents)
 
-@application.route("/upload/<projectid>", methods=['POST'])
+@app.route("/upload/<projectid>", methods=['POST'])
 @require_appkey
 def upload(projectid):
     if request.method == "POST":
         f = request.files['file']
         
         f.save(os.path.join(UPLOAD_FOLDER, f.filename))
-        upload_file(f"{UPLOAD_FOLDER}/{f.filename}", BUCKET, projectid)
+        upload_file(UPLOAD_FOLDER + "/" + f.filename, BUCKET, projectid)
 
         return f.filename
 
 
-@application.route("/download/<filename>", methods=['GET'])
+@app.route("/download/<filename>", methods=['GET'])
 @require_appkey
 def download(filename):
     if request.method == 'GET':
@@ -76,8 +76,7 @@ def download(filename):
 
         return send_file(output, as_attachment=True)
 
-@application.route("/download/<foldername>/<filename>", methods=['GET'])
-@require_appkey
+@app.route("/download/<foldername>/<filename>", methods=['GET'])
 def download_fromfolder(foldername, filename):
     if request.method == 'GET':
         output = download_file_from_folder(filename, foldername, BUCKET)

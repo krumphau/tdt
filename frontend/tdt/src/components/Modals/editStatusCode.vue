@@ -4,11 +4,11 @@
 
         <form @submit.prevent="submitForm">
             <modal-name
-            :Name.sync="statusCode.Name"
+            :Name.sync="statusCode.statusCode"
             ref="modalStatusCode"></modal-name>
 
             <modal-name
-            :Name.sync="statusCode.Description"
+            :Name.sync="statusCode.description"
             ref="modalDescription"></modal-name>
 
             <modal-buttons />

@@ -37,9 +37,6 @@
         <div><q-btn label="Reports" to="/reports/search"/></div>
         <div>
           <q-btn-dropdown label="Account">
-            <q-item>
-              <q-item-section>{{ this.fullname }}</q-item-section>
-            </q-item>
             <q-item tag="label" clickable @click="logout()">
               <q-item-section>Log Out</q-item-section>
             </q-item>
@@ -56,15 +53,11 @@
 <script>
 export default {
   name: 'MyLayout',
-  data: () => ({
-    user: {},
-    fullname: ''
-  }),
-  created () {
-    this.$store.dispatch('users/getUser', this.$msal.data.user.userName)
-  },
-  mounted () {
-    this.fullname = this.$msal.data.user.name
+  async created () {
+    if (this.$msal.isAuthenticated()) {
+      this.$msal.signIn()
+    }
+    await this.loadUser()
   },
   methods: {
     logout () {
@@ -72,6 +65,9 @@ export default {
         this.$msal.signOut()
         this.$router.push('login')
       }
+    },
+    async loadUser () {
+      return this.$store.dispatch('users/getUser', this.$msal.data.user.userName)
     }
   }
 }

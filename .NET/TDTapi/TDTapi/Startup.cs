@@ -35,7 +35,12 @@ namespace TDTapi
             services.AddSingleton<IGetApiKeyQuery, InMemoryGetApiKeyQuery>();
             services.AddControllers();
             services.AddControllersWithViews();
-            services.AddCors();
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +50,7 @@ namespace TDTapi
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors();
+            app.UseCors("MyPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

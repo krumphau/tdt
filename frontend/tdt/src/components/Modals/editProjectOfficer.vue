@@ -4,43 +4,43 @@
 
         <form @submit.prevent="submitForm">
             <modal-name
-            :Name.sync="projectOfficerToEdit.FirstName"
+            :Name.sync="projectOfficerToEdit.firstName"
             ref="modalFirstName"></modal-name>
             <modal-name
-            :Name.sync="projectOfficerToEdit.LastName"
+            :Name.sync="projectOfficerToEdit.lastName"
             ref="modalLastName"></modal-name>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.Address1"
+            :Name.sync="projectOfficerToEdit.address1"
             ref="modalAddress1"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.Address2"
+            :Name.sync="projectOfficerToEdit.address2"
             ref="modalAddress2"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.Address3"
+            :Name.sync="projectOfficerToEdit.address3"
             ref="modalAddress3"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.Town"
+            :Name.sync="projectOfficerToEdit.town"
             ref="modalTown"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.County"
+            :Name.sync="projectOfficerToEdit.county"
             ref="modalCounty"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.PostCode"
+            :Name.sync="projectOfficerToEdit.postCode"
             ref="modalCounty"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.Tel"
+            :Name.sync="projectOfficerToEdit.tel"
             ref="modalTelephone"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.Mobile"
+            :Name.sync="projectOfficerToEdit.mobile"
             ref="modalMobile"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.Image"
+            :Name.sync="projectOfficerToEdit.image"
             ref="modalImage"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.Info"
+            :Name.sync="projectOfficerToEdit.info"
             ref="modalInfo"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.Email"
+            :Name.sync="projectOfficerToEdit.email"
             ref="modalEmail"></modal-optional>
 
             <modal-buttons />

@@ -17,7 +17,7 @@ public static class ProjectVisitService {
             spParams.Add("@VisitStart", projectVisit.VisitStart);
             spParams.Add("@VisitEnd", projectVisit.VisitEnd);
             spParams.Add("@Visitor", projectVisit.Visitor);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_AddVisitToProject(@ProjectId, @VisitStart, @VisitEnd, @Visitor)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_AddVisitToProject(@ProjectId, @VisitStart, @VisitEnd, @Visitor)", spParams);
         }
         catch (Exception)
         {

@@ -15,7 +15,7 @@ public static class ProjectNGOService
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@ProjectId", projectNGO.ProjectId);
             spParams.Add("@NGOId", projectNGO.NGOId);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_AddNGOToProject(@ProjectId, @NGOId)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_AddNGOToProject(@ProjectId, @NGOId)", spParams);
         }
         catch (Exception)
         {

@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request, jsonify
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/projects')
+@app.route('/projects')
 @require_appkey
 def projects():
     try:
@@ -13,7 +13,7 @@ def projects():
     except Exception as e:
         print(e)
 
-@application.route('/project/<int:id>', methods=['GET'])
+@app.route('/project/<int:id>', methods=['GET'])
 @require_appkey
 def project(id):
     try:
@@ -23,7 +23,7 @@ def project(id):
     except Exception as e:
         print(e)
 
-@application.route('/project', methods=['POST'])
+@app.route('/project', methods=['POST'])
 @require_appkey
 def project_add():
     try:
@@ -57,7 +57,7 @@ def project_add():
     except Exception as e:
         print(e)        
 
-@application.route('/project/<int:id>', methods=['DELETE'])
+@app.route('/project/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_project(id):
     try:
@@ -69,7 +69,7 @@ def delete_project(id):
     except Exception as e:
         print(e)
 
-@application.route('/project/<int:id>', methods=['PUT'])
+@app.route('/project/<int:id>', methods=['PUT'])
 @require_appkey
 def update_project(id):
     try:
@@ -101,7 +101,7 @@ def update_project(id):
     except Exception as e:
         print(e)
 
-@application.route('/project/<int:id>/notes', methods=['PUT'])
+@app.route('/project/<int:id>/notes', methods=['PUT'])
 @require_appkey
 def update_project_notes(id):
     try:
@@ -124,7 +124,7 @@ def update_project_notes(id):
     except Exception as e:
         print(e)
 
-@application.route('/project/<int:id>/metadata', methods=['PUT'])
+@app.route('/project/<int:id>/metadata', methods=['PUT'])
 @require_appkey
 def update_project_metadata(id):
     try:

@@ -47,7 +47,6 @@
                 </tbody>
             </q-markup-table>
             </form>
-            <pre>{{ project }}</pre>
         </div>
     </q-page>
 </template>
@@ -69,13 +68,7 @@ export default {
     }
   },
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
   },
   computed: {
@@ -95,15 +88,35 @@ export default {
       this.saveProject()
     },
     populateEditProject () {
-      this.projectToEdit.Impact = this.project.ImpactOfProject
-      this.projectToEdit.WebsitePicture = this.project.WebSitePicture
-      this.projectToEdit.Caption = this.project.WebSitePictureDescription
-      this.projectToEdit.Latitude = this.project.Latitude
-      this.projectToEdit.Longitude = this.project.Longitude
+      this.projectToEdit.Impact = this.project.impactOfProject
+      this.projectToEdit.WebsitePicture = this.project.webSitePicture
+      this.projectToEdit.Caption = this.project.webSitePictureDescription
+      this.projectToEdit.Latitude = this.project.latitude
+      this.projectToEdit.Longitude = this.project.longitude
     },
     async saveProject () {
       this.$store.dispatch('projects/updateProjectMeta', { item: this.projectToEdit })
       alert('Project website details updated')
+      this.$router.push('/project/website')
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   }
 }

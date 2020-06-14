@@ -10,7 +10,7 @@
                 <tbody>
                   <tr>
                     <td class="text-left">Impact of the Project</td>
-                    <td class="text-left">{{ project.ImpactOfProject }}</td>
+                    <td class="text-left">{{ project.impactOfProject }}</td>
                   </tr>
                   <tr>
                     <td class="text-left">Picture</td>
@@ -24,15 +24,15 @@
                   </tr>
                   <tr>
                     <td class="text-left">Picture Caption</td>
-                    <td class="text-left">{{ project.WebSitePictureDescription }}</td>
+                    <td class="text-left">{{ project.webSitePictureDescription }}</td>
                   </tr>
                   <tr>
                     <td class="text-left">Latitude [Decimal]</td>
-                    <td class="text-left">{{ project.Latitude }}</td>
+                    <td class="text-left">{{ project.latitude }}</td>
                   </tr>
                   <tr>
                     <td class="text-left">Longitude [Decimal]</td>
-                    <td class="text-left">{{ project.Longitude }}</td>
+                    <td class="text-left">{{ project.longitude }}</td>
                   </tr>
                   <tr>
                       <td class="text-left">
@@ -52,18 +52,12 @@
 import { mapGetters } from 'vuex'
 export default {
   created () {
-    if (!this.$store.getters['projects/getCurrentProject'].ProjectName) {
+    if (!this.$store.getters['projects/getCurrentProject'].projectName) {
       this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
     }
   },
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
   },
   computed: {
@@ -76,10 +70,29 @@ export default {
   },
   methods: {
     getProjectName () {
-      return this.$store.getters['projects/getCurrentProject'].ProjectName
+      return this.$store.getters['projects/getCurrentProject'].projectName
     },
     showEditDialog () {
       this.$router.push('/editprojectwebsite')
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   }
 }

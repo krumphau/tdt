@@ -16,7 +16,7 @@ public static class ProjectFunderService
             spParams.Add("@ProjectId", projectFunder.ProjectId);
             spParams.Add("@FunderId", projectFunder.FunderId);
             spParams.Add("@AmountFunded", projectFunder.AmountFunded);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_AddFunderToProject(@ProjectId, @FunderId, @AmountFunded)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_AddFunderToProject(@ProjectId, @FunderId, @AmountFunded)", spParams);
         }
         catch (Exception)
         {

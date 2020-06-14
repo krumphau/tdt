@@ -32,7 +32,7 @@ const actions = {
     })
   },
   addNGO: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'ngo', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'ngos', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addNGO', { NGO: item })
     }, () => {
       return false
@@ -59,7 +59,7 @@ const getters = {
     return state.NGOs
   },
   getNGOById: (state) => (id) => {
-    return state.NGOs.find(NGOs => NGOs.Id === id)
+    return state.NGOs.find(NGOs => NGOs.id === id)
   }
 }
 

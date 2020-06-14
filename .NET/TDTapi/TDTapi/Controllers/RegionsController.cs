@@ -23,11 +23,12 @@ namespace TDTapi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] RegionModel region)
+        public RegionModel Post([FromBody] RegionModel region)
         {
             Response.StatusCode = 201;
             string result = RegionService.CreateRegion(region, dbConn);
-            return "Posted " + result;
+            region.Id = Convert.ToInt32(result);
+            return region;
         }
 
         [HttpGet]

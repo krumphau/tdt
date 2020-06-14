@@ -4,7 +4,7 @@
 
         <form @submit.prevent="submitForm">
             <q-card-section class="q-pt-none">
-             <q-select dense v-model="otherbodyToAdd.OtherBodyId" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="otherbodies" />
+             <q-select dense v-model="otherbodyToAdd.OtherBodyId" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="otherbodies" />
             </q-card-section>
            <modal-buttons />
         </form>

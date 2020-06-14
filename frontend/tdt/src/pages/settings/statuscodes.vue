@@ -52,31 +52,31 @@ export default {
       {
         name: 'id',
         label: 'Id',
-        field: 'Id',
+        field: 'id',
         align: 'left'
       },
       {
         name: 'name',
         label: 'Status Code',
-        field: 'StatusCode',
+        field: 'statusCode',
         align: 'left'
       },
       {
         name: 'description',
         label: 'Description',
-        field: 'Description',
+        field: 'description',
         align: 'left'
       },
       {
         name: 'edit',
         label: 'Edit',
-        field: 'Id',
+        field: 'id',
         align: 'right'
       },
       {
         name: 'delete',
         label: 'Delete',
-        field: 'Id',
+        field: 'id',
         align: 'right'
       }
     ],
@@ -84,13 +84,7 @@ export default {
     showEdit: false
   }),
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('statusCodes/loadStatusCodes')
   },
   computed: {
@@ -114,6 +108,25 @@ export default {
     showEditDialog: function (rowValue) {
       this.selectedStatusCode = this.$store.getters['statusCodes/getStatusCodeById'](rowValue)
       this.showEdit = true
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   },
   components: {

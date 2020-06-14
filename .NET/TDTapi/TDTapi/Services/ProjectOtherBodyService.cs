@@ -15,7 +15,7 @@ public static class ProjectOtherBodyService
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@ProjectId", projectOtherBody.ProjectId);
             spParams.Add("@OtherBodyId", projectOtherBody.OtherBodyId);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_AddOtherBodyToProject(@ProjectId, @OtherBodyId)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_AddOtherBodyToProject(@ProjectId, @OtherBodyId)", spParams);
         }
         catch (Exception)
         {

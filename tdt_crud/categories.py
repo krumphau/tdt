@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request, jsonify
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/categories')
+@app.route('/categories')
 @require_appkey
 def categories():
     try:
@@ -13,7 +13,7 @@ def categories():
     except Exception as e:
         print(e)
 
-@application.route('/category/<int:id>', methods=['GET'])
+@app.route('/category/<int:id>', methods=['GET'])
 @require_appkey
 def category(id):
     try:
@@ -23,7 +23,7 @@ def category(id):
     except Exception as e:
         print(e)
 
-@application.route('/category', methods=['POST'])
+@app.route('/category', methods=['POST'])
 @require_appkey
 def category_add():
     try:
@@ -40,7 +40,7 @@ def category_add():
     except Exception as e:
         print(e)        
 
-@application.route('/category/<int:id>', methods=['DELETE'])
+@app.route('/category/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_category(id):
     try:
@@ -52,7 +52,7 @@ def delete_category(id):
     except Exception as e:
         print(e)
 
-@application.route('/category/<int:id>', methods=['PUT'])
+@app.route('/category/<int:id>', methods=['PUT'])
 @require_appkey
 def update_category(id):
     try:

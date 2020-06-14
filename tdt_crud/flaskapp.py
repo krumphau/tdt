@@ -1,7 +1,7 @@
 import pymysql
 from db_config import mysql
 from flask import flash, request, jsonify
-from app import application
+from app import app
 import categories
 import districts
 import funders
@@ -23,7 +23,7 @@ import searchprojects
 import test
 import users
 
-@application.errorhandler(404)
+@app.errorhandler(404)
 def not_found(error=None):
     message = {
         'status': 404,
@@ -34,5 +34,9 @@ def not_found(error=None):
 
     return resp
 
+@app.route('/')
+def hello_world():
+  return 'Hello from TDT API!'
+
 if __name__ == "__main__":
-    application.run()
+    app.run(host='0.0.0.0', port=80)

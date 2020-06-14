@@ -4,7 +4,7 @@
 
         <form @submit.prevent="submitForm">
             <q-card-section class="q-pt-none">
-             <q-select dense v-model="relatedProjectToAdd.RelationshipKey" label="Please select" map-options emit-value option-value="Id" option-label="ProjectName" outlined :options="categories" />
+             <q-select dense v-model="relatedProjectToAdd.RelationshipKey" label="Please select" map-options emit-value option-value="id" option-label="projectName" outlined :options="categories" />
             </q-card-section>
            <modal-buttons />
         </form>

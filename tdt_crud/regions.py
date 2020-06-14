@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/regions')
+@app.route('/regions')
 @require_appkey
 def regions():
     try:
@@ -13,7 +13,7 @@ def regions():
     except Exception as e:
         print(e)
 
-@application.route('/region/<int:id>', methods=['GET'])
+@app.route('/region/<int:id>', methods=['GET'])
 @require_appkey
 def region(id):
     try:
@@ -23,7 +23,7 @@ def region(id):
     except Exception as e:
         print(e)
 
-@application.route('/region', methods=['POST'])
+@app.route('/region', methods=['POST'])
 @require_appkey
 def region_add():
     try:
@@ -37,7 +37,7 @@ def region_add():
     except Exception as e:
         print(e)        
 
-@application.route('/region/<int:id>', methods=['DELETE'])
+@app.route('/region/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_region(id):
     try:
@@ -49,7 +49,7 @@ def delete_region(id):
     except Exception as e:
         print(e)
 
-@application.route('/region/<int:id>', methods=['PUT'])
+@app.route('/region/<int:id>', methods=['PUT'])
 @require_appkey
 def update_region(id):
     try:

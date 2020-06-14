@@ -23,11 +23,12 @@ namespace TDTapi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] NGOModel ngo)
+        public NGOModel Post([FromBody] NGOModel ngo)
         {
             Response.StatusCode = 201;
             string result = NGOService.CreateNGO(ngo, dbConn);
-            return "Posted " + result;
+            ngo.Id = Convert.ToInt32(result);
+            return ngo;
         }
 
         [HttpGet]

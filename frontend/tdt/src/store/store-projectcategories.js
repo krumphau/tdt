@@ -47,7 +47,7 @@ const getters = {
     return state.projectCategories
   },
   getProjectCategoryById: (state) => (id) => {
-    return state.projectCategories.find(projectCategories => projectCategories.Id === id)
+    return state.projectCategories.find(projectCategories => projectCategories.id === id)
   }
 }
 

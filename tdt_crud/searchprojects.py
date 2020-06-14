@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/search', methods=['POST'])
+@app.route('/search', methods=['POST'])
 @require_appkey
 def project_search():
     try:

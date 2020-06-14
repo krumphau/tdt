@@ -23,11 +23,12 @@ namespace TDTapi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] DistrictModel district)
+        public DistrictModel Post([FromBody] DistrictModel district)
         {
             Response.StatusCode = 201;
             string result = DistrictService.CreateDistrict(district, dbConn);
-            return "Posted " + result;
+            district.Id = Convert.ToInt32(result);
+            return district;
         }
 
         [HttpGet]

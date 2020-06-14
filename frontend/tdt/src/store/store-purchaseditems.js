@@ -58,7 +58,7 @@ const getters = {
     return state.purchasedItems
   },
   getPurchasedItemById: (state) => (id) => {
-    return state.purchasedItems.find(purchasedItems => purchasedItems.Id === id)
+    return state.purchasedItems.find(purchasedItems => purchasedItems.id === id)
   }
 }
 

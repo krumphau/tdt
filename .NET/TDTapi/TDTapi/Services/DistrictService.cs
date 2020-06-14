@@ -14,7 +14,7 @@ namespace TDTapi.Services
         {
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@Name", district.Name);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_InsertDistrict(@Name)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_InsertDistrict(@Name)", spParams);
         }
 
         public static List<DistrictModel> GetAllDistricts(string connstring)

@@ -51,38 +51,38 @@ export default {
       {
         name: 'id',
         label: 'Id',
-        field: 'Id',
+        field: 'id',
         align: 'left',
         visible: 'false'
       },
       {
         name: 'name',
         label: 'Name',
-        field: 'PurchasedItem',
+        field: 'purchasedItem',
         align: 'left'
       },
       {
         name: 'date',
         label: 'Date',
-        field: 'DatePurchased',
+        field: 'datePurchased',
         align: 'left'
       },
       {
         name: 'cost',
         label: 'Cost',
-        field: 'ItemCost',
+        field: 'itemCost',
         align: 'left'
       },
       {
         name: 'edit',
         label: 'Edit',
-        field: 'Id',
+        field: 'id',
         align: 'right'
       },
       {
         name: 'delete',
         label: 'Delete',
-        field: 'Id',
+        field: 'id',
         align: 'right'
       }
     ],
@@ -92,18 +92,12 @@ export default {
     changeFlag: 0
   }),
   created () {
-    if (!this.$store.getters['projects/getCurrentProject'].ProjectName) {
+    if (!this.$store.getters['projects/getCurrentProject'].projectName) {
       this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
     }
   },
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('purchasedItems/loadPurchasedItems', this.$q.localStorage.getItem('selectedProjectId'))
   },
   computed: {
@@ -123,11 +117,30 @@ export default {
       this.showEdit = false
     },
     getProjectName () {
-      return this.$store.getters['projects/getCurrentProject'].ProjectName
+      return this.$store.getters['projects/getCurrentProject'].projectName
     },
     showEditDialog: function (rowValue) {
       this.selectedItem = this.$store.getters['purchasedItems/getPurchasedItemById'](rowValue)
       this.showEdit = true
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   },
   components: {

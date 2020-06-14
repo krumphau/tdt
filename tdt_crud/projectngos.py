@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/projectngo', methods=['POST'])
+@app.route('/projectngo', methods=['POST'])
 @require_appkey
 def projectngo_add():
     try:
@@ -19,7 +19,7 @@ def projectngo_add():
     except Exception as e:
         print(e)        
 
-@application.route('/projectngo/<int:id>', methods=['DELETE'])
+@app.route('/projectngo/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_projectngo(id):
     try:
@@ -31,11 +31,11 @@ def delete_projectngo(id):
     except Exception as e:
         print(e)
 
-        from application import application
+        from app import app
 from flask import flash, request
 import sqlhelper
 
-@application.route('/projectngo/<int:projectid>', methods=['GET'])
+@app.route('/projectngo/<int:projectid>', methods=['GET'])
 @require_appkey
 def projectngo(projectid):
     try:

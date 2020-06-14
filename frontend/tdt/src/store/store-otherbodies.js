@@ -32,7 +32,7 @@ const actions = {
     })
   },
   addOtherBody: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'otherbody', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'otherbodies', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addOtherBody', { otherBody: item })
     }, () => {
       return false
@@ -59,7 +59,7 @@ const getters = {
     return state.otherBodies
   },
   getOtherBodyById: (state) => (id) => {
-    return state.otherBodies.find(otherBodies => otherBodies.Id === id)
+    return state.otherBodies.find(otherBodies => otherBodies.id === id)
   }
 }
 

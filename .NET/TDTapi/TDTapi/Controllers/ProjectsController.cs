@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TDTapi.Models;
@@ -28,12 +32,13 @@ namespace TDTapi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody]ProjectModel project)
+        public ProjectModel Post([FromBody]ProjectModel project)
         {
             Response.StatusCode = 201;
             
             string result = ProjectService.CreateProject(project, dbConn);
-            return "Posted " + result;
+            project.Id = Convert.ToInt32(result);
+            return project;
         }
 
         [Route("/project/{id}/metadata")]
@@ -84,12 +89,13 @@ namespace TDTapi.Controllers
 
         [Route("/relatedproject")]
         [HttpPost]
-        public string AddRelatedProject([FromBody] RelatedProjectModel project)
+        public RelatedProjectModel AddRelatedProject([FromBody] RelatedProjectModel project)
         {
             Response.StatusCode = 201;
 
             string result = ProjectRelatedProjectService.AddRelatedProject(project, dbConn);
-            return "Posted " + result;
+            project.Id = Convert.ToInt32(result);
+            return project;
         }
 
         [Route("/relatedproject/{id}")]
@@ -108,12 +114,13 @@ namespace TDTapi.Controllers
 
         [Route("/projectvisit")]
         [HttpPost]
-        public string AddProjectVisit([FromBody] ProjectVisitModel project)
+        public ProjectVisitModel AddProjectVisit([FromBody] ProjectVisitModel project)
         {
             Response.StatusCode = 201;
 
             string result = ProjectVisitService.AddProjectVisit(project, dbConn);
-            return "Posted " + result;
+            project.Id = Convert.ToInt32(result);
+            return project;
         }
 
         [Route("/projectvisit/{id}")]
@@ -140,19 +147,19 @@ namespace TDTapi.Controllers
 
         [Route("/purchaseditem")]
         [HttpPost]
-        public string AddProjectPurchasedItem([FromBody] ProjectPurchasedItemModel project)
+        public ProjectPurchasedItemModel AddProjectPurchasedItem([FromBody] ProjectPurchasedItemModel project)
         {
             Response.StatusCode = 201;
 
             string result = ProjectPurchasedItemService.AddProjectPurchasedItem(project, dbConn);
-            return "Posted " + result;
+            project.Id = Convert.ToInt32(result);
+            return project;
         }
 
         [Route("/purchaseditem/{id}")] 
                 [HttpPut]
         public string UpdateProjectPurchasedItem([FromRoute] int id, [FromBody] ProjectPurchasedItemModel project)
         {
-            project.Id = id;
             return ProjectPurchasedItemService.UpdateProjectPurchasedItem(project, dbConn);
         }
 
@@ -169,29 +176,5 @@ namespace TDTapi.Controllers
         {
             return ProjectPurchasedItemService.GetProjectPurchasedItems(projectId, dbConn);
         }
-
-        //[Route("/relatedproject")] 
-        //        [HttpPost]
-        //public string AddProjectRelatedProject([FromBody] RelatedProjectModel project)
-        //{
-        //    Response.StatusCode = 201;
-
-        //    string result = ProjectRelatedProjectService.AddRelatedProject(project, dbConn);
-        //    return "Posted " + result;
-        //}
-
-        //[Route("/relatedproject/{id}")] 
-        //        [HttpDelete]
-        //public string DeleteProjectRelatedProject([FromRoute] int id)
-        //{
-        //    return ProjectRelatedProjectService.DeleteRelatedProject(id, dbConn);
-        //}
-
-        //[Route("/relatedproject/{projectid}")] 
-        //        [HttpGet]
-        //public List<ProjectModel> GetProjectRelatedProjects([FromRoute] int projectId)
-        //{
-        //    return ProjectRelatedProjectService.GetRelatedProjects(projectId, dbConn);
-        //}
     }
 }

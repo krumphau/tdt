@@ -12,7 +12,7 @@ public static class ProjectCategoryService
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@ProjectId", projectCategory.ProjectId);
             spParams.Add("@CategoryId", projectCategory.CategoryId);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_AddCategoryToProject(@ProjectId, @CategoryId)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_AddCategoryToProject(@ProjectId, @CategoryId)", spParams);
         } catch (Exception) {
             return ("An error occurred");
         }

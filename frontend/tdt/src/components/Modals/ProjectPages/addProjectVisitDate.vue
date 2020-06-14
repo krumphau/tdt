@@ -30,7 +30,6 @@
             </q-card-section>
            <modal-buttons />
         </form>
-        <pre>{{ visitDateToAdd }}</pre>
     </q-card>
 
 </template>

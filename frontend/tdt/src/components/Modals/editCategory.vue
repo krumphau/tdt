@@ -4,10 +4,10 @@
 
         <form @submit.prevent="submitForm">
             <modal-name
-            :Name.sync="category.CategoryName"
+            :Name.sync="category.categoryName"
             ref="modalCatName"></modal-name>
 
-            <modal-highlevel :Selected.sync="category.HighLevelCategory"></modal-highlevel>
+            <modal-highlevel :Selected.sync="category.highLevelCategory"></modal-highlevel>
 
             <modal-buttons />
         </form>

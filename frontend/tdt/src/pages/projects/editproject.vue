@@ -18,24 +18,24 @@
                 <tbody>
                     <tr>
                     <td class="text-left" width="20%">Project Identifier</td>
-                    <td class="text-right"><q-input outlined dense v-model="projectToEdit.ProjectIdentifier"></q-input></td>
+                    <td class="text-right"><q-input outlined dense v-model="projectToEdit.projectIdentifier"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Project Name</td>
-                    <td class="text-right"><q-input outlined dense v-model="projectToEdit.ProjectName"></q-input></td>
+                    <td class="text-right"><q-input outlined dense v-model="projectToEdit.projectName"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Project Description</td>
-                    <td class="text-right"><q-input outlined dense v-model="projectToEdit.ProjectDescription"></q-input></td>
+                    <td class="text-right"><q-input outlined dense v-model="projectToEdit.projectDescription"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Application Date</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToEdit.ApplicationDate" mask="datetime">
+                        <q-input outlined dense v-model="projectToEdit.applicationDate" mask="datetime">
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qAppDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToEdit.ApplicationDate" @input="() => $refs.qAppDateProxy.hide()" />
+                                    <q-date v-model="projectToEdit.applicationDate" @input="() => $refs.qAppDateProxy.hide()" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -45,11 +45,11 @@
                     <tr>
                     <td class="text-left">Date Grant Approved</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToEdit.DateGrantApproved" mask="date">
+                        <q-input outlined dense v-model="projectToEdit.dateGrantApproved" mask="date">
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qApproveDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToEdit.DateGrantApproved" @input="() => $refs.qApproveDateProxy.hide()" />
+                                    <q-date v-model="projectToEdit.dateGrantApproved" @input="() => $refs.qApproveDateProxy.hide()" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -59,11 +59,11 @@
                     <tr>
                     <td class="text-left">Date Grant Paid</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToEdit.DateGrantPaid" mask="date">
+                        <q-input outlined dense v-model="projectToEdit.dateGrantPaid" mask="date">
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qPaidDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToEdit.DateGrantPaid" @input="() => $refs.qPaidDateProxy.hide()" />
+                                    <q-date v-model="projectToEdit.dateGrantPaid" @input="() => $refs.qPaidDateProxy.hide()" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -73,11 +73,11 @@
                     <tr>
                     <td class="text-left">Target Completion Date</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToEdit.TargetCompletionDate" mask="date">
+                        <q-input outlined dense v-model="projectToEdit.targetCompletionDate" mask="date">
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qTargetDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToEdit.TargetCompletionDate" @input="() => $refs.qTargetDateProxy.hide()" />
+                                    <q-date v-model="projectToEdit.targetCompletionDate" @input="() => $refs.qTargetDateProxy.hide()" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -85,30 +85,30 @@
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Requested</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToEdit.AmountGrantRequested"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToEdit.amountGrantRequested"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Approved</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToEdit.AmountGrantApproved"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToEdit.amountGrantApproved"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Recommended</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToEdit.AmountGrantRecommended"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToEdit.amountGrantRecommended"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Paid</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToEdit.AmountGrantPaid"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToEdit.amountGrantPaid"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Total Project Cost</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToEdit.TotalProjectCost"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToEdit.totalProjectCost"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Status Code</td>
                     <td class="text-right">
                         <q-item>
                             <q-item-section>
-                                <q-select dense v-model="projectToEdit.StatusCode_Id" label="Please select" map-options emit-value option-value="Id" option-label="StatusCode" outlined :options="statusCodes" />
+                                <q-select dense v-model="projectToEdit.statusCode_Id" label="Please select" map-options emit-value option-value="id" option-label="statusCode" outlined :options="statusCodes" />
                             </q-item-section>
                             <q-item-section avatar clickable>
                                 <q-icon name="add" title="Add a new Status Code"/>
@@ -119,11 +119,11 @@
                     <tr>
                     <td class="text-left">Status Code Changed</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToEdit.StatusCodeDate" mask="date">
+                        <q-input outlined dense v-model="projectToEdit.statusCodeDate" mask="date">
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qStatusDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToEdit.StatusCodeDate" @input="() => $refs.qStatusDateProxy.hide()" />
+                                    <q-date v-model="projectToEdit.statusCodeDate" @input="() => $refs.qStatusDateProxy.hide()" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -135,7 +135,7 @@
                     <td class="text-right">
                         <q-item>
                             <q-item-section>
-                                <q-select dense v-model="projectToEdit.Region_Id" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="regions" />
+                                <q-select dense v-model="projectToEdit.region_Id" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="regions" />
                             </q-item-section>
                             <q-item-section avatar clickable>
                                 <q-icon name="add" title="Add a new Region"/>
@@ -148,7 +148,7 @@
                     <td class="text-right">
                         <q-item>
                             <q-item-section>
-                                <q-select dense v-model="projectToEdit.District_Id" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="districts" />
+                                <q-select dense v-model="projectToEdit.district_Id" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="districts" />
                             </q-item-section>
                             <q-item-section avatar clickable >
                                 <q-icon name="add" title="Add a new District"/>
@@ -161,7 +161,7 @@
                     <td class="text-right">
                         <q-item>
                             <q-item-section>
-                                <q-select dense v-model="projectToEdit.ProjOfficer_Id" label="Please select" map-options emit-value option-value="Id" option-label="FullName" outlined :options="projectOfficers" />
+                                <q-select dense v-model="projectToEdit.projOfficer_Id" label="Please select" map-options emit-value option-value="id" option-label="fullName" outlined :options="projectOfficers" />
                             </q-item-section>
                             <q-item-section avatar clickable>
                                 <q-icon name="add" title="Add a new Project Officer"/>
@@ -180,7 +180,6 @@
                 </tbody>
             </q-markup-table>
             </form>
-            <pre>{{ project }}</pre>
         </div>
     </q-page>
 </template>
@@ -192,35 +191,29 @@ export default {
     return {
       projectToEdit: {
         Id: this.$q.localStorage.getItem('selectedProjectId'),
-        ProjectIdentifier: null,
-        ProjectName: null,
-        ProjectDescription: null,
-        ApplicationDate: null,
-        DateGrantApproved: null,
-        DateGrantPaid: null,
-        TargetCompletionDate: null,
-        AmountGrantRequested: null,
-        AmountGrantApproved: null,
-        AmountGrantRecommended: null,
-        AmountGrantPaid: null,
-        TotalProjectCost: null,
-        StatusCode_Id: null,
-        StatusCodeDate: null,
-        Region_Id: null,
-        District_Id: null,
-        ProjOfficer_Id: null,
-        LastUpdatedBy: 'Charlotte'
+        projectIdentifier: null,
+        projectName: null,
+        projectDescription: null,
+        applicationDate: null,
+        dateGrantApproved: null,
+        dateGrantPaid: null,
+        targetCompletionDate: null,
+        amountGrantRequested: null,
+        amountGrantApproved: null,
+        amountGrantRecommended: null,
+        amountGrantPaid: null,
+        totalProjectCost: null,
+        statusCode_Id: null,
+        statusCodeDate: null,
+        region_Id: null,
+        district_Id: null,
+        projOfficer_Id: null,
+        lastUpdatedBy: 'Charlotte'
       }
     }
   },
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('projects/loadProjectDetails', this.$q.localStorage.getItem('selectedProjectId'))
     this.$store.dispatch('regions/loadRegions')
     this.$store.dispatch('projectOfficers/loadProjectOfficers')
@@ -248,26 +241,45 @@ export default {
       this.saveProject()
     },
     populateEditProject () {
-      this.projectToEdit.ProjectIdentifier = this.project.ProjectIdentifier
-      this.projectToEdit.ProjectName = this.project.ProjectName
-      this.projectToEdit.ProjectDescription = this.project.ProjectDescription
-      this.projectToEdit.ApplicationDate = this.project.ApplicationDate
-      this.projectToEdit.DateGrantApproved = this.project.DateGrantApproved
-      this.projectToEdit.DateGrantPaid = this.project.DateGrantPaid
-      this.projectToEdit.TargetCompletionDate = this.project.TargetCompletionDate
-      this.projectToEdit.AmountGrantRequested = this.project.AmountGrantRequested
-      this.projectToEdit.AmountGrantApproved = this.project.AmountGrantApproved
-      this.projectToEdit.AmountGrantRecommended = this.project.AmountGrantRecommended
-      this.projectToEdit.AmountGrantPaid = this.project.AmountGrantPaid
-      this.projectToEdit.TotalProjectCost = this.project.TotalProjectCost
-      this.projectToEdit.StatusCode_Id = this.project.StatusCode_Id
-      this.projectToEdit.Region_Id = this.project.Region_Id
-      this.projectToEdit.District_Id = this.project.District_Id
-      this.projectToEdit.ProjOfficer_Id = this.project.ProjOfficer_Id
+      this.projectToEdit.projectIdentifier = this.project.projectIdentifier
+      this.projectToEdit.projectName = this.project.projectName
+      this.projectToEdit.projectDescription = this.project.projectDescription
+      this.projectToEdit.applicationDate = this.project.applicationDate
+      this.projectToEdit.dateGrantApproved = this.project.dateGrantApproved
+      this.projectToEdit.dateGrantPaid = this.project.dateGrantPaid
+      this.projectToEdit.targetCompletionDate = this.project.targetCompletionDate
+      this.projectToEdit.amountGrantRequested = this.project.amountGrantRequested
+      this.projectToEdit.amountGrantApproved = this.project.amountGrantApproved
+      this.projectToEdit.amountGrantRecommended = this.project.amountGrantRecommended
+      this.projectToEdit.amountGrantPaid = this.project.amountGrantPaid
+      this.projectToEdit.totalProjectCost = this.project.totalProjectCost
+      this.projectToEdit.statusCode_Id = this.project.statusCode_Id
+      this.projectToEdit.region_Id = this.project.region_Id
+      this.projectToEdit.district_Id = this.project.district_Id
+      this.projectToEdit.projOfficer_Id = this.project.projOfficer_Id
     },
     async saveProject () {
       this.$store.dispatch('projects/updateProject', { item: this.projectToEdit })
       alert('Project updated')
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   }
 }

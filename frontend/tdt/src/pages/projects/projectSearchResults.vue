@@ -34,31 +34,25 @@ export default {
       {
         name: 'id',
         label: 'Id',
-        field: 'Id',
+        field: 'id',
         align: 'left'
       },
       {
         name: 'name',
         label: 'Name',
-        field: 'ProjectName',
+        field: 'projectName',
         align: 'left'
       },
       {
         name: 'view',
         label: 'View',
-        field: 'Id',
+        field: 'id',
         align: 'right'
       }
     ]
   }),
   mounted () {
-    if (!this.$store.getters['users/user']) {
-      this.$router.push('/notuser')
-    } else {
-      if (!this.$store.getters['users/user'].Email) {
-        this.$router.push('/notuser')
-      }
-    }
+    this.load()
     this.$store.dispatch('projects/searchProjects', this.$q.localStorage.getItem('searchParams'))
   },
   computed: {
@@ -70,6 +64,25 @@ export default {
     viewProject (rowId) {
       this.$q.localStorage.set('selectedProjectId', rowId)
       this.$router.push('/project/details')
+    },
+    // Returns a Promise that resolves after "ms" Milliseconds
+    timer (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    async load () { // We need to wrap the loop into an async function for this to work
+      for (var i = 0; i < 50; i++) {
+        await this.timer(5000) // then the created Promise can be awaited
+        if (!this.$store.getters['users/loading']) {
+          break
+        }
+      }
+      if (!this.$store.getters['users/user']) {
+        this.$router.push('/notuser')
+      } else {
+        if (!this.$store.getters['users/user'].email) {
+          this.$router.push('/notuser')
+        }
+      }
     }
   },
   components: {

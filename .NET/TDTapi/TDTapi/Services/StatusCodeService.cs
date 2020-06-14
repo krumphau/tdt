@@ -15,7 +15,7 @@ namespace TDTapi.Services
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@StatusCode", statuscode.StatusCode);
             spParams.Add("@StatusCodeDesc", statuscode.Description);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_InsertStatusCode(@StatusCode, @StatusCodeDesc)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_InsertStatusCode(@StatusCode, @StatusCodeDesc)", spParams);
         }
 
         public static List<StatusCodeModel> GetAllStatusCodes(string connstring)

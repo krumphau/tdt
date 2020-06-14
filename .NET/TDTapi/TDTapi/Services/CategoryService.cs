@@ -15,7 +15,7 @@ namespace TDTapi.Services
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@Name", category.CategoryName);
             spParams.Add("@HighLevel", category.HighLevelCategory);
-            return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_InsertCategory(@Name, @HighLevel)", spParams);
+            return DBAccess.ExecuteSQLScalar(connstring, "CALL usp_InsertCategory(@Name, @HighLevel)", spParams);
         }
 
         public static List<CategoryModel> GetAllCategories(string connstring)

@@ -23,11 +23,12 @@ namespace TDTapi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] StatusCodeModel statuscode)
+        public StatusCodeModel Post([FromBody] StatusCodeModel statuscode)
         {
             Response.StatusCode = 201;
             string result = StatusCodeService.CreateStatusCode(statuscode, dbConn);
-            return "Posted " + result;
+            statuscode.Id = Convert.ToInt32(result);
+            return statuscode;
         }
 
         [HttpGet]

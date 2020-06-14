@@ -32,7 +32,7 @@ const actions = {
     })
   },
   addDistrict: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'district', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
+    axios.post(storeSettings.state.baseUrl + 'districts', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
       commit('addDistrict', { District: item })
     }, () => {
       return false
@@ -59,7 +59,7 @@ const getters = {
     return state.districts
   },
   getDistrictById: (state) => (id) => {
-    return state.districts.find(districts => districts.Id === id)
+    return state.districts.find(districts => districts.id === id)
   }
 }
 

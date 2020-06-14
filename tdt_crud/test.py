@@ -1,7 +1,7 @@
-from application import application
+from app import app
 from flask import flash, request, jsonify
 
-@application.route('/test')
+@app.route('/test')
 def test():
     try:
         resp = jsonify('App is healthy')

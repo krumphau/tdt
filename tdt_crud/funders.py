@@ -1,9 +1,9 @@
-from application import application
+from app import app
 from flask import flash, request
 import sqlhelper
 from authhelper import require_appkey
 
-@application.route('/funders')
+@app.route('/funders')
 @require_appkey
 def funders():
     try:
@@ -13,7 +13,7 @@ def funders():
     except Exception as e:
         print(e)
 
-@application.route('/funder/<int:id>', methods=['GET'])
+@app.route('/funder/<int:id>', methods=['GET'])
 @require_appkey
 def funder(id):
     try:
@@ -23,7 +23,7 @@ def funder(id):
     except Exception as e:
         print(e)
 
-@application.route('/funder', methods=['POST'])
+@app.route('/funder', methods=['POST'])
 @require_appkey
 def funder_add():
     try:
@@ -46,7 +46,7 @@ def funder_add():
     except Exception as e:
         print(e)        
 
-@application.route('/funder/<int:id>', methods=['DELETE'])
+@app.route('/funder/<int:id>', methods=['DELETE'])
 @require_appkey
 def delete_funder(id):
     try:
@@ -58,7 +58,7 @@ def delete_funder(id):
     except Exception as e:
         print(e)
 
-@application.route('/funder/<int:id>', methods=['PUT'])
+@app.route('/funder/<int:id>', methods=['PUT'])
 @require_appkey
 def update_funder(id):
     try:

@@ -7,7 +7,7 @@ v-ripple>
 <q-item-section>
 <div class="row">
 <div class="column">
-{{ category.CategoryName }}
+{{ category.categoryName }}
 </div>
 </div>
 </q-item-section>

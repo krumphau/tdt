@@ -15,5 +15,6 @@ namespace TDTapi.Models
         [Display(Name = "Funder_Id")]
         public int FunderId { get; set; }
         public decimal AmountFunded { get; set; }
+        public string Name { get; set; }
     }
 }
