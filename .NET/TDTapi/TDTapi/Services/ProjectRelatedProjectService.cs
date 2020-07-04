@@ -22,17 +22,17 @@ public static class ProjectRelatedProjectService
             return ("An error occurred");
         }
     }
-    public static List<ProjectModel> GetRelatedProjects(int projectid, string connstring)
+    public static List<RelatedProjectModel> GetRelatedProjects(int projectid, string connstring)
     {
         try
         {
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@ProjectId", projectid);
             DataSet ds = DBAccess.ExecuteDataSet(connstring, "CALL usp_GetRelatedProjects(@ProjectId)", spParams);
-            List<ProjectModel> projects = new List<ProjectModel>();
+            List<RelatedProjectModel> projects = new List<RelatedProjectModel>();
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                projects.Add(dr.ToObject<ProjectModel>());
+                projects.Add(dr.ToObject<RelatedProjectModel>());
             }
             return projects;
         }

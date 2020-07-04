@@ -30,6 +30,8 @@ public static class ProjectDocumentService
             Dictionary<string, object> spParams = new Dictionary<string, object>();
             spParams.Add("@Id", id);
             return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_RemoveDocumentFromProject(@Id)", spParams);
+            S3Util s3 = new S3Util();
+            s3.DeleteFile("");
         } catch (Exception) {
             return ("An error occurred");
         }
@@ -51,6 +53,12 @@ public static class ProjectDocumentService
         {
             return default;
         }
+    }
+
+    public static string GetTempLink(string resourceName)
+    {
+        S3Util s3 = new S3Util();
+        return s3.GetTempURLForFile(resourceName);
     }
     
     public async static Task<List<string>> ListStorage()

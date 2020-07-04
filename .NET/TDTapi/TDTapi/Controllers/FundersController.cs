@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TDTapi.Models;
@@ -10,6 +11,7 @@ using TDTapi.Services;
 
 namespace TDTapi.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Authorize]
     [Route("funders")]
     public class FundersController : ControllerBase
@@ -23,11 +25,12 @@ namespace TDTapi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] FunderModel funder)
+        public FunderModel Post([FromBody] FunderModel funder)
         {
             Response.StatusCode = 201;
             string result = FunderService.CreateFunder(funder, dbConn);
-            return "Posted " + result;
+            funder.Id = Convert.ToInt32(result);
+            return funder;
         }
 
         [HttpGet]

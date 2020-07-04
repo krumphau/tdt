@@ -18,9 +18,9 @@ namespace TDTapi.Models
         public string Town { get; set; }
         public string County { get; set; }
         public string PostCode { get; set; }
-        public string MainContact { get; set; }
         public string Info { get; set; }
         public string Email { get; set; }
         public string FullName { get; set; }
+        public bool IsUsed { get; set; }
     }
 }

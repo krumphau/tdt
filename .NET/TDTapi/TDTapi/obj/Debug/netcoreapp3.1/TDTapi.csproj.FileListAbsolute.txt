@@ -9,7 +9,6 @@ C:\dev\TDT\.NET\TDTapi\TDTapi\bin\Debug\netcoreapp3.1\TDTapi.dll
 C:\dev\TDT\.NET\TDTapi\TDTapi\bin\Debug\netcoreapp3.1\TDTapi.pdb
 C:\dev\TDT\.NET\TDTapi\TDTapi\bin\Debug\netcoreapp3.1\TDTapi.Views.dll
 C:\dev\TDT\.NET\TDTapi\TDTapi\bin\Debug\netcoreapp3.1\TDTapi.Views.pdb
-C:\dev\TDT\.NET\TDTapi\TDTapi\obj\Debug\netcoreapp3.1\TDTapi.csprojAssemblyReference.cache
 C:\dev\TDT\.NET\TDTapi\TDTapi\obj\Debug\netcoreapp3.1\TDTapi.AssemblyInfoInputs.cache
 C:\dev\TDT\.NET\TDTapi\TDTapi\obj\Debug\netcoreapp3.1\TDTapi.AssemblyInfo.cs
 C:\dev\TDT\.NET\TDTapi\TDTapi\obj\Debug\netcoreapp3.1\TDTapi.RazorAssemblyInfo.cache
@@ -49,5 +48,6 @@ C:\dev\TDT\.NET\TDTapi\TDTapi\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocume
 C:\dev\TDT\.NET\TDTapi\TDTapi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\dev\TDT\.NET\TDTapi\TDTapi\bin\Debug\netcoreapp3.1\AWSSDK.Core.dll
 C:\dev\TDT\.NET\TDTapi\TDTapi\bin\Debug\netcoreapp3.1\AWSSDK.S3.dll
+C:\dev\TDT\.NET\TDTapi\TDTapi\obj\Debug\netcoreapp3.1\TDTapi.csprojAssemblyReference.cache
 C:\dev\TDT\.NET\TDTapi\TDTapi\obj\Debug\netcoreapp3.1\TDTapi.csproj.CoreCompileInputs.cache
 C:\dev\TDT\.NET\TDTapi\TDTapi\obj\Debug\netcoreapp3.1\TDTapi.MvcApplicationPartsAssemblyInfo.cache

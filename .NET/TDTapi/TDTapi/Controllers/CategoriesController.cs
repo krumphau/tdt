@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TDTapi.Models;
@@ -10,6 +11,7 @@ using TDTapi.Services;
 
 namespace TDTapi.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Authorize]
     [Route("categories")]
     public class CategoriesController : ControllerBase
@@ -59,11 +61,12 @@ namespace TDTapi.Controllers
         }
 
         [Route("/projectcategory")]
-        public string PostProjectCategory([FromBody] ProjectCategoryModel projectCategory)
+        public ProjectCategoryModel PostProjectCategory([FromBody] ProjectCategoryModel projectCategory)
         {
             Response.StatusCode = 201;
             string result = ProjectCategoryService.AddProjectCategory(projectCategory, dbConn);
-            return "Posted " + result;
+            projectCategory.Id = Convert.ToInt32(result);
+            return projectCategory;
         }
 
         [Route("/projectcategory/{id}")]

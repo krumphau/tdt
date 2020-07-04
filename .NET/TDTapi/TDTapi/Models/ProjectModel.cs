@@ -35,13 +35,14 @@ namespace TDTapi.Models
         public string FinanceOtherFunders { get; set; }
         public string LocalContribution { get; set; }
         public string ImpactOfProject { get; set; }
-        //public string WebSitePicture { get; set; }
+        public string WebSitePicture { get; set; }
         public string WebSitePictureDescription { get; set; }
-        public decimal Latitude { get; set; }
-        public decimal Longitude { get; set; }
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
         public string ProjectOfficerName { get; set; }
         public string RegionName { get; set; }
         public string DistrictName { get; set; }
         public string StatusCode { get; set; }
+        public string DisplayValue => ProjectIdentifier + " - " + ProjectName;
     }
 }

@@ -11,8 +11,8 @@ namespace TDTapi.Models
         public string Impact { get; set; }
         public string WebsitePicture { get; set; }
         public string Caption { get; set; }
-        public decimal Latitude { get; set; }
-        public decimal Longitude { get; set; }
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
         public string LastUpdatedBy { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TDTapi.Models;
@@ -10,6 +11,7 @@ using TDTapi.Services;
 
 namespace TDTapi.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Authorize]
     [Route("ngos")]
     public class NGOsController : ControllerBase
@@ -59,11 +61,12 @@ namespace TDTapi.Controllers
         }
 
         [Route("/projectngo")]
-        public string PostProjectNGO([FromBody] ProjectNGOModel projectCategory)
+        public ProjectNGOModel PostProjectNGO([FromBody] ProjectNGOModel projectNGO)
         {
             Response.StatusCode = 201;
-            string result = ProjectNGOService.AddProjectNGO(projectCategory, dbConn);
-            return "Posted " + result;
+            string result = ProjectNGOService.AddProjectNGO(projectNGO, dbConn);
+            projectNGO.Id = Convert.ToInt32(result);
+            return projectNGO;
         }
 
         [Route("/projectngo/{id}")]

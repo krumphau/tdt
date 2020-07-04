@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TDTapi.Models;
@@ -10,6 +11,7 @@ using TDTapi.Services;
 
 namespace TDTapi.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Authorize]
     [Route("statuscodes")]
     public class StatusCodesController : ControllerBase

@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using TDTapi.Models;
 using TDTapi.Services;
 
 namespace TDTapi.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Authorize]
     [Route("/projectdocument")]
     [ApiController]
@@ -68,7 +71,19 @@ namespace TDTapi.Controllers
         {
             byte[] fileBytes = ProjectDocumentService.DownloadFile(filename).Result;
 
-            return new FileContentResult(fileBytes, "application/octet-stream");
+            var provider = new FileExtensionContentTypeProvider();
+            string contentType;
+            if (!provider.TryGetContentType(filename, out contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+            return new FileContentResult(fileBytes, contentType);
+        }
+
+        [Route("/link/{foldername}/{filename}")]
+        public string GetTempLink([FromRoute] string foldername, [FromRoute] string filename)
+        {
+            return ProjectDocumentService.GetTempLink(foldername + '/' + filename);
         }
 
         [Route("/download/{foldername}/{filename}")]

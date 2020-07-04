@@ -108,15 +108,16 @@ namespace TDTapi.Services
                 spParams.Add("@AmountGrantPaid", project.AmountGrantPaid);
                 spParams.Add("@TotalProjectCost", project.TotalProjectCost);
                 spParams.Add("@StatusCode_Id", project.StatusCode_Id);
+                spParams.Add("@StatusCodeDate", project.StatusCodeDate);
                 spParams.Add("@Region_Id", project.Region_Id);
                 spParams.Add("@District_Id", project.District_Id);
                 spParams.Add("@ProjOfficer_Id", project.ProjOfficer_Id);
                 spParams.Add("@LastUpdatedBy", project.LastUpdatedBy);
                 return DBAccess.ExecuteSQLNonQuery(connstring, "CALL usp_UpdateProjectDetails(@Id, @ProjectIdentifier, @ProjectName, @ProjectDescription, @ApplicationDate, @DateGrantApproved, " +
                     "@DateGrantPaid, @TargetCompletionDate, @AmountGrantRequested, @AmountGrantApproved, @AmountGrantRecommended, @AmountGrantPaid, @TotalProjectCost, " +
-                    "@StatusCode_Id, @Region_Id, @District_Id, @ProjOfficer_Id, @LastUpdatedBy)", spParams);
+                    "@StatusCode_Id, @StatusCodeDate, @Region_Id, @District_Id, @ProjOfficer_Id, @LastUpdatedBy)", spParams);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return ("An error occurred");
             }

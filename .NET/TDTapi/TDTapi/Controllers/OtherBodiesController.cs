@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TDTapi.Models;
@@ -10,6 +11,7 @@ using TDTapi.Services;
 
 namespace TDTapi.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Authorize]
     [Route("otherbodies")]
     public class OtherBodiesController : ControllerBase
@@ -59,11 +61,13 @@ namespace TDTapi.Controllers
         }
 
         [Route("/projectotherbody")]
-        public string PostProjectOtherBody([FromBody] ProjectOtherBodyModel projectOtherBody)
+        [HttpPost]
+        public ProjectOtherBodyModel PostProjectOtherBody([FromBody] ProjectOtherBodyModel projectOtherBody)
         {
             Response.StatusCode = 201;
             string result = ProjectOtherBodyService.AddProjectOtherBody(projectOtherBody, dbConn);
-            return "Posted " + result;
+            projectOtherBody.Id = Convert.ToInt32(result);
+            return projectOtherBody;
         }
 
         [Route("/projectotherbody/{id}")]

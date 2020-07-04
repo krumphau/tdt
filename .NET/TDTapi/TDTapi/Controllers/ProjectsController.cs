@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using TDTapi.Services;
 
 namespace TDTapi.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Authorize]
     [Route("projects")]
     public class ProjectsController : Controller
@@ -107,7 +109,7 @@ namespace TDTapi.Controllers
 
         [Route("/relatedproject/{projectId}")]
         [HttpGet]
-        public List<ProjectModel> GetRelatedProjects([FromRoute] int projectId)
+        public List<RelatedProjectModel> GetRelatedProjects([FromRoute] int projectId)
         {
             return ProjectRelatedProjectService.GetRelatedProjects(projectId, dbConn);
         }
@@ -127,7 +129,6 @@ namespace TDTapi.Controllers
         [HttpPut]
         public string UpdateProjectVisit([FromRoute] int id, [FromBody] ProjectVisitModel project)
         {
-            project.Id = id;
             return ProjectVisitService.UpdateProjectVisit(project, dbConn);
         }
 
