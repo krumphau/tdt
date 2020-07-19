@@ -70,7 +70,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

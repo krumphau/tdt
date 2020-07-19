@@ -54,7 +54,7 @@
 export default {
   name: 'MyLayout',
   async created () {
-    if (this.$msal.isAuthenticated()) {
+    if (!this.$msal.isAuthenticated()) {
       this.$msal.signIn()
     }
     await this.loadUser()

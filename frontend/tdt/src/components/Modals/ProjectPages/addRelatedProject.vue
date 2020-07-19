@@ -4,7 +4,7 @@
 
         <form @submit.prevent="submitForm">
             <q-card-section class="q-pt-none">
-             <q-select dense v-model="relatedProjectToAdd.RelationshipKey" label="Please select" map-options emit-value option-value="id" option-label="projectName" outlined :options="categories" />
+             <q-select dense v-model="relatedProjectToAdd.RelationshipKey" label="Please select" map-options emit-value option-value="id" option-label="displayValue" outlined :options="categories" />
             </q-card-section>
            <modal-buttons />
         </form>
@@ -19,7 +19,9 @@ export default {
     return {
       relatedProjectToAdd: {
         ProjectId: this.$q.localStorage.getItem('selectedProjectId'),
-        RelationshipKey: null
+        RelationshipKey: null,
+        ProjectName: null,
+        ProjectIdentifier: null
       }
     }
   },
@@ -37,6 +39,8 @@ export default {
       this.$emit('close')
     },
     async saveRelatedProject () {
+      this.relatedProjectToAdd.ProjectName = this.$store.getters['projects/getProjectById'](this.relatedProjectToAdd.RelationshipKey).projectName
+      this.relatedProjectToAdd.ProjectIdentifier = this.$store.getters['projects/getProjectById'](this.relatedProjectToAdd.RelationshipKey).projectIdentifier
       this.$store.dispatch('relatedProjects/addRelatedProject', { item: this.relatedProjectToAdd })
     }
   },

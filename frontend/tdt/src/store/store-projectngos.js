@@ -10,7 +10,7 @@ const mutations = {
     state.projectNGOs = projectNGOs
   },
   deleteProjectNGO: (state, { id }) => {
-    let idx = state.ngos.map(p => p.id).indexOf(id)
+    let idx = state.projectNGOs.map(p => p.id).indexOf(id)
     state.projectNGOs.splice(idx, 1)
   },
   addProjectNGO: (state, { ngo }) => {
@@ -21,7 +21,7 @@ const mutations = {
 const actions = {
   addProjectNGO: function ({ commit }, { item }) {
     axios.post(storeSettings.state.baseUrl + 'projectngo', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addProjectNGO', { ngo: item })
+      commit('addProjectNGO', { ngo: response.data })
     }, () => {
       return false
     })

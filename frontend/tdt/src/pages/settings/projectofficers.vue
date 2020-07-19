@@ -9,16 +9,9 @@
       :data="projectOfficers"
       :columns="columns"
       row-key="Id"
-      :filter="filter"
       hide-header
+      :pagination.sync="pagination"
     >
-      <template v-slot:top-right>
-        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-      </template>
 
       <template v-slot:item="props">
         <div
@@ -42,8 +35,8 @@
             </q-list>
             <q-separator />
             <q-card-section>
-              <q-btn class="glossy" rounded color="indigo-12" label="Edit" align="left" @click="showEditDialog(props.row.Id)"/>
-              <q-btn class="glossy" rounded color="indigo-12" label="Delete" align="right" @click="deleteRow(props.row.Id)"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Edit" align="left" @click="showEditDialog(props.row.id)"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Delete" align="right" @click="deleteRow(props.row.id)"/>
             </q-card-section>
           </q-card>
         </div>
@@ -60,7 +53,8 @@
 
     <q-dialog v-model="showEdit" persistent>
         <editOfficer
-        :officer="selectedOfficer">
+        :officer="selectedOfficer"
+         @close="closeDialogs()">
         </editOfficer>
       </q-dialog>
 </template>
@@ -71,6 +65,9 @@
 import { mapGetters } from 'vuex'
 export default {
   data: () => ({
+    pagination: {
+      rowsPerPage: 6 // current rows per page being displayed
+    },
     selectedOfficer: {},
     columns: [
       {
@@ -134,10 +131,15 @@ export default {
   }),
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to delete project officer with ID ' + rowId + '?')) {
-        this.$store.dispatch('projectOfficers/deleteProjectOfficer', rowId)
+      this.selectedOfficer = this.$store.getters['projectOfficers/getProjectOfficerById'](rowId)
+      if (this.selectedOfficer.isUsed) {
+        alert('This project officer cannot be deleted because he/she is currently linked to a Project.')
       } else {
-        alert('Delete cancelled')
+        if (confirm('Are you sure you want to delete project officer ' + this.selectedOfficer.firstName + ' ' + this.selectedOfficer.lastName + '?')) {
+          this.$store.dispatch('projectOfficers/deleteProjectOfficer', rowId)
+        } else {
+          alert('Delete cancelled')
+        }
       }
     },
     closeDialogs: function () {
@@ -146,6 +148,9 @@ export default {
     },
     showEditDialog: function (rowValue) {
       this.selectedOfficer = this.$store.getters['projectOfficers/getProjectOfficerById'](rowValue)
+      if (this.selectedOfficer.isUsed) {
+        alert('Warning - This project officer is currently linked to a Project.')
+      }
       this.showEdit = true
     },
     // Returns a Promise that resolves after "ms" Milliseconds
@@ -153,7 +158,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

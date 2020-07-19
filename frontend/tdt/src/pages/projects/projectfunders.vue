@@ -56,7 +56,8 @@ export default {
         name: 'amount',
         label: 'Amount Funded',
         field: 'amountFunded',
-        align: 'left'
+        align: 'left',
+        format: (val, row) => `£${val}`
       },
       {
         name: 'delete',
@@ -83,11 +84,10 @@ export default {
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to remove funder with ID from the project' + rowId + '?')) {
-        confirm('params: { id:' + rowId + ' }')
+      if (confirm('Are you sure you want to remove this funder from the project?')) {
         this.$store.dispatch('projectFunders/deleteProjectFunder', rowId)
       } else {
-        confirm('Delete cancelled')
+        alert('Delete cancelled')
       }
     },
     closeDialogs: function () {
@@ -95,14 +95,26 @@ export default {
       this.showEdit = false
     },
     getProjectName () {
-      return this.$store.getters['projects/getCurrentProject'].projectName
+      return this.$store.getters['projects/getCurrentProject'].projectIdentifier + ' - ' + this.$store.getters['projects/getCurrentProject'].projectName
+    },
+    toCurrency (value) {
+      if (isNaN(value)) {
+        return ''
+      }
+
+      var formatter = new Intl.NumberFormat('en-GB', {
+        style: 'currency',
+        currency: 'GBP',
+        minimumFractionDigits: 0
+      })
+      return formatter.format(value)
     },
     // Returns a Promise that resolves after "ms" Milliseconds
     timer (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

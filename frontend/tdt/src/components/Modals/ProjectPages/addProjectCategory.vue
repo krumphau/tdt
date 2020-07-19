@@ -4,7 +4,7 @@
 
         <form @submit.prevent="submitForm">
             <q-card-section class="q-pt-none">
-             <q-select dense v-model="categoryToAdd.CategoryId" label="Please select" map-options emit-value option-value="Id" option-label="CategoryName" outlined :options="categories" />
+             <q-select dense v-model="categoryToAdd.categoryId" label="Please select" map-options emit-value option-value="id" option-label="categoryName" outlined :options="categories" />
             </q-card-section>
            <modal-buttons />
         </form>
@@ -18,8 +18,9 @@ export default {
   data () {
     return {
       categoryToAdd: {
-        ProjectId: this.$q.localStorage.getItem('selectedProjectId'),
-        CategoryId: null
+        projectId: this.$q.localStorage.getItem('selectedProjectId'),
+        categoryId: null,
+        categoryName: null
       }
     }
   },
@@ -37,6 +38,7 @@ export default {
       this.$emit('close')
     },
     async saveCategory () {
+      this.categoryToAdd.categoryName = this.$store.getters['categories/getCategoryById'](this.categoryToAdd.categoryId).categoryName
       this.$store.dispatch('projectCategories/addProjectCategory', { item: this.categoryToAdd })
     }
   },

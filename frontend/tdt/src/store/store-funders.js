@@ -32,8 +32,8 @@ const actions = {
     })
   },
   addFunder: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'funder', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addFunder', { funder: item })
+    axios.post(storeSettings.state.baseUrl + 'funders', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
+      commit('addFunder', { funder: response.data })
     }, () => {
       return false
     })

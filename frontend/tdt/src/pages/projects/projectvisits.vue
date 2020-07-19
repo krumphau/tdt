@@ -41,6 +41,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { date } from 'quasar'
 export default {
   data: () => ({
     visibleColumns: ['visitStart', 'visitEnd', 'visitor', 'edit', 'delete'],
@@ -57,13 +58,15 @@ export default {
         name: 'visitStart',
         label: 'Visit Start',
         field: 'visitStart',
-        align: 'left'
+        align: 'left',
+        format: val => date.formatDate(val, 'DD/MM/YYYY')
       },
       {
         name: 'visitEnd',
         label: 'Visit End',
         field: 'visitEnd',
-        align: 'left'
+        align: 'left',
+        format: val => date.formatDate(val, 'DD/MM/YYYY')
       },
       {
         name: 'visitor',
@@ -104,10 +107,9 @@ export default {
   methods: {
     deleteRow (rowId) {
       if (confirm('Are you sure you want to remove this visit from the project?')) {
-        confirm('params: { id:' + rowId + ' }')
         this.$store.dispatch('projectVisits/deleteProjectVisit', rowId)
       } else {
-        confirm('Delete cancelled')
+        alert('Delete cancelled')
       }
     },
     closeDialogs: function () {
@@ -115,7 +117,7 @@ export default {
       this.showEdit = false
     },
     getProjectName () {
-      return this.$store.getters['projects/getCurrentProject'].ProjectName
+      return this.$store.getters['projects/getCurrentProject'].projectIdentifier + ' - ' + this.$store.getters['projects/getCurrentProject'].projectName
     },
     showEditDialog: function (rowValue) {
       this.selectedVisit = this.$store.getters['projectVisits/getProjectVisitById'](rowValue)
@@ -126,7 +128,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break
@@ -138,6 +140,16 @@ export default {
         if (!this.$store.getters['users/user'].email) {
           this.$router.push('/notuser')
         }
+      }
+    },
+    formatTheDateDisplay (x) {
+      return date.formatDate(x, 'DD/MM/YYYY')
+    },
+    formatTheDateSQL (x) {
+      if (x != null && x.length === 10) {
+        return x.split('/').reverse().join('-')
+      } else {
+        return null
       }
     }
   },

@@ -4,10 +4,10 @@
 
         <form @submit.prevent="submitForm">
             <q-card-section class="q-pt-none">
-             <q-select dense v-model="funderToAdd.FunderId" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="funders" />
+             <q-select dense v-model="funderToAdd.FunderId" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="funders" />
             </q-card-section>
             <q-card-section class="q-pt-none">
-             <q-input dense outlined v-model="funderToAdd.AmountFunded" label="Amount Funded" />
+             <q-input dense outlined v-model.number="funderToAdd.AmountFunded" prefix="£" label="Amount Funded" />
             </q-card-section>
            <modal-buttons />
         </form>
@@ -23,7 +23,8 @@ export default {
       funderToAdd: {
         ProjectId: this.$q.localStorage.getItem('selectedProjectId'),
         FunderId: null,
-        AmountFunded: null
+        AmountFunded: null,
+        Name: null
       }
     }
   },
@@ -41,6 +42,7 @@ export default {
       this.$emit('close')
     },
     async saveFunder () {
+      this.funderToAdd.Name = this.$store.getters['funders/getFunderById'](this.funderToAdd.FunderId).name
       this.$store.dispatch('projectFunders/addProjectFunder', { item: this.funderToAdd })
     }
   },

@@ -33,7 +33,7 @@ const actions = {
   },
   addRegion: function ({ commit }, { item }) {
     axios.post(storeSettings.state.baseUrl + 'regions', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addRegion', { region: item })
+      commit('addRegion', { region: response.data })
     }, () => {
       return false
     })

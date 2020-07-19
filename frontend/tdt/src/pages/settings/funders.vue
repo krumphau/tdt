@@ -9,16 +9,9 @@
       :data="funders"
       :columns="columns"
       row-key="Id"
-      :filter="filter"
       hide-header
+      :pagination.sync="pagination"
     >
-      <template v-slot:top-right>
-        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-      </template>
 
       <template v-slot:item="props">
         <div          class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-style-transition"
@@ -41,8 +34,8 @@
             </q-list>
             <q-separator />
             <q-card-section>
-              <q-btn class="glossy" rounded color="indigo-12" label="Edit" align="left" @click="showEditDialog(props.row.Id)"/>
-              <q-btn class="glossy" rounded color="indigo-12" label="Delete" align="right" @click="deleteRow(props.row.Id)"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Edit" align="left" @click="showEditDialog(props.row.id)"/>
+              <q-btn class="glossy" rounded color="indigo-12" label="Delete" align="right" @click="deleteRow(props.row.id)"/>
             </q-card-section>
           </q-card>
         </div>
@@ -71,6 +64,9 @@
 import { mapGetters } from 'vuex'
 export default {
   data: () => ({
+    pagination: {
+      rowsPerPage: 6 // current rows per page being displayed
+    },
     selectedFunder: {},
     columns: [
       {
@@ -129,7 +125,8 @@ export default {
   }),
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to delete funder with ID ' + rowId + '?')) {
+      this.selectedFunder = this.$store.getters['funders/getFunderById'](rowId)
+      if (confirm('Are you sure you want to delete funder ' + this.selectedFunder.name + '?')) {
         this.$store.dispatch('funders/deleteFunder', rowId)
       } else {
         alert('Delete cancelled')
@@ -148,7 +145,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

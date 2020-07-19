@@ -32,8 +32,8 @@ const actions = {
     })
   },
   addProjectOfficer: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'projectofficer', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addProjectOfficer', { projectOfficer: item })
+    axios.post(storeSettings.state.baseUrl + 'projectofficers', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
+      commit('addProjectOfficer', { projectOfficer: response.data })
     }, () => {
       return false
     })

@@ -37,6 +37,7 @@ export default {
       this.$emit('close')
     },
     async saveOtherBody () {
+      this.otherbodyToAdd.Name = this.$store.getters['otherBodies/getOtherBodyById'](this.otherbodyToAdd.OtherBodyId).name
       this.$store.dispatch('projectOtherBodies/addProjectOtherBody', { item: this.otherbodyToAdd })
     }
   },

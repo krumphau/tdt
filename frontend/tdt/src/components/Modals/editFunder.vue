@@ -3,38 +3,59 @@
         <modal-header>Edit Funder</modal-header>
 
         <form @submit.prevent="submitForm">
+        <div>
+          <table>
+            <tr>
+              <td>
             <modal-name
-            :Name.sync="funderToEdit.Name"
+            :Name.sync="funderToEdit.name"
+            :Label.sync="nameLabel"
             ref="modalName"></modal-name>
             <modal-optional
-            :Name.sync="funderToEdit.Address1"
+            :Name.sync="funderToEdit.address1"
+            :Label.sync="add1Label"
             ref="modalAddress1"></modal-optional>
             <modal-optional
-            :Name.sync="funderToEdit.Address2"
+            :Name.sync="funderToEdit.address2"
+            :Label.sync="add2Label"
             ref="modalAddress2"></modal-optional>
             <modal-optional
-            :Name.sync="funderToEdit.Address3"
+            :Name.sync="funderToEdit.address3"
+            :Label.sync="add3Label"
             ref="modalAddress3"></modal-optional>
             <modal-optional
-            :Name.sync="funderToEdit.Town"
+            :Name.sync="funderToEdit.town"
+            :Label.sync="townLabel"
             ref="modalTown"></modal-optional>
+              </td>
+              <td>
+            <modal-name
+            :Name.sync="funderToEdit.mainContact"
+            :Label.sync="mainContactLabel"
+            ref="modalMainContact"></modal-name>
             <modal-optional
-            :Name.sync="funderToEdit.County"
+            :Name.sync="funderToEdit.county"
+            :Label.sync="countyLabel"
             ref="modalCounty"></modal-optional>
             <modal-optional
-            :Name.sync="funderToEdit.PostCode"
-            ref="modalCounty"></modal-optional>
+            :Name.sync="funderToEdit.postCode"
+            :Label.sync="postCodeLabel"
+            ref="modalPostcode"></modal-optional>
             <modal-optional
-            :Name.sync="funderToEdit.Tel"
+            :Name.sync="funderToEdit.tel"
+            :Label.sync="telLabel"
             ref="modalTelephone"></modal-optional>
             <modal-optional
-            :Name.sync="funderToEdit.MainContact"
-            ref="modalMainContact"></modal-optional>
-            <modal-optional
-            :Name.sync="funderToEdit.Amount"
+            :Name.sync="funderToEdit.amount"
+            :Label.sync="amountLabel"
             ref="modalAmount"></modal-optional>
-
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div>
             <modal-buttons />
+        </div>
         </form>
     </q-card>
 
@@ -45,7 +66,17 @@ export default {
   props: ['funder'],
   data () {
     return {
-      funderToEdit: {}
+      funderToEdit: {},
+      nameLabel: 'Name',
+      add1Label: 'Address 1',
+      add2Label: 'Address 2',
+      add3Label: 'Address 3',
+      townLabel: 'Town',
+      countyLabel: 'County',
+      postCodeLabel: 'Postcode',
+      telLabel: 'Telephone',
+      mainContactLabel: 'Main Contact',
+      amountLabel: 'Amount'
     }
   },
   methods: {

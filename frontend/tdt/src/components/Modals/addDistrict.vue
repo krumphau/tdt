@@ -5,6 +5,7 @@
         <form @submit.prevent="submitForm">
             <modal-name
             :Name.sync="districtToAdd.Name"
+            :Label.sync="label"
             ref="modalDisName"></modal-name>
 
             <modal-buttons />
@@ -19,7 +20,8 @@ export default {
     return {
       districtToAdd: {
         Name: ''
-      }
+      },
+      label: 'District Name'
     }
   },
   methods: {

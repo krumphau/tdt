@@ -5,9 +5,9 @@
         <form @submit.prevent="submitForm">
             <modal-name
             :Name.sync="categoryToAdd.CategoryName"
+            :Label.sync="label"
             ref="modalCatName"></modal-name>
-
-            <modal-highlevel :Selected.sync="categoryToAdd.HighLevelCategory"></modal-highlevel>
+            <q-checkbox v-model="selected" label="High Level" ref="modalHL"/>
 
             <modal-buttons />
         </form>
@@ -21,8 +21,10 @@ export default {
     return {
       categoryToAdd: {
         CategoryName: '',
-        HighLevelCategory: false
-      }
+        HighLevelCategory: null
+      },
+      selected: false,
+      label: 'Category Name'
     }
   },
   methods: {
@@ -34,13 +36,13 @@ export default {
       }
     },
     async saveCategory () {
+      this.categoryToAdd.HighLevelCategory = this.selected
       this.$store.dispatch('categories/addCategory', { item: this.categoryToAdd })
     }
   },
   components: {
     'modal-header': require('components/Modals/Shared/modalHeader.vue').default,
     'modal-name': require('components/Modals/Shared/modalSettingName.vue').default,
-    'modal-highlevel': require('components/Modals/Shared/modalCheckbox.vue').default,
     'modal-buttons': require('components/Modals/Shared/modalButtons.vue').default
   }
 }

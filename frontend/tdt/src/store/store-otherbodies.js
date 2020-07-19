@@ -33,7 +33,7 @@ const actions = {
   },
   addOtherBody: function ({ commit }, { item }) {
     axios.post(storeSettings.state.baseUrl + 'otherbodies', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addOtherBody', { otherBody: item })
+      commit('addOtherBody', { otherBody: response.data })
     }, () => {
       return false
     })

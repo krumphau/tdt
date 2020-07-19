@@ -21,8 +21,6 @@
              <q-input dense v-model.number="purchasedItem.itemCost" label="Item Cost" outlined />
             </q-card-section>
            <modal-buttons />
-
-        <pre> {{ purchasedItem}} </pre>
         </form>
     </q-card>
 

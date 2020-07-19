@@ -10,7 +10,7 @@ const mutations = {
     state.projectCategories = projectCategories
   },
   deleteProjectCategory: (state, { id }) => {
-    let idx = state.categories.map(p => p.id).indexOf(id)
+    let idx = state.projectCategories.map(p => p.id).indexOf(id)
     state.projectCategories.splice(idx, 1)
   },
   addProjectCategory: (state, { category }) => {
@@ -21,7 +21,7 @@ const mutations = {
 const actions = {
   addProjectCategory: function ({ commit }, { item }) {
     axios.post(storeSettings.state.baseUrl + 'projectcategory', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addProjectCategory', { category: item })
+      commit('addProjectCategory', { category: response.data })
     }, () => {
       return false
     })

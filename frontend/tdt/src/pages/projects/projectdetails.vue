@@ -21,19 +21,19 @@
                     </tr>
                     <tr>
                     <td class="text-left">Application Date</td>
-                    <td class="text-left">{{ project.applicationDate }}</td>
+                    <td class="text-left">{{ formatTheDate(project.applicationDate) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Date Grant Approved</td>
-                    <td class="text-left">{{ project.dateGrantApproved }}</td>
+                    <td class="text-left">{{ formatTheDate(project.dateGrantApproved) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Date Grant Paid</td>
-                    <td class="text-left">{{ project.dateGrantPaid }}</td>
+                    <td class="text-left">{{ formatTheDate(project.dateGrantPaid) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Target Completion Date</td>
-                    <td class="text-left">{{ project.targetCompletionDate }}</td>
+                    <td class="text-left">{{ formatTheDate(project.targetCompletionDate) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Requested</td>
@@ -57,11 +57,11 @@
                     </tr>
                     <tr>
                     <td class="text-left">Status Code</td>
-                    <td class="text-left">{{ project.statusDescription }}</td>
+                    <td class="text-left">{{ getStatusCode(project.statusCode_Id) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Status Code Changed</td>
-                    <td class="text-left">{{ project.statusCodeDate }}</td>
+                    <td class="text-left">{{ formatTheDate(project.statusCodeDate) }}</td>
                     </tr>
                     <tr>
                     <td class="text-left">Region</td>
@@ -99,6 +99,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { date } from 'quasar'
 export default { data: () => ({
   showEdit: false
 }),
@@ -111,6 +112,9 @@ created () {
   }
   if (this.$store.getters['projectOfficers/projectOfficers'].length === 0) {
     this.$store.dispatch('projectOfficers/loadProjectOfficers')
+  }
+  if (this.$store.getters['statusCodes/statusCodes'].length === 0) {
+    this.$store.dispatch('statusCodes/loadStatusCodes')
   }
 },
 mounted () {
@@ -135,6 +139,9 @@ methods: {
   getProjOfficer (officerId) {
     return (officerId == null ? '' : this.$store.getters['projectOfficers/getProjectOfficerById'](officerId).fullName)
   },
+  getStatusCode (statusCodeId) {
+    return (statusCodeId == null ? '' : this.$store.getters['statusCodes/getStatusCodeById'](statusCodeId).statusCode)
+  },
   toCurrency (value) {
     if (isNaN(value)) {
       return ''
@@ -148,7 +155,7 @@ methods: {
     return formatter.format(value)
   },
   getProjectName () {
-    return this.project.projectName
+    return this.project.projectIdentifier + ' - ' + this.project.projectName
   },
   showEditDialog () {
     this.$router.push('/editproject')
@@ -169,7 +176,7 @@ methods: {
     return new Promise(resolve => setTimeout(resolve, ms))
   },
   async load () { // We need to wrap the loop into an async function for this to work
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < 4; i++) {
       await this.timer(5000) // then the created Promise can be awaited
       if (!this.$store.getters['users/loading']) {
         break
@@ -182,6 +189,9 @@ methods: {
         this.$router.push('/notuser')
       }
     }
+  },
+  formatTheDate (x) {
+    return date.formatDate(x, 'DD/MM/YYYY')
   }
 }
 }

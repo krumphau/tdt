@@ -10,7 +10,7 @@ const mutations = {
     state.projectFunders = projectFunders
   },
   deleteProjectFunder: (state, { id }) => {
-    let idx = state.funders.map(p => p.id).indexOf(id)
+    let idx = state.projectFunders.map(p => p.id).indexOf(id)
     state.projectFunders.splice(idx, 1)
   },
   addProjectFunder: (state, { funder }) => {
@@ -21,7 +21,7 @@ const mutations = {
 const actions = {
   addProjectFunder: function ({ commit }, { item }) {
     axios.post(storeSettings.state.baseUrl + 'projectfunder', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addProjectFunder', { funder: item })
+      commit('addProjectFunder', { funder: response.data })
     }, () => {
       return false
     })

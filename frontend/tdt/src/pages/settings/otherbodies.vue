@@ -9,6 +9,7 @@
       :columns="columns"
       :visible-columns="visibleColumns"
       row-key="Id"
+      :pagination.sync="pagination"
     >
       <template v-slot:body-cell-edit="cellProperties">
         <q-td :props="cellProperties">
@@ -45,6 +46,9 @@
 import { mapGetters } from 'vuex'
 export default {
   data: () => ({
+    pagination: {
+      rowsPerPage: 10 // current rows per page being displayed
+    },
     visibleColumns: ['name', 'edit', 'delete'],
     props: ['id', 'name'],
     selectedOtherBody: {},
@@ -80,7 +84,8 @@ export default {
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to delete Other Body with ID ' + rowId + '?')) {
+      this.selectedOtherBody = this.$store.getters['otherBodies/getOtherBodyById'](rowId)
+      if (confirm('Are you sure you want to delete Other Body ' + this.selectedOtherBody.name + '?')) {
         this.$store.dispatch('otherBodies/deleteOtherBody', rowId)
       } else {
         alert('Delete cancelled')
@@ -94,7 +99,6 @@ export default {
       return rowValue === 1
     },
     showEditDialog: function (rowValue) {
-      alert(rowValue)
       this.selectedOtherBody = this.$store.getters['otherBodies/getOtherBodyById'](rowValue)
       this.showEdit = true
     },
@@ -103,7 +107,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

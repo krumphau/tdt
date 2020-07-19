@@ -3,47 +3,67 @@
         <modal-header>Edit Project Officer</modal-header>
 
         <form @submit.prevent="submitForm">
+        <div>
+          <table>
+            <tr>
+              <td>
             <modal-name
             :Name.sync="projectOfficerToEdit.firstName"
+            :Label.sync="firstNameLabel"
             ref="modalFirstName"></modal-name>
             <modal-name
             :Name.sync="projectOfficerToEdit.lastName"
+            :Label.sync="lastNameLabel"
             ref="modalLastName"></modal-name>
             <modal-optional
             :Name.sync="projectOfficerToEdit.address1"
+            :Label.sync="add1Label"
             ref="modalAddress1"></modal-optional>
             <modal-optional
             :Name.sync="projectOfficerToEdit.address2"
+            :Label.sync="add2Label"
             ref="modalAddress2"></modal-optional>
             <modal-optional
             :Name.sync="projectOfficerToEdit.address3"
+            :Label.sync="add3Label"
             ref="modalAddress3"></modal-optional>
+              </td>
+              <td>
             <modal-optional
             :Name.sync="projectOfficerToEdit.town"
+            :Label.sync="townLabel"
             ref="modalTown"></modal-optional>
             <modal-optional
             :Name.sync="projectOfficerToEdit.county"
+            :Label.sync="countyLabel"
             ref="modalCounty"></modal-optional>
             <modal-optional
             :Name.sync="projectOfficerToEdit.postCode"
-            ref="modalCounty"></modal-optional>
+            :Label.sync="postCodeLabel"
+            ref="modalPostcode"></modal-optional>
             <modal-optional
             :Name.sync="projectOfficerToEdit.tel"
+            :Label.sync="telLabel"
             ref="modalTelephone"></modal-optional>
             <modal-optional
             :Name.sync="projectOfficerToEdit.mobile"
+            :Label.sync="mobLabel"
             ref="modalMobile"></modal-optional>
             <modal-optional
-            :Name.sync="projectOfficerToEdit.image"
-            ref="modalImage"></modal-optional>
-            <modal-optional
             :Name.sync="projectOfficerToEdit.info"
+            :Label.sync="infoLabel"
             ref="modalInfo"></modal-optional>
             <modal-optional
             :Name.sync="projectOfficerToEdit.email"
+            :Label.sync="emailLabel"
             ref="modalEmail"></modal-optional>
-
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div>
             <modal-buttons />
+        </div>
         </form>
     </q-card>
 
@@ -54,7 +74,19 @@ export default {
   props: ['officer'],
   data () {
     return {
-      projectOfficerToEdit: {}
+      projectOfficerToEdit: {},
+      firstNameLabel: 'First Name',
+      lastNameLabel: 'Last Name',
+      add1Label: 'Address 1',
+      add2Label: 'Address 2',
+      add3Label: 'Address 3',
+      townLabel: 'Town',
+      countyLabel: 'County',
+      postCodeLabel: 'Postcode',
+      telLabel: 'Telephone',
+      mobLabel: 'Mobile',
+      infoLabel: 'Information',
+      emailLabel: 'Email'
     }
   },
   methods: {

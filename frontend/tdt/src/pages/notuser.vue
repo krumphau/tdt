@@ -4,7 +4,7 @@
     <template>
   <div class="q-pa-md">
     <h3>TDT Projects</h3>
-    <h5>Sorry - we don't recognise you as a user of this application. Please contact xxx if you think you should have access.</h5>
+    <h5>Sorry - we don't recognise you as a user of this application. Please contact the TDT Committee if you think you should have access.</h5>
   </div>
 
 </template>

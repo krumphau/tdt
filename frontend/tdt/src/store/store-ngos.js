@@ -33,7 +33,7 @@ const actions = {
   },
   addNGO: function ({ commit }, { item }) {
     axios.post(storeSettings.state.baseUrl + 'ngos', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addNGO', { NGO: item })
+      commit('addNGO', { NGO: response.data })
     }, () => {
       return false
     })

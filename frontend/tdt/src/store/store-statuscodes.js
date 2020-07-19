@@ -33,7 +33,7 @@ const actions = {
   },
   addStatusCode: function ({ commit }, { item }) {
     axios.post(storeSettings.state.baseUrl + 'statuscodes', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addStatusCode', { statusCode: item })
+      commit('addStatusCode', { statusCode: response.data })
     }, () => {
       return false
     })

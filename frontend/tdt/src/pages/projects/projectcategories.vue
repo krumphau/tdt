@@ -77,10 +77,9 @@ export default {
   methods: {
     deleteRow (rowId) {
       if (confirm('Are you sure you want to remove this category from the project?')) {
-        confirm('params: { id:' + rowId + ' }')
         this.$store.dispatch('projectCategories/deleteProjectCategory', rowId)
       } else {
-        confirm('Delete cancelled')
+        alert('Delete cancelled')
       }
     },
     closeDialogs: function () {
@@ -88,14 +87,14 @@ export default {
       this.showEdit = false
     },
     getProjectName () {
-      return this.$store.getters['projects/getCurrentProject'].projectName
+      return this.$store.getters['projects/getCurrentProject'].projectIdentifier + ' - ' + this.$store.getters['projects/getCurrentProject'].projectName
     },
     // Returns a Promise that resolves after "ms" Milliseconds
     timer (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

@@ -9,6 +9,7 @@
       :columns="columns"
       :visible-columns="visibleColumns"
       row-key="Id"
+      :pagination.sync="pagination"
     >
       <template v-slot:body-cell-edit="cellProperties">
         <q-td :props="cellProperties">
@@ -22,7 +23,7 @@
       </template>
       <template v-slot:body-cell-highLevel="cellProperties">
           <q-td :props="cellProperties">
-              <q-checkbox :value="getHighLevelBool(cellProperties.value)"/>
+              <q-checkbox :value="cellProperties.value"/>
           </q-td>
       </template>
     </q-table>
@@ -51,6 +52,9 @@ import { mapGetters } from 'vuex'
 
 export default {
   data: () => ({
+    pagination: {
+      rowsPerPage: 10 // current rows per page being displayed
+    },
     visibleColumns: ['name', 'highLevel', 'edit', 'delete'],
     props: ['id', 'name', 'highLevel'],
     selectedCategory: {},
@@ -98,7 +102,8 @@ export default {
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to delete category with ID ' + rowId + '?')) {
+      this.selectedCategory = this.$store.getters['categories/getCategoryById'](rowId)
+      if (confirm('Are you sure you want to delete category ' + this.selectedCategory.categoryName + '?')) {
         this.$store.dispatch('categories/deleteCategory', rowId)
       } else {
         alert('Delete cancelled')
@@ -121,7 +126,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

@@ -18,11 +18,11 @@
                 <tbody>
                     <tr>
                     <td class="text-left" width="20%">Project Identifier</td>
-                    <td class="text-right"><q-input outlined dense v-model="projectToAdd.projectIdentifier"></q-input></td>
+                    <td class="text-right"><q-input outlined dense v-model="projectToAdd.projectIdentifier" :rules="[val => !!val || 'Field is required']" ref='projId'></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Project Name</td>
-                    <td class="text-right"><q-input outlined dense v-model="projectToAdd.projectName"></q-input></td>
+                    <td class="text-right"><q-input outlined dense v-model="projectToAdd.projectName" :rules="[val => !!val || 'Field is required']" ref='projName'></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Project Description</td>
@@ -31,11 +31,11 @@
                     <tr>
                     <td class="text-left">Application Date</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToAdd.ApplicationDate" mask="date">
+                        <q-input outlined dense v-model="projectToAdd.ApplicationDate" >
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qAppDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToAdd.ApplicationDate" @input="() => $refs.qAppDateProxy.hide()" />
+                                    <q-date v-model="projectToAdd.ApplicationDate" @input="() => $refs.qAppDateProxy.hide()" mask="DD/MM/YYYY" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -45,11 +45,11 @@
                     <tr>
                     <td class="text-left">Date Grant Approved</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToAdd.DateGrantApproved" mask="date">
+                        <q-input outlined dense v-model="projectToAdd.DateGrantApproved" >
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qApproveDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToAdd.DateGrantApproved" @input="() => $refs.qApproveDateProxy.hide()" />
+                                    <q-date v-model="projectToAdd.DateGrantApproved" @input="() => $refs.qApproveDateProxy.hide()" mask="DD/MM/YYYY" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -59,11 +59,11 @@
                     <tr>
                     <td class="text-left">Date Grant Paid</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToAdd.DateGrantPaid" mask="date">
+                        <q-input outlined dense v-model="projectToAdd.DateGrantPaid" >
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qPaidDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToAdd.DateGrantPaid" @input="() => $refs.qPaidDateProxy.hide()" />
+                                    <q-date v-model="projectToAdd.DateGrantPaid" @input="() => $refs.qPaidDateProxy.hide()" mask="DD/MM/YYYY" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -73,11 +73,11 @@
                     <tr>
                     <td class="text-left">Target Completion Date</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToAdd.TargetCompletionDate" mask="date">
+                        <q-input outlined dense v-model="projectToAdd.TargetCompletionDate" >
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qTargetDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToAdd.TargetCompletionDate" @input="() => $refs.qTargetDateProxy.hide()" />
+                                    <q-date v-model="projectToAdd.TargetCompletionDate" @input="() => $refs.qTargetDateProxy.hide()" mask="DD/MM/YYYY" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -85,33 +85,30 @@
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Requested</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToAdd.AmountGrantRequested"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToAdd.AmountGrantRequested"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Approved</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToAdd.AmountGrantApproved"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToAdd.AmountGrantApproved"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Recommended</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToAdd.AmountGrantRecommended"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToAdd.AmountGrantRecommended"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Amount of Grant Paid</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToAdd.AmountGrantPaid"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToAdd.AmountGrantPaid"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Total Project Cost</td>
-                    <td class="text-right"><q-input outlined dense prefix="£" v-model="projectToAdd.TotalProjectCost"></q-input></td>
+                    <td class="text-right"><q-input outlined dense prefix="£" v-model.number="projectToAdd.TotalProjectCost"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Status Code</td>
                     <td class="text-right">
                         <q-item>
                             <q-item-section>
-                                <q-select dense v-model="projectToAdd.StatusCode_Id" label="Please select" map-options emit-value option-value="Id" option-label="StatusCode" outlined :options="statusCodes" />
-                            </q-item-section>
-                            <q-item-section avatar clickable>
-                                <q-icon name="add" title="Add a new Status Code"/>
+                                <q-select dense v-model="projectToAdd.StatusCode_Id" label="Please select" map-options emit-value option-value="id" option-label="statusCode" outlined :options="statusCodes" :rules="[requiredDropdown]" ref='statusCodeDD'/>
                             </q-item-section>
                         </q-item>
                         </td>
@@ -119,11 +116,11 @@
                     <tr>
                     <td class="text-left">Status Code Changed</td>
                     <td class="text-right">
-                        <q-input outlined dense v-model="projectToAdd.StatusCodeDate" mask="date">
+                        <q-input outlined dense v-model="projectToAdd.StatusCodeDate" >
                             <template v-slot:append>
                                 <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy ref="qStatusDateProxy" transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="projectToAdd.StatusCodeDate" @input="() => $refs.qStatusDateProxy.hide()" />
+                                    <q-date v-model="projectToAdd.StatusCodeDate" @input="() => $refs.qStatusDateProxy.hide()" mask="DD/MM/YYYY" />
                                 </q-popup-proxy>
                                 </q-icon>
                             </template>
@@ -135,10 +132,7 @@
                     <td class="text-right">
                         <q-item>
                             <q-item-section>
-                                <q-select dense v-model="projectToAdd.Region_Id" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="regions" />
-                            </q-item-section>
-                            <q-item-section avatar clickable>
-                                <q-icon name="add" title="Add a new Region"/>
+                                <q-select dense v-model="projectToAdd.Region_Id" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="regions" :rules="[requiredDropdown]" ref='regionDD'/>
                             </q-item-section>
                         </q-item>
                     </td>
@@ -148,10 +142,7 @@
                     <td class="text-right">
                         <q-item>
                             <q-item-section>
-                                <q-select dense v-model="projectToAdd.District_Id" label="Please select" map-options emit-value option-value="Id" option-label="Name" outlined :options="districts" />
-                            </q-item-section>
-                            <q-item-section avatar clickable >
-                                <q-icon name="add" title="Add a new District"/>
+                                <q-select dense v-model="projectToAdd.District_Id" label="Please select" map-options emit-value option-value="id" option-label="name" outlined :options="districts" />
                             </q-item-section>
                         </q-item>
                     </td>
@@ -161,10 +152,7 @@
                     <td class="text-right">
                         <q-item>
                             <q-item-section>
-                                <q-select dense v-model="projectToAdd.ProjOfficer_Id" label="Please select" map-options emit-value option-value="Id" option-label="FullName" outlined :options="projectOfficers" />
-                            </q-item-section>
-                            <q-item-section avatar clickable>
-                                <q-icon name="add" title="Add a new Project Officer"/>
+                                <q-select dense v-model="projectToAdd.ProjOfficer_Id" label="Please select" map-options emit-value option-value="id" option-label="fullName" outlined :options="projectOfficers" />
                             </q-item-section>
                         </q-item>
                     </td>
@@ -186,6 +174,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { date } from 'quasar'
 export default {
   data () {
     return {
@@ -234,17 +223,70 @@ export default {
       this.saveProject()
     },
     async saveProject () {
-      this.$store.dispatch('projects/addProject', { item: this.projectToAdd })
-      alert('Project added')
-      this.$store.dispatch('projects/loadProjects')
-      this.$router.push('/')
+      var errors = false
+      this.$refs.projId.validate()
+      this.$refs.projName.validate()
+      this.$refs.statusCodeDD.validate()
+      this.$refs.regionDD.validate()
+      if (!this.$refs.projId.hasError && !this.$refs.projName.hasError && !this.$refs.statusCodeDD.hasError && !this.$refs.regionDD.hasError) {
+        if ((this.projectToAdd.ApplicationDate != null) && !date.isValid(this.formatTheDate(this.projectToAdd.ApplicationDate))) {
+          alert('Please enter the Application Date in DD/MM/YYYY format')
+          errors = true
+        }
+        if ((this.projectToAdd.DateGrantApproved != null) && !date.isValid(this.formatTheDate(this.projectToAdd.DateGrantApproved))) {
+          alert('Please enter the Grant Approved Date in DD/MM/YYYY format')
+          errors = true
+        }
+        if ((this.projectToAdd.DateGrantPaid != null) && !date.isValid(this.formatTheDate(this.projectToAdd.DateGrantPaid))) {
+          alert('Please enter the Grant Paid Date in DD/MM/YYYY format')
+          errors = true
+        }
+        if ((this.projectToAdd.TargetCompletionDate != null) && !date.isValid(this.formatTheDate(this.projectToAdd.TargetCompletionDate))) {
+          alert('Please enter the Target Completion Date in DD/MM/YYYY format')
+          errors = true
+        }
+        if ((this.projectToAdd.StatusCodeDate != null) && !date.isValid(this.formatTheDate(this.projectToAdd.StatusCodeDate))) {
+          alert('Please enter the Status Code Date in DD/MM/YYYY format')
+          errors = true
+        }
+        alert(this.formatTheDate(this.projectToAdd.ApplicationDate, 'YYYY-MM-DD'))
+        if ((this.projectToAdd.ApplicationDate != null) && (this.formatTheDate(this.projectToAdd.ApplicationDate) > date.formatDate(Date.now(), 'YYYY-MM-DD'))) {
+          alert('The Application Date cannot be in the future')
+          errors = true
+        }
+        if ((this.projectToAdd.DateGrantApproved != null) && (this.formatTheDate(this.projectToAdd.DateGrantApproved) > date.formatDate(Date.now(), 'YYYY-MM-DD'))) {
+          alert('The Grant Approved Date cannot be in the future')
+          errors = true
+        }
+        if ((this.projectToAdd.DateGrantPaid != null) && (this.formatTheDate(this.projectToAdd.DateGrantPaid) > date.formatDate(Date.now(), 'YYYY-MM-DD'))) {
+          alert('The Grant Paid Date cannot be in the future')
+          errors = true
+        }
+        if ((this.projectToAdd.StatusCodeDate != null) && (this.formatTheDate(this.projectToAdd.StatusCodeDate) > date.formatDate(Date.now(), 'YYYY-MM-DD'))) {
+          alert('The Status Code Date cannot be in the future')
+          errors = true
+        }
+        if (!errors) {
+          this.projectToAdd.ApplicationDate = this.formatTheDate(this.projectToAdd.ApplicationDate)
+          this.projectToAdd.DateGrantApproved = this.formatTheDate(this.projectToAdd.DateGrantApproved)
+          this.projectToAdd.DateGrantPaid = this.formatTheDate(this.projectToAdd.DateGrantPaid)
+          this.projectToAdd.TargetCompletionDate = this.formatTheDate(this.projectToAdd.TargetCompletionDate)
+          this.projectToAdd.StatusCodeDate = this.formatTheDate(this.projectToAdd.StatusCodeDate)
+          this.$store.dispatch('projects/addProject', { item: this.projectToAdd })
+          this.$store.dispatch('projects/loadProjects')
+          alert('Project added')
+          this.$router.push('/')
+        }
+      } else {
+        alert('The following fields are required - Project Identifier, Project Name, Status Code, Region.')
+      }
     },
     // Returns a Promise that resolves after "ms" Milliseconds
     timer (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break
@@ -256,6 +298,18 @@ export default {
         if (!this.$store.getters['users/user'].email) {
           this.$router.push('/notuser')
         }
+      }
+    },
+    formatTheDate (x) {
+      if (x != null && x.length === 10) {
+        return x.split('/').reverse().join('-')
+      } else {
+        return null
+      }
+    },
+    requiredDropdown (val) {
+      if (val === null) {
+        return 'Please select a value'
       }
     }
   }

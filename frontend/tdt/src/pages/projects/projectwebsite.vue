@@ -16,7 +16,7 @@
                     <td class="text-left">Picture</td>
                     <td>
                         <q-img
-                        :src="project.WebSitePicture"
+                        :src="project.webSitePicture"
                         spinner-color="white"
                         style="height: 140px; max-width: 150px"
                         />
@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     getProjectName () {
-      return this.$store.getters['projects/getCurrentProject'].projectName
+      return this.$store.getters['projects/getCurrentProject'].projectIdentifier + ' - ' + this.$store.getters['projects/getCurrentProject'].projectName
     },
     showEditDialog () {
       this.$router.push('/editprojectwebsite')
@@ -80,7 +80,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

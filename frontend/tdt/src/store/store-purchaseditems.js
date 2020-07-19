@@ -25,7 +25,7 @@ const mutations = {
 const actions = {
   addPurchasedItem: function ({ commit }, { item }) {
     axios.post(storeSettings.state.baseUrl + 'purchaseditem', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addPurchasedItem', { purchasedItem: item })
+      commit('addPurchasedItem', { purchasedItem: response.data })
     }, () => {
       return false
     })

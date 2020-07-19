@@ -10,8 +10,9 @@
         </template>
       </q-input>
     </q-card-section>
-    <q-card-section class="q-pt-none">
+    <q-card-section class="q-pt-none" align="right">
       <q-btn class="glossy" rounded color="indigo-12" label="Upload" type="submit" />
+      <q-btn class="glossy" rounded color="indigo-12" label="Cancel" v-close-popup />
     </q-card-section>
   </form>
 

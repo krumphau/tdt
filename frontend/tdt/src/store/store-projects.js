@@ -49,8 +49,8 @@ const actions = {
     })
   },
   addProject: function ({ commit }, { item }) {
-    axios.post(storeSettings.state.baseUrl + 'project', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addProject', { project: item })
+    axios.post(storeSettings.state.baseUrl + 'projects', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
+      commit('addProject', { project: response.data })
     }, () => {
       return false
     })

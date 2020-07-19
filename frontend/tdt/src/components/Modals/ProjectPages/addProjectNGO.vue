@@ -37,6 +37,7 @@ export default {
       this.$emit('close')
     },
     async saveNgo () {
+      this.ngoToAdd.Name = this.$store.getters['ngos/getNGOById'](this.ngoToAdd.NgoId).name
       this.$store.dispatch('projectNGOs/addProjectNGO', { item: this.ngoToAdd })
     }
   },

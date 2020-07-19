@@ -69,7 +69,8 @@ export default {
     ],
     showAdd: false,
     showEdit: false,
-    changeFlag: 0
+    changeFlag: 0,
+    url: null
   }),
   created () {
     if (!this.$store.getters['projects/getCurrentProject'].projectName) {
@@ -85,10 +86,10 @@ export default {
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to remove document with ID ' + rowId + ' from the project?')) {
+      if (confirm('Are you sure you want to remove this document from the project?')) {
         this.$store.dispatch('projectDocuments/deleteProjectDocument', rowId)
       } else {
-        confirm('Delete cancelled')
+        alert('Delete cancelled')
       }
     },
     closeDialogs: function () {
@@ -96,10 +97,11 @@ export default {
       this.showEdit = false
     },
     getProjectName () {
-      return this.$store.getters['projects/getCurrentProject'].projectName
+      return this.$store.getters['projects/getCurrentProject'].projectIdentifier + ' - ' + this.$store.getters['projects/getCurrentProject'].projectName
     },
     forceFileDownload (response, fileName) {
-      const url = window.URL.createObjectURL(new Blob([response.data]))
+      var blob = new Blob([response.data], { type: response.headers['content-type'] })
+      const url = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
       link.setAttribute('download', fileName.substring(fileName.indexOf('/') + 1)) // or any other extension
@@ -108,7 +110,7 @@ export default {
       link.remove()
     },
     downloadFromS3 (fileName) {
-      axios.get('https://localhost:44349/download/' + fileName, { headers: { 'x-api-key': 'CBAEA0AB-D7E2-4639-A54E-EAD7E6A14869' } }).then((response) => {
+      axios.get(this.$store.getters['settings/url'] + 'download/' + fileName, { headers: { 'x-api-key': 'CBAEA0AB-D7E2-4639-A54E-EAD7E6A14869' }, responseType: 'arraybuffer' }).then((response) => {
         this.forceFileDownload(response, fileName)
       }, () => {
         alert('Problem downloading file!')
@@ -119,7 +121,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

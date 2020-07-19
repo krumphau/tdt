@@ -30,11 +30,11 @@
                     </tr>
                     <tr>
                     <td class="text-left">Latitude (decimal)</td>
-                    <td class="text-right"><q-input outlined dense v-model="projectToEdit.Latitude"></q-input></td>
+                    <td class="text-right"><q-input outlined dense v-model.number="projectToEdit.Latitude"></q-input></td>
                     </tr>
                     <tr>
                     <td class="text-left">Longitude (decimal)</td>
-                    <td class="text-right"><q-input outlined dense v-model="projectToEdit.Longitude"></q-input></td>
+                    <td class="text-right"><q-input outlined dense v-model.number="projectToEdit.Longitude"></q-input></td>
                     </tr>
                     <tr>
                         <td class="text-left">
@@ -63,7 +63,7 @@ export default {
         Caption: null,
         Latitude: null,
         Longitude: null,
-        LastUpdatedBy: 'Charlotte'
+        LastUpdatedBy: this.$store.getters['users/user'].fullName
       }
     }
   },
@@ -84,6 +84,12 @@ export default {
   },
   methods: {
     submitForm () {
+      if (this.projectToEdit.latitude === '') {
+        this.projectToEdit.latitude = 0
+      }
+      if (this.projectToEdit.longitude === '') {
+        this.projectToEdit.longitude = 0
+      }
       // todo: validation
       this.saveProject()
     },
@@ -104,7 +110,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break

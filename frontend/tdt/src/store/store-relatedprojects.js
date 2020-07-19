@@ -21,7 +21,7 @@ const mutations = {
 const actions = {
   addRelatedProject: function ({ commit }, { item }) {
     axios.post(storeSettings.state.baseUrl + 'relatedproject', item, { headers: { 'x-api-key': storeSettings.state.apiKey } }).then((response) => {
-      commit('addRelatedProject', { relatedProject: item })
+      commit('addRelatedProject', { relatedProject: response.data })
     }, () => {
       return false
     })

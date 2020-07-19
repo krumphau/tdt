@@ -9,10 +9,11 @@
       :columns="columns"
       :visible-columns="visibleColumns"
       row-key="Id"
+      :pagination.sync="pagination"
     >
       <template v-slot:body-cell-edit="cellProperties">
         <q-td :props="cellProperties">
-            <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEditDialog(cellProperties.value)"/>
+            <q-btn class="glossy" rounded color="indigo-12" label="Edit" @click="showEditDialog(cellProperties.value)" />
         </q-td>
       </template>
       <template v-slot:body-cell-delete="cellProperties">
@@ -45,6 +46,9 @@
 import { mapGetters } from 'vuex'
 export default {
   data: () => ({
+    pagination: {
+      rowsPerPage: 10 // current rows per page being displayed
+    },
     visibleColumns: ['name', 'edit', 'delete'],
     props: ['id', 'name'],
     selectedDistrict: {},
@@ -80,10 +84,15 @@ export default {
   },
   methods: {
     deleteRow (rowId) {
-      if (confirm('Are you sure you want to delete district with ID ' + rowId + '?')) {
-        this.$store.dispatch('districts/deleteDistrict', rowId)
+      this.selectedDistrict = this.$store.getters['districts/getDistrictById'](rowId)
+      if (this.selectedDistrict.isUsed) {
+        alert('This district cannot be deleted because it is currently linked to a Project.')
       } else {
-        alert('Delete cancelled')
+        if (confirm('Are you sure you want to delete district ' + this.selectedDistrict.name + '?')) {
+          this.$store.dispatch('districts/deleteDistrict', rowId)
+        } else {
+          alert('Delete cancelled')
+        }
       }
     },
     closeDialogs: function () {
@@ -94,8 +103,10 @@ export default {
       return rowValue === 1
     },
     showEditDialog: function (rowValue) {
-      alert(rowValue)
       this.selectedDistrict = this.$store.getters['districts/getDistrictById'](rowValue)
+      if (this.selectedDistrict.isUsed) {
+        alert('Warning - this district is currently in use by a Project.')
+      }
       this.showEdit = true
     },
     // Returns a Promise that resolves after "ms" Milliseconds
@@ -103,7 +114,7 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     async load () { // We need to wrap the loop into an async function for this to work
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 4; i++) {
         await this.timer(5000) // then the created Promise can be awaited
         if (!this.$store.getters['users/loading']) {
           break
