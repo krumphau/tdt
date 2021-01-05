@@ -15,7 +15,7 @@
     "@quasar/extras": "^1.0.0",
     "aws-amplify-vue": "^1.1.4",
     "aws-appsync": "^3.0.2",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "hello.js": "^1.0.0",
     "json2csv": "^5.0.1",
     "moment": "^2.27.0",
